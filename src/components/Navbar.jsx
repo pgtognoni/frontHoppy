@@ -25,6 +25,8 @@ function Navbar() {
                 <span>User Name</span>
             </div>
             <button className='nav-logout-btn' onClick={logout}>Logout</button>
+            <NavLink to='/login' className="text-white">Login</NavLink>
+            <NavLink to='/signup' className="text-white">Register</NavLink>
         </div>
     </div>
   )
