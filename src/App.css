@@ -8,6 +8,10 @@
   margin: 0;
 }
 
+#root {
+  position: relative;
+}
+
 .navBar {
   position: fixed;
   top: 0;
@@ -53,10 +57,11 @@
   overflow: scroll initial; 
   justify-content: flex-end;
   align-items: flex-end;
+  padding-top: 4.2rem;
 }
 
 .subSide.sideSub {
-  height: 92.8vh;
+  height: 100%;
   background-color: #0e0e0e;
 }
 
@@ -72,4 +77,18 @@ form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body-content {
+  padding: 5rem 3rem;
 }

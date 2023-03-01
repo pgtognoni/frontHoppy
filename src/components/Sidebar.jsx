@@ -11,9 +11,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className ="mainSide"
-    
-    >
+    <div className ="mainSide">
     <div className ="subSide sideSub" >
       <CDBSidebar textColor="#fff" id="CDBSSide">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
@@ -28,7 +26,7 @@ const Sidebar = () => {
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="columns">Memes</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
