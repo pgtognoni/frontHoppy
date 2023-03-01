@@ -51,4 +51,3 @@ function SessionContextProvider({ children }) {
 }
 
 export default SessionContextProvider;
-// Create your provider component that will keep your state

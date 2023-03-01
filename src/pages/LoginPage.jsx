@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import LoginForm from '../contexts/LoginForm'
+import LoginForm from '../components/LoginForm'
 import { SessionContext } from '../contexts/SessionContext'
 
 const LoginPage = () => {
@@ -27,7 +27,7 @@ const LoginPage = () => {
 
   return (
     <>
-        <LoginForm handleSubmit={handleSubmit}/>
+        <LoginForm handleSubmit={handleSubmit} setUsername={setUsername} setPassword={setPassword}/>
     </>
   )
 
