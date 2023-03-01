@@ -1,3 +1,4 @@
+import Sidebar from './components/Sidebar'
 import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <Sidebar />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />

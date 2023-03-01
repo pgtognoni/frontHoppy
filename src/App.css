@@ -1,11 +1,16 @@
 :root {
   --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
-  --nav-bg: #082044; 
+  --nav-bg: #0e0e0e; 
   --text-white: #f1f1f1;
 }
 
+<<<<<<< HEAD
+* {
+  margin: 0;
+=======
 #root {
   margin: auto;
+>>>>>>> b535358b581fb521b4529bd1abd05af3a622a630
 }
 
 .navBar {
@@ -15,8 +20,9 @@
   background: var(--nav-bg);
   box-sizing: border-box;
   width: 100vw;
-  padding: .5rem 2rem;
+  padding: .5rem 0.75rem;
   color: var(--text-white);
+  box-shadow: 0 15px 18px rgba(0, 0, 0, 0.205);
 }
 
 .text-white {
@@ -36,6 +42,7 @@
 
 .navBar {
   justify-content: space-between;
+  padding-top: 13px;
 }
 
 .logo-container img,
@@ -43,6 +50,23 @@
   max-width: 3rem;
   width: 100%;
   height: auto;
+}
+
+.mainSide {
+  display: flex;
+  height: 100vh; 
+  overflow: scroll initial; 
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.subSide.sideSub {
+  height: 92.8vh;
+  background-color: #0e0e0e;
+}
+
+#CDBSSide {
+  background-color: #0e0e0e;
 }
 
 .login-container {
