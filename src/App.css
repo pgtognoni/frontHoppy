@@ -4,6 +4,10 @@
   --text-white: #f1f1f1;
 }
 
+#root {
+  margin: auto;
+}
+
 .navBar {
   position: fixed;
   top: 0;
@@ -38,4 +42,14 @@
   max-width: 3rem;
   width: 100%;
   height: auto;
+}
+
+.login-container {
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
