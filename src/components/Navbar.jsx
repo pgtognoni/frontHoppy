@@ -1,12 +1,19 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { SessionContext } from '../contexts/SessionContext'
+import { useContext } from 'react'
 
 function Navbar() {
-
-    const logout = () => { 
-
+    const { setIsLoading, setIsAuthenticated } = useContext(SessionContext)
+    const navigate = useNavigate()
+  
+    const logout = () => {
+      window.localStorage.clear()
+      setIsAuthenticated(false)
+      setIsLoading(true)
+      navigate('/')
     }
-
+  
   return (
     <div className='navBar'>
         <div className='logo-container'>
