@@ -26,7 +26,8 @@
 .navBar,
 .nav-links,
 .nav-logout,
-.nav-user {
+.nav-user,
+.btn-container {
   display: flex;
   justify-content: center;
   align-items: center;

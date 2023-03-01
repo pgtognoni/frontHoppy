@@ -12,6 +12,7 @@ function SignupPage() {
   const handleSubmit = async event => {
         event.preventDefault()
         // Send your signup information to your backend
+        console.log(username, password)
         const newUser = await fetch('http://localhost:5005/auth/signup', { 
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -20,7 +21,7 @@ function SignupPage() {
         const json = await newUser.json()
         if (newUser.status === 201) {
           console.log(json)
-          navigate('/')
+          navigate('/login')
         }
     
     }

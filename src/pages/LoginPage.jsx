@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
   const navigate = useNavigate()
-  //const { setToken } = useContext(SessionContext)
+  const { setToken } = useContext(SessionContext)
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -19,8 +19,9 @@ const LoginPage = () => {
       body: JSON.stringify({ username, password })
     })
     const json = await newUser.json()
+    console.log(json)
     if (newUser.status === 200) {
-      //setToken(json.token)
+      setToken(json.token)
       navigate('/profile')
     }
   }
