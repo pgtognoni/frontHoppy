@@ -4,14 +4,10 @@
   --text-white: #f1f1f1;
 }
 
-<<<<<<< HEAD
 * {
   margin: 0;
-=======
-#root {
-  margin: auto;
->>>>>>> b535358b581fb521b4529bd1abd05af3a622a630
 }
+
 
 .navBar {
   position: fixed;
@@ -53,10 +49,11 @@
 
 .mainSide {
   display: flex;
-  height: 100vh; 
+  height: 50%; 
   overflow: scroll initial; 
   justify-content: flex-end;
   align-items: flex-end;
+  position: absolute;
 }
 
 .subSide.sideSub {
