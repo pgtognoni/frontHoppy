@@ -4,10 +4,9 @@ import { SessionContext } from '../contexts/SessionContext'
 import { useContext } from 'react'
 
 function Navbar() {
-    const { setIsLoading, setIsAuthenticated, isAuthenticated } = useContext(SessionContext)
+    const { setIsLoading, setIsAuthenticated, isAuthenticated, user, userImage } = useContext(SessionContext)
     const navigate = useNavigate()
-    console.log(isAuthenticated)
-  
+
     const logout = () => {
       window.localStorage.clear()
       setIsAuthenticated(false)
@@ -22,7 +21,7 @@ function Navbar() {
         </div>
         {isAuthenticated && 
             <div className='nav-links'>
-                {/* <NavLink to='/' className="text-white">Main</NavLink> */}
+                <NavLink to='/' className="text-white">Main</NavLink>
                 <NavLink to='/store' className="text-white">Store</NavLink>
                 <NavLink to='/profile' className="text-white">Profile</NavLink>
             </div>
@@ -31,9 +30,9 @@ function Navbar() {
         {isAuthenticated && 
             <div className='nav-user'>
                 <div className='profile-img'>
-                    <img src='' className='profile-img'/>
+                    <img src={userImage ? `${userImage}` : null} className='profile-img'/>
                 </div>
-                <span>User Name</span>
+                <span>{user}</span>
             <button className='nav-logout-btn' onClick={logout}>Logout</button>
             </div>
         }

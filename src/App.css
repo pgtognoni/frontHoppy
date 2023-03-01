@@ -22,6 +22,7 @@
   padding: .5rem 0.75rem;
   color: var(--text-white);
   box-shadow: 0 15px 18px rgba(0, 0, 0, 0.205);
+  z-index: 99;
 }
 
 .text-white {
@@ -51,6 +52,10 @@
   height: auto;
 }
 
+.nav-profile-img img {
+  border-radius: 100%;
+}
+
 .mainSide {
   display: flex;
   height: 100vh; 
@@ -70,12 +75,18 @@
 }
 
 .login-container {
-  margin: auto;
+  margin-top: 7rem;
+  justify-self: flex-start;
+}
+
+.login-container h1 {
 }
 
 form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   gap: 2rem;
 }
 
@@ -91,4 +102,5 @@ form {
 
 .body-content {
   padding: 5rem 3rem;
+  width: 70%;
 }

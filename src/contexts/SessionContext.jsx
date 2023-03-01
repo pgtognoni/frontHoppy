@@ -48,7 +48,7 @@ function SessionContextProvider({ children }) {
     }, [token]);
 
   return (
-    <SessionContext.Provider value={{ isLoading, isAuthenticated, setToken, setIsAuthenticated, setIsLoading }}>
+    <SessionContext.Provider value={{ isLoading, isAuthenticated, setToken, setIsAuthenticated, setIsLoading, user, setUser, userImage, setUserImage }}>
         { children }
     </SessionContext.Provider>
   )
