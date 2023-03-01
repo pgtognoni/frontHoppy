@@ -1,11 +1,16 @@
 :root {
   --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
-  --nav-bg: #0e0e0e; 
+  --nav-bg: #1f1e1e; 
   --text-white: #f1f1f1;
 }
 
 * {
   margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  position: relative;
 }
 
 
@@ -48,29 +53,38 @@
 }
 
 .mainSide {
-  display: flex;
-  height: 50%; 
-  overflow: scroll initial; 
-  justify-content: flex-end;
-  align-items: flex-end;
+  height: calc(100vh - 416px);
+  overflow: scroll initial;   
   position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
 }
 
 .subSide.sideSub {
   height: 92.8vh;
-  background-color: #0e0e0e;
+  background-color: var(--nav-bg);
 }
 
 #CDBSSide {
-  background-color: #0e0e0e;
+  background-color: var(--nav-bg);
 }
 
 .login-container {
   margin: auto;
+  
+  right: 50px;
 }
 
 form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.bodyContainer {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  position: relative;  
 }
