@@ -67,11 +67,11 @@
 
 .subSide.sideSub {
   height: 100%;
-  background-color: #0e0e0e;
+  background-color: var(--nav-bg);
 }
 
 #CDBSSide {
-  background-color: #0e0e0e;
+  background-color: var(--nav-bg);
 }
 
 .login-container {
