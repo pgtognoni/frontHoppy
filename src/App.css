@@ -1,42 +1,64 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+  --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
+  --nav-bg: #0e0e0e; 
+  --text-white: #f1f1f1;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+* {
+  margin: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--nav-bg);
+  box-sizing: border-box;
+  width: 100vw;
+  padding: .5rem 0.75rem;
+  color: var(--text-white);
+  box-shadow: 0 15px 18px rgba(0, 0, 0, 0.205);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.text-white {
+  color: var(--text-white);
 }
 
-.card {
-  padding: 2em;
+.navBar,
+.nav-links,
+.nav-logout,
+.nav-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
-.read-the-docs {
-  color: #888;
+.navBar {
+  justify-content: space-between;
+  padding-top: 13px;
+}
+
+.logo-container img,
+.nav-profile-img img{
+  max-width: 3rem;
+  width: 100%;
+  height: auto;
+}
+
+.mainSide {
+  display: flex;
+  height: 100vh; 
+  overflow: scroll initial; 
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.subSide.sideSub {
+  height: 92.8vh;
+  background-color: #0e0e0e;
+}
+
+#CDBSSide {
+  background-color: #0e0e0e;
 }
