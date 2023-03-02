@@ -12,11 +12,8 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
     const [toggle, setToggle] = useState(true);
 
-    function onMouseLeave () {
-        setTimeout(() => {
-            setToggle(true)
-        }, 2000)
-        
+    function onMouseLeave () {        
+        setToggle(true)        
     };
     function onMouseHover () {
         setToggle(false)
