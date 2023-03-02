@@ -3,9 +3,14 @@
 /* AUDIOWIDE */
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 /* font-family: 'Audiowide', cursive; */
+
 /* MONOFETT */
 @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
 /* font-family: 'Monofett', cursive; */
+
+/* GOLOS TEXT */
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&display=swap');
+/* font-family: 'Golos Text', sans-serif; */
 
 /*** GENERAL SETUP ***/
 /*** GENERAL SETUP ***/
@@ -264,6 +269,7 @@ textarea:-webkit-autofill:active {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Golos Text', sans-serif;
 }
 
 .body-content { 
@@ -294,14 +300,13 @@ textarea:-webkit-autofill:active {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 2;
 }
 
 .mainSide:hover {  
   box-shadow: 8px 0 0px 0px rgba(255, 47, 109, 0.986),
   16px 0 0px 0px rgba(255, 110, 158, 0.986),
-  24px 0 0px 0px rgba(255, 184, 211, 0.986)
-  ;
+  24px 0 0px 0px rgba(255, 184, 211, 0.986);
 }
 
 .subSide.sideSub {
