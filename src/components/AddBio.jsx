@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
+import { SessionContext } from '../contexts/SessionContext'
 
 function AddBio(props) {
-    const {setBio, setEditBio, bio, setUsername, username } = props
+    const {setBio, setEditBio, bio, setUsername, user } = props
+    const { setUser } = useContext(SessionContext)
+
 
     const updateBio = async (e) => {
         e.preventDefault();
-        const data = {username: username, bio: bio}
+        const data = {username: user, bio: bio}
         const token = window.localStorage.getItem('token')
         const res = await axios.put('http://localhost:5005/auth/profile', data, {
             headers: {
@@ -15,7 +18,7 @@ function AddBio(props) {
         })
         if (res.data.bio) {
             setBio(res.data.bio)
-            setUsername(res.data.username)
+            setUser(res.data.username)
             setEditBio(false)
         }
     }
@@ -32,7 +35,7 @@ function AddBio(props) {
         <form className='modal-content column-center' onSubmit={e => updateBio(e)}>
              <label htmlFor='username'>
                 <p>Username: </p>
-                <input type='text' name='username' value={username} onChange={e => setUsername(e.target.value)} />
+                <input type='text' name='username' value={user} onChange={e => setUser(e.target.value)} />
             </label>
             <label htmlFor='bio'>
                 <p>Bio: </p>

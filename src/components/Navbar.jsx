@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import { useContext } from 'react'
 import { faStore } from "@fortawesome/free-solid-svg-icons";
@@ -10,12 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Navbar() {
     const { setIsLoading, setIsAuthenticated, isAuthenticated, user, userImage } = useContext(SessionContext)
     const navigate = useNavigate()
+    const location = useLocation().pathname
+    console.log(location)
 
     const logout = () => {
       window.localStorage.clear()
       setIsAuthenticated(false)
       setIsLoading(true)
-      //navigate('/')
     }
   
   return (
@@ -39,10 +40,14 @@ function Navbar() {
         <div className='nav-logout'>
         {isAuthenticated && 
             <div className='nav-user'>
-                <div className='nav-profile-img'>
-                    <img src={userImage} className='profile-img'/>
-                </div>
-                <span className="text-white">{user}</span>
+                <>
+                    {location === '/profile' 
+                        ? null
+                        : <><div className='nav-profile-img'>
+                            <img src={userImage} className='profile-img'/>
+                            </div>
+                         <span className="text-white">{user}</span></>}
+                </>
             <button className='nav-logout-btn' onClick={logout}>Logout</button>
             </div>
         }

@@ -7,7 +7,6 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 function ProfilePage() {
 
-  const [ username, setUsername ] = useState([])
   const [ userProfile, setUserProfile ] = useState({})
   const [ isLoading, setIsLoading ] = useState(true)
   const [ editBio, setEditBio ] = useState(false)
@@ -64,8 +63,7 @@ function ProfilePage() {
             bio={bio} 
             setBio={setBio} 
             setEditBio={setEditBio} 
-            username={username}
-            setUsername={setUsername}
+            user={user}
             /> : null}
         </div>
       </div>

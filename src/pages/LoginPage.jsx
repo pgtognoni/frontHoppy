@@ -12,6 +12,7 @@ const LoginPage = () => {
 
   const handleSubmit = async event => {
     event.preventDefault()
+    console.log(username, password)
     // Send your login information to your backend
     const newUser = await fetch('http://localhost:5005/auth/login', { 
       method: 'POST',
@@ -21,11 +22,11 @@ const LoginPage = () => {
     const json = await newUser.json()
     console.log(newUser)
     if (newUser.status === 200) {
-      const user = json.user[0].toUpperCase() + json.user.slice(1);
+      const user = json.user;
       setUser(user)
       {json.image 
         ? setUserImage(json.image)
-        : setUserImage('../../public/image/godzila_default.png')}
+        : setUserImage('./image/godzila_default.png')}
       setToken(json.token)
       navigate('/')
     }
