@@ -7,7 +7,7 @@ function LoginForm(props) {
     const { handleSubmit, setPassword, setUsername } = props
 
   return (
-    <div class='login-container'>
+    <div class='login-container column-center'>
       <h1>{location === '/login' ? 'Log In' : 'Register' }</h1>
         <form onSubmit={handleSubmit}>
         <label htmlFor='username'>

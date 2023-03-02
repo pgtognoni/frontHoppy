@@ -26,6 +26,12 @@
   color: var(--text-black);
 }
 
+.column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /*** NAV BAR ***/
 /*** NAV BAR ***/
 /*** NAV BAR ***/
@@ -77,26 +83,14 @@
 /*** END NAV BAR ***/
 /*** END NAV BAR ***/
 
-
-.login-container {
-  margin: auto;
-  
-  right: 50px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
 /*** BODY CONTAINER ***/
 /*** BODY CONTAINER ***/
 /*** BODY CONTAINER ***/
 
 .body {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
   width: 100vw;
   position: relative;
   margin: 0;
@@ -105,8 +99,11 @@ form {
 }
 
 .body-content {
-  padding: 5rem 3rem;
-  width: 70%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 /*** SIDE BAR ***/
@@ -126,6 +123,9 @@ form {
   00px 0 0px 0px rgba(255, 217, 0, 0.986),
   00px 0 0px 0px rgba(255, 217, 0, 0.986);
   transition: box-shadow .4s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .mainSide:hover {  
@@ -163,8 +163,9 @@ form {
 
 
 .login-container {
-  margin-top: 7rem;
-  justify-self: flex-start;
+  max-width: 500px;
+  width: 100%;
+  align-items: flex-end;
 }
 
 .login-container h1 {
@@ -178,3 +179,19 @@ form {
   gap: 2rem;
 }
 
+
+/*** PROFILE ***/
+/*** PROFILE ***/
+/*** PROFILE ***/
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-image img{
+  max-width: 10rem;
+  width: 100%;
+  height: auto;
+  border-radius: 100%;
+}
