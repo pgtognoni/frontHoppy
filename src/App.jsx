@@ -12,20 +12,19 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className="bodyContainer">
+      <div className='body'>
         <Sidebar />
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route
-            path="/profile"
-            element={
+        <div className='body-content'>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/profile" element={
               <PrivateRoute>
                 <ProfilePage />
               </PrivateRoute>
-            }
-          />
-        </Routes>
+              } />
+          </Routes>
+        </div>
       </div>
     </div>
   );

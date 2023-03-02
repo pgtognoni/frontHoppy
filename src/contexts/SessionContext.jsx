@@ -8,6 +8,8 @@ function SessionContextProvider({ children }) {
     const [ isLoading, setIsLoading ] = useState(true);
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ token, setToken ] = useState(null);
+    const [ user, setUser ] = useState(null);
+    const [ userImage, setUserImage ] = useState(null);
 
     const verifyToken = async (jwt) => { 
         try {
@@ -18,10 +20,12 @@ function SessionContextProvider({ children }) {
                 },
             })
             const json = await response;
-            console.log('verification response: ', json, jwt);
+            console.log('verification response: ', json);
             setToken(jwt);
-            setIsAuthenticated(true);
-            setIsLoading(false);
+            if (json.success) {
+                setIsAuthenticated(true);
+                setIsLoading(false);
+            }
         } catch (error) {
             console.log(error);
             window.localStorage.removeItem('token');
@@ -37,7 +41,7 @@ function SessionContextProvider({ children }) {
 
     useEffect(() => {
         if (token) window.localStorage.setItem('token', token);
-        if (!isAuthenticated) {
+        if (!isAuthenticated && token) {
             setIsAuthenticated(true)
             setIsLoading(false);
         }
