@@ -1,3 +1,7 @@
+/*** GENERAL SETUP ***/
+/*** GENERAL SETUP ***/
+/*** GENERAL SETUP ***/
+
 :root {
   --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
   --nav-bg: #0e0e0e; 
@@ -12,6 +16,14 @@
   position: relative;
 }
 
+.text-white {
+  color: var(--text-white);
+}
+
+/*** NAV BAR ***/
+/*** NAV BAR ***/
+/*** NAV BAR ***/
+
 .navBar {
   position: fixed;
   top: 0;
@@ -23,10 +35,6 @@
   color: var(--text-white);
   box-shadow: 0 15px 18px rgba(0, 0, 0, 0.205);
   z-index: 99;
-}
-
-.text-white {
-  color: var(--text-white);
 }
 
 .navBar,
@@ -45,6 +53,7 @@
   padding-top: 13px;
 }
 
+
 .logo-container img,
 .nav-profile-img img{
   max-width: 3rem;
@@ -55,6 +64,34 @@
 .nav-profile-img img {
   border-radius: 100%;
 }
+
+/*** END NAV BAR ***/
+/*** END NAV BAR ***/
+/*** END NAV BAR ***/
+
+/*** BODY CONTAINER ***/
+/*** BODY CONTAINER ***/
+/*** BODY CONTAINER ***/
+
+.body {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body-content {
+  padding: 5rem 3rem;
+  width: 70%;
+}
+
+/*** SIDE BAR ***/
+/*** SIDE BAR ***/
+/*** SIDE BAR ***/
+
 
 .mainSide {
   display: flex;
@@ -74,6 +111,12 @@
   background-color: var(--nav-bg);
 }
 
+
+/*** LOG IN / SIGN UP ***/
+/*** LOG IN / SIGN UP ***/
+/*** LOG IN / SIGN UP ***/
+
+
 .login-container {
   margin-top: 7rem;
   justify-self: flex-start;
@@ -90,17 +133,3 @@ form {
   gap: 2rem;
 }
 
-.body {
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.body-content {
-  padding: 5rem 3rem;
-  width: 70%;
-}
