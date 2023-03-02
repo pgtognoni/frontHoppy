@@ -30,7 +30,7 @@ function AddBio(props) {
 
   return (
     <div className='modal-container'>
-    <div className='modal-box'>
+    <div className='modal-box dark-form'>
         <button className="close-modal" onClick={() => setEditBio(false)}>x</button>
         <form className='modal-content column-center' onSubmit={e => updateBio(e)}>
              <label htmlFor='username'>
@@ -39,11 +39,11 @@ function AddBio(props) {
             </label>
             <label htmlFor='bio'>
                 <p>Bio: </p>
-                <textarea cols='35' rows='5' type='text' name='bio' value={bio} onChange={e => setBio(e.target.value)}></textarea>
+                <textarea cols='35' maxlength="70" rows='5' type='text' name='bio' value={bio} onChange={e => setBio(e.target.value)}></textarea>
             </label>
             <div className='btn-container'>
-                <button type='button' onClick={(e) => cancelEdit(e)}>Cancel</button>
-                <button type='submit'>Update</button>
+                <button type='button' className='btn-form cancel' onClick={(e) => cancelEdit(e)}>Cancel</button>
+                <button type='submit' className='btn-form save'>Update</button>
             </div>
         </form>
     </div>

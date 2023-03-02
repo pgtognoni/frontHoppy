@@ -2,9 +2,7 @@ import React from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import { useContext } from 'react'
-import { faStore } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faRightFromBracket, faHome, faStore } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Navbar() {
@@ -48,7 +46,9 @@ function Navbar() {
                             </div>
                          <span className="text-white">{user}</span></>}
                 </>
-            <button className='nav-logout-btn' onClick={logout}>Logout</button>
+            <button className='text-white logout' onClick={logout}>
+                <FontAwesomeIcon icon={faRightFromBracket} />
+            </button>
             </div>
         }
         {!isAuthenticated && 
