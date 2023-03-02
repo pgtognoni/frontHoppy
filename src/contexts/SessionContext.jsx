@@ -1,5 +1,5 @@
 import React from 'react'
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 // Create and export your context
 
 export const SessionContext = createContext();
@@ -10,6 +10,7 @@ function SessionContextProvider({ children }) {
     const [ token, setToken ] = useState(null);
     const [ user, setUser ] = useState(null);
     const [ userImage, setUserImage ] = useState(null);
+    const authenticated = useRef(isAuthenticated);
 
     const verifyToken = async (jwt) => { 
         try {
@@ -20,7 +21,6 @@ function SessionContextProvider({ children }) {
                 },
             })
             const json = await response;
-            console.log('verification response: ', json);
             setToken(jwt);
             if (json.success) {
                 setIsAuthenticated(true);
@@ -29,26 +29,49 @@ function SessionContextProvider({ children }) {
         } catch (error) {
             console.log(error);
             window.localStorage.removeItem('token');
+            window.localStorage.removeItem('user');
+            window.localStorage.removeItem('userImage');
         }
     }
 
     useEffect(() => {
-
         const jwtToken = window.localStorage.getItem('token');
-        verifyToken(jwtToken);
+        const username = JSON.parse(window.localStorage.getItem('user'))
+        const image = window.localStorage.getItem('userImage')
+        setUser(username)
+        setUserImage(image)
 
+        verifyToken(jwtToken);
     }, []);
 
     useEffect(() => {
-        if (token) window.localStorage.setItem('token', token);
+        if (token) {
+            window.localStorage.setItem('token', token);
+        }
         if (!isAuthenticated && token) {
             setIsAuthenticated(true)
             setIsLoading(false);
         }
     }, [token]);
 
+    useEffect(() => {
+        if (user) {
+            window.localStorage.setItem('user', JSON.stringify(user));
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (userImage) {
+            window.localStorage.setItem('userImage', userImage);
+        }
+    }, [userImage]);
+
+    useEffect(() => {
+        authenticated.current = isAuthenticated;
+    }, [isAuthenticated])
+
   return (
-    <SessionContext.Provider value={{ isLoading, isAuthenticated, setToken, setIsAuthenticated, setIsLoading, user, setUser, userImage, setUserImage }}>
+    <SessionContext.Provider value={{ isLoading, isAuthenticated, setToken, setIsAuthenticated, setIsLoading, user, setUser, userImage, setUserImage, authenticated }}>
         { children }
     </SessionContext.Provider>
   )

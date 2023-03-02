@@ -4,17 +4,20 @@ import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 
 function PrivateRoute({children}) {
-    const { isLoading, isAuthenticated  } = useContext(SessionContext)
+    const { isLoading, isAuthenticated, authenticated  } = useContext(SessionContext)
 
-    if (isLoading && !isAuthenticated) {
+    if (isLoading ) {
       return <Navigate to="/login" />
     }
 
-  return (
-    <>
-      {children}
-    </>
-  )
+    if(authenticated.current) {
+        return (
+          <>
+            {children}
+          </>
+        )
+    }
+
 }
 
 export default PrivateRoute

@@ -29,8 +29,8 @@ function Navbar() {
         <div className='nav-logout'>
         {isAuthenticated && 
             <div className='nav-user'>
-                <div className='profile-img'>
-                    <img src={userImage ? `${userImage}` : null} className='profile-img'/>
+                <div className='nav-profile-img'>
+                    <img src={userImage} className='profile-img'/>
                 </div>
                 <span>{user}</span>
             <button className='nav-logout-btn' onClick={logout}>Logout</button>

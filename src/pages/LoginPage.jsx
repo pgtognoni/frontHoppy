@@ -22,9 +22,11 @@ const LoginPage = () => {
     if (newUser.status === 200) {
       const user = json.user[0].toUpperCase() + json.user.slice(1);
       setUser(user)
-      setUserImage(json.image)
+      {json.image 
+        ? setUserImage(json.image)
+        : setUserImage('../../public/image/godzila_default.png')}
       setToken(json.token)
-      navigate('/profile')
+      navigate('/')
     }
   }
 
