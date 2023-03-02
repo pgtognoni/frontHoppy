@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -10,57 +10,64 @@ import {
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+    const [toggle, setToggle] = useState(true);
+
+    function onMouseLeave () {
+        setTimeout(() => {
+            setToggle(true)
+        }, 2000)
+        
+    };
+    function onMouseHover () {
+        setToggle(false)
+        
+    };
+    
+
+
   return (
-    <div className ="mainSide">
+    <div className ="mainSide text-black">
     <div className ="subSide sideSub" >
-      <CDBSidebar textColor="#fff" id="CDBSSide">
-        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
+    
+      <CDBSidebar
+      onMouseEnter={onMouseHover}
+      onMouseLeave={onMouseLeave}
+      toggled={toggle}
+      className="text-black" id="CDBSSide">
+        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large text-black"></i>}>
           <a
             href="/"
-            className="text-decoration-none"
+            className="text-decoration-none sideText"
             style={{ color: "inherit" }}
           >
             Sidebar
           </a>
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
-          <CDBSidebarMenu>
+          <CDBSidebarMenu >
             <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="columns">Memes</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem iconClassName="sideIcons text-black" icon="columns"><p className="sideText text-black">Memes</p></CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem iconClassName="sideIcons text-black" icon="table"><p className="sideText text-black">Memes</p></CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem iconClassName="sideIcons text-black" icon="user"><p className="sideText text-black">Memes</p></CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">
-                Analytics
+              <CDBSidebarMenuItem iconClassName="sideIcons text-black" icon="chart-line">
+              <p className="sideText text-black">Memes</p>
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink
-              exact
-              to="/hero404"
-              target="_blank"
-              activeClassName="activeClicked"
-            >
-              <CDBSidebarMenuItem icon="exclamation-circle">
-                404 page
-              </CDBSidebarMenuItem>
-            </NavLink>
+            
           </CDBSidebarMenu>
         </CDBSidebarContent>
         <CDBSidebarFooter style={{ textAlign: "center" }}>
-          <div
-            style={{
-              padding: "20px 5px",
-            }}
-          >
-            Sidebar Footer
+          <div>
+           //icon goes here
           </div>
         </CDBSidebarFooter>
-      </CDBSidebar>
+      </CDBSidebar> 
       </div>
     </div>
   );

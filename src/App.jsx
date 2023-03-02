@@ -8,6 +8,8 @@ import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/PrivateRoute";
 
+
+
 function App() {
   return (
     <div className="App">

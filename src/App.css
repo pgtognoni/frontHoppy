@@ -1,7 +1,12 @@
+/*** GENERAL SETUP ***/
+/*** GENERAL SETUP ***/
+/*** GENERAL SETUP ***/
+
 :root {
   --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
   --nav-bg: #1f1e1e; 
   --text-white: #f1f1f1;
+  --text-black: #161616;
 }
 
 * {
@@ -13,9 +18,17 @@
   position: relative;
 }
 
-#root {
-  position: relative;
+.text-white {
+  color: var(--text-white);
 }
+
+.text-black {
+  color: var(--text-black);
+}
+
+/*** NAV BAR ***/
+/*** NAV BAR ***/
+/*** NAV BAR ***/
 
 .navBar {
   position: fixed;
@@ -25,12 +38,10 @@
   box-sizing: border-box;
   width: 100vw;
   padding: .5rem 0.75rem;
+  padding-bottom: .6rem;
   color: var(--text-white);
   box-shadow: 0 15px 18px rgba(0, 0, 0, 0.205);
-}
-
-.text-white {
-  color: var(--text-white);
+  z-index: 99;
 }
 
 .navBar,
@@ -41,7 +52,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
   z-index: 100;
 }
 
@@ -50,6 +61,7 @@
   padding-top: 13px;
 }
 
+
 .logo-container img,
 .nav-profile-img img{
   max-width: 3rem;
@@ -57,23 +69,14 @@
   height: auto;
 }
 
-.mainSide {
-  display: flex;
-  height: 100vh; 
-  overflow: scroll initial; 
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding-top: 4.2rem;
+.nav-profile-img img {
+  border-radius: 100%;
 }
 
-.subSide.sideSub {
-  height: 100%;
-  background-color: #0e0e0e;
-}
+/*** END NAV BAR ***/
+/*** END NAV BAR ***/
+/*** END NAV BAR ***/
 
-#CDBSSide {
-  background-color: var(--nav-bg);
-}
 
 .login-container {
   margin: auto;
@@ -87,6 +90,10 @@ form {
   gap: 2rem;
 }
 
+/*** BODY CONTAINER ***/
+/*** BODY CONTAINER ***/
+/*** BODY CONTAINER ***/
+
 .body {
   display: flex;
   justify-content: space-between;
@@ -99,4 +106,74 @@ form {
 
 .body-content {
   padding: 5rem 3rem;
+  width: 70%;
 }
+
+/*** SIDE BAR ***/
+/*** SIDE BAR ***/
+/*** SIDE BAR ***/
+
+
+.mainSide {
+  display: flex;
+  height: 100vh; 
+  overflow: scroll initial; 
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-top: 4.45rem;
+  box-shadow: 00px 0 0px 0px rgba(252, 255, 47, 0.986),
+  00px 0 0px 0px rgba(255, 217, 0, 0.986),
+  00px 0 0px 0px rgba(255, 217, 0, 0.986);
+  transition: box-shadow .4s ease;
+}
+
+.mainSide:hover {  
+  box-shadow: 8px 0 0px 0px rgba(255, 47, 109, 0.986),
+  16px 0 0px 0px rgba(255, 110, 158, 0.986),
+  24px 0 0px 0px rgba(255, 184, 211, 0.986)
+  ;
+}
+
+.subSide.sideSub {
+  height: 100%;
+  background-color: var(--nav-bg);
+}
+
+#CDBSSide {
+  background-color: rgb(252, 112, 147);
+ 
+}
+
+.sideIcons {
+  
+}
+
+.sideText {
+  
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+
+/*** LOG IN / SIGN UP ***/
+/*** LOG IN / SIGN UP ***/
+/*** LOG IN / SIGN UP ***/
+
+
+.login-container {
+  margin-top: 7rem;
+  justify-self: flex-start;
+}
+
+.login-container h1 {
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
