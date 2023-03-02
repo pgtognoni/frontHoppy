@@ -1,15 +1,16 @@
-import Sidebar from './components/Sidebar'
-import { useState } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import { Routes, Route } from 'react-router-dom'
-import LoginPage from './pages/LoginPage'
-import SignupPage from './pages/SignupPage'
-import ProfilePage from './pages/ProfilePage'
-import PrivateRoute from './components/PrivateRoute'
+import Sidebar from "./components/Sidebar";
+import { useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import ProfilePage from "./pages/ProfilePage";
+import PrivateRoute from "./components/PrivateRoute";
+
+
 
 function App() {
-
   return (
     <div className="App">
       <Navbar />
@@ -28,7 +29,7 @@ function App() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

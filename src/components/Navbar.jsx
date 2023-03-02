@@ -2,6 +2,10 @@ import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import { useContext } from 'react'
+import { faStore } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Navbar() {
     const { setIsLoading, setIsAuthenticated, isAuthenticated, user, userImage } = useContext(SessionContext)
@@ -21,9 +25,15 @@ function Navbar() {
         </div>
         {isAuthenticated && 
             <div className='nav-links'>
-                <NavLink to='/' className="text-white">Main</NavLink>
-                <NavLink to='/store' className="text-white">Store</NavLink>
-                <NavLink to='/profile' className="text-white">Profile</NavLink>
+                <NavLink to='/' className="text-white">
+                    <FontAwesomeIcon icon={faHome} />
+                </NavLink>
+                <NavLink to='/store' className="text-white">
+                    <FontAwesomeIcon icon={faStore} />
+                </NavLink>
+                <NavLink to='/profile' className="text-white">
+                    <FontAwesomeIcon icon={faUser} />
+                </NavLink>
             </div>
         }
         <div className='nav-logout'>
@@ -32,7 +42,7 @@ function Navbar() {
                 <div className='nav-profile-img'>
                     <img src={userImage} className='profile-img'/>
                 </div>
-                <span>{user}</span>
+                <span className="text-white">{user}</span>
             <button className='nav-logout-btn' onClick={logout}>Logout</button>
             </div>
         }

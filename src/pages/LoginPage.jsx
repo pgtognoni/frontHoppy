@@ -19,6 +19,7 @@ const LoginPage = () => {
       body: JSON.stringify({ username, password })
     })
     const json = await newUser.json()
+    console.log(newUser)
     if (newUser.status === 200) {
       const user = json.user[0].toUpperCase() + json.user.slice(1);
       setUser(user)
