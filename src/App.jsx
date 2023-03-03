@@ -31,6 +31,7 @@ function App() {
           </Routes>
         </div>
       </div>
+      <div className="fadeOut"></div>
     </div>
   );
 }
