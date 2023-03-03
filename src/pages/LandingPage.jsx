@@ -33,9 +33,9 @@ function LandingPage() {
 
 
   return (
-    <div>
+    <>
       {!isLoading ? (
-        <div>
+        <div className='column-center'>
           <button className='add-new-post' onClick={e => openModal(e)}> 
             <p>Add New Post</p> 
             <span className='btn-add'>+</span>
@@ -82,7 +82,7 @@ function LandingPage() {
       ) : (
         <h1>Loading...</h1>
       )}
-    </div>
+    </>
   );
 }
 
