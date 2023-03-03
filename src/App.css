@@ -16,13 +16,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 /* font-family: 'Orbitron', sans-serif; */
 
-
 /*** GENERAL SETUP ***/
 /*** GENERAL SETUP ***/
 /*** GENERAL SETUP ***/
 
 :root {
   --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
+  --secundary-btn: linear-gradient(0deg, #529af3, #32d5ee);
+  --cancel-btn: linear-gradient(#f36a52, #ee3232 40%);
+  --save-btn: linear-gradient(#68e84c, #17bd30 50%);
   --nav-bg: #1f1e1e; 
   --text-white: #f1f1f1;
   --text-black: #161616;
@@ -250,7 +252,7 @@ textarea:-webkit-autofill:active {
 }
 
 .modal-box {
-  background-color: white;
+  background-color: var(--modal-form-bg);
   padding: .5rem 1rem;
   border-radius: 5px;
 }
