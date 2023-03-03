@@ -22,19 +22,23 @@ function Navbar() {
         <div className='logo-container'>
             <img src='../../public/image/hoppy_logo.png' className='nav-logo'/>
         </div>
-        {isAuthenticated && 
             <div className='nav-links'>
+            {location !== '/' && 
                 <NavLink to='/' className="text-white">
                     <FontAwesomeIcon icon={faHome} />
                 </NavLink>
+            }
+            {isAuthenticated && 
+                <>
                 <NavLink to='/store' className="text-white">
                     <FontAwesomeIcon icon={faStore} />
                 </NavLink>
                 <NavLink to='/profile' className="text-white">
                     <FontAwesomeIcon icon={faUser} />
                 </NavLink>
+                </>
+            }
             </div>
-        }
         <div className='nav-logout'>
         {isAuthenticated && 
             <div className='nav-user'>

@@ -12,6 +12,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&display=swap');
 /* font-family: 'Golos Text', sans-serif; */
 
+/* ORBITRON */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+/* font-family: 'Orbitron', sans-serif; */
+
 /*** GENERAL SETUP ***/
 /*** GENERAL SETUP ***/
 /*** GENERAL SETUP ***/
@@ -269,7 +273,8 @@ textarea:-webkit-autofill:active {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Golos Text', sans-serif;
+  /* font-family: 'Golos Text', sans-serif; */
+  font-family: 'Orbitron', sans-serif;
 }
 
 .body-content { 
