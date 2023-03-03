@@ -30,12 +30,16 @@ function Navbar() {
             }
             {isAuthenticated && 
                 <>
+                {location !== '/store' && 
                 <NavLink to='/store' className="text-white">
                     <FontAwesomeIcon icon={faStore} />
                 </NavLink>
+                }
+                {/* {location !== '/profile' && 
                 <NavLink to='/profile' className="text-white">
                     <FontAwesomeIcon icon={faUser} />
                 </NavLink>
+                } */}
                 </>
             }
             </div>
@@ -45,10 +49,13 @@ function Navbar() {
                 <>
                     {location === '/profile' 
                         ? null
-                        : <><div className='nav-profile-img'>
-                            <img src={userImage} className='profile-img'/>
+                        : <NavLink to='/profile' className="text-white nav-user">
+                            <div className='nav-profile-img'>
+                                <img src={userImage} className='profile-img'/>
                             </div>
-                         <span className="text-white">{user}</span></>}
+                            <span className="text-white">{user}</span>
+                        </NavLink>
+                        }
                 </>
             <button className='text-white logout' onClick={logout}>
                 <FontAwesomeIcon icon={faRightFromBracket} />
