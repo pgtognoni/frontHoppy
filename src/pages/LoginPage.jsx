@@ -8,11 +8,10 @@ const LoginPage = () => {
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
   const navigate = useNavigate()
-  const { setToken, setUser, setUserImage } = useContext(SessionContext)
+  const { setToken, setUser, setUserImage, setUserId } = useContext(SessionContext)
 
   const handleSubmit = async event => {
     event.preventDefault()
-    console.log(username, password)
     // Send your login information to your backend
     const newUser = await fetch('http://localhost:5005/auth/login', { 
       method: 'POST',
@@ -20,10 +19,10 @@ const LoginPage = () => {
       body: JSON.stringify({ username, password })
     })
     const json = await newUser.json()
-    console.log(newUser)
+    console.log(json, 'user: '+json.user, 'user ID: '+json.userId, 'user Image: '+json.image, 'token: '+json.token)
     if (newUser.status === 200) {
-      const user = json.user;
-      setUser(user)
+      setUser(json.user)
+      setUserId(json.userId)
       {json.image 
         ? setUserImage(json.image)
         : setUserImage('./image/godzila_default.png')}

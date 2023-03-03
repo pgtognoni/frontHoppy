@@ -39,7 +39,7 @@ function AddBio(props) {
             </label>
             <label htmlFor='bio'>
                 <p>Bio: </p>
-                <textarea cols='35' maxlength="70" rows='3' type='text' name='bio' value={bio} onChange={e => setBio(e.target.value)}></textarea>
+                <textarea cols='35' maxLength="70" rows='3' type='text' name='bio' value={bio} onChange={e => setBio(e.target.value)}></textarea>
             </label>
             <div className='btn-container'>
                 <button type='button' className='btn-form cancel' onClick={(e) => cancelEdit(e)}>Cancel</button>

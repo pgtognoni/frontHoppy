@@ -10,6 +10,7 @@ function SessionContextProvider({ children }) {
     const [ token, setToken ] = useState(null);
     const [ user, setUser ] = useState(null);
     const [ userImage, setUserImage ] = useState(null);
+    const [ userId, setUserId ] = useState(null);
     const authenticated = useRef(isAuthenticated);
 
     const verifyToken = async (jwt) => { 
@@ -57,8 +58,15 @@ function SessionContextProvider({ children }) {
     useEffect(() => {
         if (user) {
             window.localStorage.setItem('user', JSON.stringify(user));
+            window.localStorage.setItem('userId', userId);
         }
     }, [user]);
+
+    useEffect(() => {
+        if (userId) {
+            window.localStorage.setItem('userId', userId);
+        }
+    }, [userId]);
 
     useEffect(() => {
         if (userImage) {
@@ -71,7 +79,7 @@ function SessionContextProvider({ children }) {
     }, [isAuthenticated])
 
   return (
-    <SessionContext.Provider value={{ isLoading, isAuthenticated, setToken, setIsAuthenticated, setIsLoading, user, setUser, userImage, setUserImage, authenticated }}>
+    <SessionContext.Provider value={{ isLoading, isAuthenticated, setToken, setIsAuthenticated, setIsLoading, user, setUser, userImage, setUserImage, authenticated, userId, setUserId }}>
         { children }
     </SessionContext.Provider>
   )

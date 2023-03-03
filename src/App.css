@@ -31,6 +31,7 @@
   --border-gray: #dbdbdb;
   --modal-bg: #66666634;
   --white: white;
+  --modal-form-bg: #383535;
 }
 
 .dark-form {
@@ -79,6 +80,12 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
+textarea,
+select,
+select:-webkit-autofill,
+select:-webkit-autofill:hover, 
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active,
 textarea,
 textarea:focus,
 textarea:-webkit-autofill,
@@ -195,6 +202,7 @@ textarea:-webkit-autofill:active {
   align-items: center;
   gap: 1.5rem;
   font-family: 'Audiowide', cursive;
+  font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
 }
 
@@ -238,6 +246,7 @@ textarea:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .modal-box {
@@ -262,9 +271,11 @@ textarea:-webkit-autofill:active {
   outline: none;
   cursor: pointer;
 }
+
 .modal-box label {
   width: 100%;
 }
+
 .modal-box input,
 .modal-box textarea {
   width: 100%;
@@ -272,6 +283,7 @@ textarea:-webkit-autofill:active {
   border-radius: 5px;
   padding: .5rem
 }
+
 /*** BODY CONTAINER ***/
 /*** BODY CONTAINER ***/
 /*** BODY CONTAINER ***/
@@ -392,6 +404,7 @@ form input {
   width: 80%;
   max-width: 1280px;
   position: relative;
+  color: var(--text-white);
 }
 
 .profile-header {
@@ -409,6 +422,21 @@ form input {
   border-radius: 100%;
 }
 
+.profile-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-title button {
+  align-self: flex-start;
+}
+
+.profile-info {
+  margin-left: 2rem;
+  width: 100%;
+}
 
 /*** POST ***/
 /*** POST ***/
@@ -557,20 +585,50 @@ padding: 15px;
   box-shadow: 0 0 20px rgb(253, 173, 173);
 }
 
-.profile-title {
+/*** NEW POST FORM ***/
+/*** NEW POST FORM ***/
+/*** NEW POST FORM ***/
+
+.new-post {
+  max-width: 500px;
+  width: 100%;
+}
+
+.select-form {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.select-form p {
+  margin: 0;
+}
+
+.add-new-post {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 350px;
+  background-color: var(--modal-form-bg);
+  color: var(--text-white);
+  box-sizing: border-box;
+  padding: .3rem 1rem;
+  border-radius: 20px;
+  position: fixed;
+  top: 90px;
+  border: none;
+  opacity: .8;
 }
 
-.profile-title button {
-  align-self: flex-start;
+.add-new-post p {
+  margin: 0;
 }
 
-.profile-info {
-  margin-left: 2rem;
-  width: 100%;
+.btn-add {
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-radius: 100%;
 }
 
 /*** FADEOUT FOOTER ***/

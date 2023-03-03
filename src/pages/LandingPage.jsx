@@ -3,14 +3,18 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
+import PostForm from "../components/PostForm";
+import {  } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 function LandingPage() {
   const [posts, setPosts] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
+  const [ addNewPost, setAddNewPost ] = useState(false);
 
   const fetchData = async () => {
     const response = await axios.get(`http://localhost:5005/posts`);
-    console.log("Data", response.data);
     setPosts(response.data);
   };
 
@@ -22,10 +26,21 @@ function LandingPage() {
     setIsLoading(false);
   }, [posts]);
 
+  const openModal = (e) => {
+    e.preventDefault();
+    setAddNewPost(true);
+  }
+
+
   return (
-    <div>
+    <>
       {!isLoading ? (
-        <div>
+        <div className='column-center'>
+          <button className='add-new-post' onClick={e => openModal(e)}> 
+            <p>Add New Post</p> 
+            <span className='btn-add'>+</span>
+          </button>
+          {addNewPost && <PostForm setAddNewPost={setAddNewPost}/>}
           {posts.map((post) => {
             return (
               <div>
@@ -68,7 +83,7 @@ function LandingPage() {
         <h1>Loading...</h1>
       )}
       <iframe className="background3d" src='https://my.spline.design/untitledcopy-858101b02d0e98d0da4179fadde8c638/'></iframe>
-    </div>
+    </>
   );
 }
 
