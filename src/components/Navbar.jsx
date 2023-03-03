@@ -9,7 +9,6 @@ function Navbar() {
     const { setIsLoading, setIsAuthenticated, isAuthenticated, user, userImage } = useContext(SessionContext)
     const navigate = useNavigate()
     const location = useLocation().pathname
-    console.log(location)
 
     const logout = () => {
       window.localStorage.clear()
