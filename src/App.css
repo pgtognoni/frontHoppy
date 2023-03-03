@@ -1,52 +1,16 @@
-/*** FONTS ***/
-
-/* AUDIOWIDE */
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-/* font-family: 'Audiowide', cursive; */
-
-/* MONOFETT */
-@import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
-/* font-family: 'Monofett', cursive; */
-
-/* GOLOS TEXT */
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&display=swap');
-/* font-family: 'Golos Text', sans-serif; */
-
-/* ORBITRON */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
-/* font-family: 'Orbitron', sans-serif; */
-
 /*** GENERAL SETUP ***/
 /*** GENERAL SETUP ***/
 /*** GENERAL SETUP ***/
 
 :root {
-  --primary-btn: linear-gradient(#F37352, #EE326C 60%);
-  --secundary-btn: linear-gradient(0deg, #529af3, #32d5ee);
-  --cancel-btn: linear-gradient(#f36a52, #ee3232 40%);;
-  --save-btn: linear-gradient(#68e84c, #17bd30 50%);;
+  --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
   --nav-bg: #1f1e1e; 
   --text-white: #f1f1f1;
   --text-black: #161616;
   --post-border: rgb(230, 113, 142);
   --text-gray: #9a9a9a;
   --border-gray: #dbdbdb;
-  --modal-bg: #66666634;
-  --white: white;
-}
-
-.dark-form {
-  --white: #383535e6;
-  --border-gray: #424242df;
-}
-.dark-form form {
-  color: #f1f1f1
-}
-.dark-form form input, 
-.dark-form form textarea {
-  background-color: var(--nav-bg);
-  background-clip: initial;
-  -webkit-background-clip: initial;
+  --modal-bg: #2b2a2a34;
 }
 
 * {
@@ -100,6 +64,21 @@ textarea:-webkit-autofill:active {
   border-radius: 5px;
 }
 
+.postDiv {
+  margin-top: 15%;
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 30px;
+  border-color:  transparent;
+  background-color: #ececec;
+  padding-top: 30px;
+  /* box-shadow: 0 20px  var(--post-border); */
+}
+
 .box-container {
   border-radius: 5px;
   background-color: var(--nav-bg);
@@ -114,37 +93,6 @@ textarea:-webkit-autofill:active {
 
 .btn-container {
   width: 100%;
-  margin-bottom: .5rem;
-}
-
-.btn-form {
-  color: var(--text-white);
-  text-transform: uppercase;
-  font-weight: 700;
-  border: none;
-}
-
-.logIn {
-  background: var(--primary-btn);
-}
-
-.register {
-  background: var(--secundary-btn);
-}
-.logout{
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-.logout:hover {
-  border: none;
-}
-.cancel {
-  background: var(--cancel-btn);
-}
-
-.save {
-  background: var(--save-btn);
 }
 
 .edit-btn {
@@ -167,8 +115,7 @@ textarea:-webkit-autofill:active {
   padding: .5rem 0.75rem;
   padding-bottom: .6rem;
   color: var(--text-white);
-  box-shadow: 0 15px 18px rgba(0, 0, 0, 0.205);
-  z-index: 99;
+  box-shadow: 0 15px 18px rgba(0, 0, 0, 0.205); 
 }
 
 .navBar,
@@ -180,8 +127,6 @@ textarea:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  font-family: 'Audiowide', cursive;
-  text-transform: uppercase;
 }
 
 .navBar {
@@ -224,10 +169,9 @@ textarea:-webkit-autofill:active {
 }
 
 .modal-box {
-  background-color: var(--white);
+  background-color: white;
   padding: .5rem 1rem;
   border-radius: 5px;
-  color: var(--text-black)
 }
 
 .modal-content {
@@ -248,7 +192,6 @@ textarea:-webkit-autofill:active {
 }
 .modal-box label {
   width: 100%;
-  font-weight: 500;
 }
 .modal-box input,
 .modal-box textarea {
@@ -273,8 +216,6 @@ textarea:-webkit-autofill:active {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: 'Golos Text', sans-serif; */
-  font-family: 'Orbitron', sans-serif;
 }
 
 .body-content { 
@@ -305,13 +246,14 @@ textarea:-webkit-autofill:active {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 8;
 }
 
 .mainSide:hover {  
   box-shadow: 8px 0 0px 0px rgba(255, 47, 109, 0.986),
   16px 0 0px 0px rgba(255, 110, 158, 0.986),
-  24px 0 0px 0px rgba(255, 184, 211, 0.986);
+  24px 0 0px 0px rgba(255, 184, 211, 0.986)
+  ;
 }
 
 .subSide.sideSub {
@@ -346,12 +288,9 @@ textarea:-webkit-autofill:active {
   width: 100%;
   align-items: center;
   box-shadow: 1px 1px 5px var(--border-gray);
-  padding: 1.5rem 1rem !important;
 }
 
 .login-container h1 {
-  font-family: 'Audiowide', cursive;
-  text-transform: uppercase;
 }
 
 form {
@@ -379,7 +318,6 @@ form input {
   width: 80%;
   max-width: 1280px;
   position: relative;
-  color: var(--text-white)
 }
 
 .profile-header {
@@ -395,10 +333,6 @@ form input {
   width: 100%;
   height: auto;
   border-radius: 100%;
-}
-
-.profile-title h1 {
-  margin-bottom: 1rem;
 }
 
 
