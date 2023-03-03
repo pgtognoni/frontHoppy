@@ -19,7 +19,6 @@ const LoginPage = () => {
       body: JSON.stringify({ username, password })
     })
     const json = await newUser.json()
-    console.log(json, 'user: '+json.user, 'user ID: '+json.userId, 'user Image: '+json.image, 'token: '+json.token)
     if (newUser.status === 200) {
       setUser(json.user)
       setUserId(json.userId)

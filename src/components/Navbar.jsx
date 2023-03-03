@@ -19,7 +19,7 @@ function Navbar() {
   return (
     <div className='navBar'>
         <div className='logo-container'>
-            <img src='../../public/image/hoppy_logo.png' className='nav-logo'/>
+            <img src='./image/hoppy_logo.png' className='nav-logo'/>
         </div>
             <div className='nav-links'>
             {location !== '/' && 

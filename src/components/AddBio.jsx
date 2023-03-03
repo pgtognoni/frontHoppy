@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { SessionContext } from '../contexts/SessionContext'
 
 function AddBio(props) {
-    const {setBio, setEditBio, bio, setUsername, user } = props
-    const { setUser } = useContext(SessionContext)
-
+    const {setBio, setEditBio, bio } = props
+    const { setUser, user } = useContext(SessionContext)
 
     const updateBio = async (e) => {
         e.preventDefault();
@@ -30,7 +29,7 @@ function AddBio(props) {
 
   return (
     <div className='modal-container'>
-    <div className='modal-box dark-form'>
+    <div className='modal-box dark-form' >
         <button className="close-modal" onClick={() => setEditBio(false)}>x</button>
         <form className='modal-content column-center' onSubmit={e => updateBio(e)}>
              <label htmlFor='username'>

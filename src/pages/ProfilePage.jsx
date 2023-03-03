@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import AddBio from '../components/AddBio'
 import LoginForm from '../components/LoginForm'
 import { SessionContext } from '../contexts/SessionContext'
@@ -11,6 +11,7 @@ function ProfilePage() {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ editBio, setEditBio ] = useState(false)
   const [ bio, setBio ] = useState('')
+  const ref = useRef();
 
   const { userImage, user } = useContext(SessionContext)
 
@@ -40,13 +41,31 @@ function ProfilePage() {
   }, [ userProfile ])
 
   const openModal = (e) => {
+    e.stopPropagation()
     setEditBio(true)
   }
+
+  useEffect(() => {
+    const checkClickedOutside = (event) => {
+      if (editBio && ref.current && !ref.current.contains(event.target)) {
+        console.log('clicked outside')
+        setEditBio(false)
+      }
+    }
+    const modal = document.querySelector('.modal-container');
+    ref.current = modal;
+    document.addEventListener('click', checkClickedOutside)
+    return () => {
+      document.removeEventListener('click', checkClickedOutside)
+    }
+  }, [ editBio ])
+
+
   return (
     <>
     {isLoading 
       ? <h1>Loading...</h1>
-      : <div className='profile-container'>
+      : <div className='profile-container' id='profile'>
       <div className='profile-header'>
         <div className='profile-image'>
           <img src={userImage} alt='profile image' className='profile-img'/>
@@ -63,7 +82,6 @@ function ProfilePage() {
             bio={bio} 
             setBio={setBio} 
             setEditBio={setEditBio} 
-            user={user}
             /> : null}
         </div>
       </div>
