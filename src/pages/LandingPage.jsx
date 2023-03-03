@@ -23,22 +23,46 @@ function LandingPage() {
   }, [posts]);
 
   return (
-    <div>      
+    <div>
       {!isLoading ? (
         <div>
           {posts.map((post) => {
             return (
-                <div>
-              <div className="postDiv">
-                {post.type === "image" ? <img className="postContent" src={post.content} alt=""/> : <iframe  className="postContent" width="400px" height="230px" src={post.content}></iframe>}
-                <h1 className="postTitle">{post.title}</h1>
-                <p className="postDescription">{post.description}</p>
+              <div>
+                <div className="postContainer">
+                  <div className="postContent">
+                    {post.type === "image" ? (
+                      <img className="postImage" src={post.content} alt="" />
+                    ) : (
+                      <iframe
+                        className="postEmbed"
+                        //   width="1200px"
+                        //   height="220px"
+                        src={post.content}
+                      ></iframe>
+                    )}
+                  </div>
+                  <div className="innerPost">
+                    <div>
+                      <h1 className="postTitle">{post.title}</h1>
+                      <p className="postDescription">{post.description}</p>
+                    </div>
+                    <div className="postButtonsParent">
+                      <button className="postInteractions">
+                        ❤️{post.likes}
+                      </button>
+                      <button className="postInteractions">
+                        😠{post.likes}
+                      </button>
+                      <button className="postInteractions">
+                        👤{post.likes}
+                      </button>
+                    </div>
+                  </div>
+                </div>                
               </div>
-                <h2>❤️{post.likes}</h2>
-                </div>
             );
-          })}
-          {console.log("Div Posts", posts)}
+          })}              
         </div>
       ) : (
         <h1>Loading...</h1>
