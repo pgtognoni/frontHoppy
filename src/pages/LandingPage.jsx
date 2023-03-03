@@ -32,7 +32,7 @@ function LandingPage() {
                 <div className="postContainer">
                   <div className="postContent">
                     {post.type === "image" ? (
-                      <img className="postImage" src={post.content} alt="" />
+                      <img className="postEmbed" src={post.content} alt="" />
                     ) : (
                       <iframe
                         className="postEmbed"
@@ -67,6 +67,7 @@ function LandingPage() {
       ) : (
         <h1>Loading...</h1>
       )}
+      <iframe className="background3d" src='https://my.spline.design/untitledcopy-858101b02d0e98d0da4179fadde8c638/'></iframe>
     </div>
   );
 }
