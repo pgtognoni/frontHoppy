@@ -14,6 +14,7 @@ function Navbar() {
       window.localStorage.clear()
       setIsAuthenticated(false)
       setIsLoading(true)
+      navigate('/')
     }
   
   return (
@@ -50,7 +51,7 @@ function Navbar() {
                         ? null
                         : <NavLink to='/profile' className="text-white nav-user">
                             <div className='nav-profile-img'>
-                                <img src={userImage} className='profile-img'/>
+                                <img src={userImage[0]} className='profile-img'/>
                             </div>
                             <span className="text-white">{user}</span>
                         </NavLink>

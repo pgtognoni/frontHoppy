@@ -27,11 +27,12 @@ const Sidebar = () => {
     <div className ="subSide sideSub" >
     
       <CDBSidebar
-      onMouseEnter={onMouseHover}
-      onMouseLeave={onMouseLeave}
-      toggled={toggle}
-      className="text-black" id="CDBSSide">
-        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large text-black"></i>}>
+        toggled={toggle}
+        onMouseLeave={onMouseLeave}
+        className="text-black" id="CDBSSide">
+        <CDBSidebarHeader 
+          onMouseEnter={onMouseHover}
+          prefix={<i className="fa fa-bars fa-large text-black"></i>}>
           <a
             href="/"
             className="text-decoration-none sideText"

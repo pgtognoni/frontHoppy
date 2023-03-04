@@ -16,32 +16,28 @@ function SessionContextProvider({ children }) {
     const verifyToken = async (jwt) => { 
         try {
             const response = await fetch('http://localhost:5005/auth/verify', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     Authorization: `Bearer ${jwt}`,
                 },
             })
-            const json = await response;
+            const json = await response.json();
             setToken(jwt);
-            if (json.success) {
+            if (json) {
                 setIsAuthenticated(true);
                 setIsLoading(false);
+                setUser(json.user.username)
+                setUserId(json.user._id)
+                setUserImage(json.user.image)
             }
         } catch (error) {
             console.log(error);
             window.localStorage.removeItem('token');
-            window.localStorage.removeItem('user');
-            window.localStorage.removeItem('userImage');
         }
     }
 
     useEffect(() => {
         const jwtToken = window.localStorage.getItem('token');
-        const username = JSON.parse(window.localStorage.getItem('user'))
-        const image = window.localStorage.getItem('userImage')
-        setUser(username)
-        setUserImage(image)
-
         verifyToken(jwtToken);
     }, []);
 
@@ -54,25 +50,6 @@ function SessionContextProvider({ children }) {
             setIsLoading(false);
         }
     }, [token]);
-
-    useEffect(() => {
-        if (user) {
-            window.localStorage.setItem('user', JSON.stringify(user));
-            window.localStorage.setItem('userId', userId);
-        }
-    }, [user]);
-
-    useEffect(() => {
-        if (userId) {
-            window.localStorage.setItem('userId', userId);
-        }
-    }, [userId]);
-
-    useEffect(() => {
-        if (userImage) {
-            window.localStorage.setItem('userImage', userImage);
-        }
-    }, [userImage]);
 
     useEffect(() => {
         authenticated.current = isAuthenticated;
