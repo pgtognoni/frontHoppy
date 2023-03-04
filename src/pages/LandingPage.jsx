@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
@@ -12,6 +12,7 @@ function LandingPage() {
   const [posts, setPosts] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
   const [ addNewPost, setAddNewPost ] = useState(false);
+  const ref = useRef();
 
   const fetchData = async () => {
     const response = await axios.get(`http://localhost:5005/posts`);
@@ -26,8 +27,22 @@ function LandingPage() {
     setIsLoading(false);
   }, [posts]);
 
+  useEffect(() => {
+    const checkClickedOutside = (event) => {
+      if (addNewPost && ref.current && !ref.current.contains(event.target)) {
+        setAddNewPost(false)
+      }
+    }
+    const modal = document.querySelector('.modal-container');
+    ref.current = modal;
+    document.addEventListener('click', checkClickedOutside)
+    return () => {
+      document.removeEventListener('click', checkClickedOutside)
+    }
+  }, [ addNewPost ])
+
   const openModal = (e) => {
-    e.preventDefault();
+    e.stopPropagation();
     setAddNewPost(true);
   }
 

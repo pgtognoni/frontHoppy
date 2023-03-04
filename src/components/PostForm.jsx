@@ -27,7 +27,7 @@ function PostForm({
     const userId = window.localStorage.getItem('userId');
     console.log(userId)
     const response = await fetch(
-      ` http://localhost:5005/posts${isUpdating ? `/${postId}` : "/new"}`,
+      ` http://localhost:5005/posts${isUpdating ? `/${postId}/update` : "/new"}`,
       {
         method: `${isUpdating ? "PUT" : "POST"}`,
         headers: {
