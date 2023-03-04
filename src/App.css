@@ -376,6 +376,8 @@ textarea:-webkit-autofill:active {
   width: 100%;
   align-items: center;
   box-shadow: 1px 1px 5px var(--border-gray);
+  position: relative;
+  z-index: 3;
 }
 
 .login-container h1 {
@@ -621,6 +623,7 @@ padding: 15px;
   top: 90px;
   border: none;
   opacity: .8;
+  z-index: 2;
 }
 
 .add-new-post p {
