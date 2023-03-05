@@ -23,7 +23,6 @@
 :root {
   --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
   --secundary-btn: linear-gradient(0deg, #529af3, #32d5ee);
-  --edit-btn: linear-gradient(0deg, #267be2, #2da7dc);
   --cancel-btn: linear-gradient(#f36a52, #ee3232 40%);
   --save-btn: linear-gradient(#68e84c, #17bd30 50%);
   --nav-bg: #1f1e1e; 
@@ -172,16 +171,8 @@ textarea:-webkit-autofill:active {
 
 .edit-btn {
   background-color: inherit;
-  background: var(--edit-btn);
   color: inherit;
   border: none;
-}
-
-.edit-image {
-  padding: .2rem .4rem;
-  position: absolute;
-  bottom: 0;
-  right: .4rem;
 }
 
 /*** NAV BAR ***/
@@ -250,9 +241,9 @@ textarea:-webkit-autofill:active {
 .modal-container {
   position: fixed;
   top: 25%;
+  left: 25%;
   bottom: 25%;
-  left: 30%;
-  right: 30%;
+  right: 25%;
   /* top: 0;
   left: 0;
   width: 100vw;
@@ -262,7 +253,7 @@ textarea:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 20;
+  z-index: 90;
 }
 
 .modal-box {
@@ -453,42 +444,11 @@ form input {
   border-bottom: 1px solid var(--border-gray);
 }
 
-.profile-image {
-  position: relative;
-  min-width: 10rem;
-}
-
-.profile-img {
+.profile-image img{
   max-width: 10rem;
+  width: 100%;
   height: auto;
   border-radius: 100%;
-  position: relative
-}
-.btn-add-image {
-  height: 10rem;
-  font-size: 4rem;
-  margin: 0;
-  padding: 0;
-  color: var(--border-gray);
-  background-color: var(--nav-bg);
-  position: relative;
-  border: none;
-}
-
-.inactive {
-  opacity: .8;
-  filter: grayscale(70%)
-}
-
-.edit-image-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: space-around;
-  align-items: center;
-  max-width: 600px;
-  width: 100%;
-  gap: 2rem;
-  margin-bottom: 1rem;
 }
 
 .profile-title {
