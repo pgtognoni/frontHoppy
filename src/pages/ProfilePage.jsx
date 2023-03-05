@@ -1,15 +1,23 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import AddBio from '../components/AddBio'
 import LoginForm from '../components/LoginForm'
+import PostForm from '../components/PostForm'
 import { SessionContext } from '../contexts/SessionContext'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import EditImage from '../components/EditImage'
+import ImageStore from '../components/ImageStore'
+
 
 function ProfilePage() {
 
   const [ userProfile, setUserProfile ] = useState({})
+  const [ profilePost, setProfilePost ] = useState([])
   const [ isLoading, setIsLoading ] = useState(true)
   const [ editBio, setEditBio ] = useState(false)
+  const [ editImage, setEditImage ] = useState(false)
+  const [ imageStore, setImageStore ] = useState(false)
+  const [ newImage, setNewImage ] = useState('')
   const [ bio, setBio ] = useState('')
   const ref = useRef();
 
@@ -30,6 +38,7 @@ function ProfilePage() {
       const json = await res.json()
       setUserProfile(json.user)
       setBio(json.user.bio)
+      setProfilePost(json.user.published)
      }
 
      fetchAPI()
@@ -40,25 +49,46 @@ function ProfilePage() {
     setIsLoading(false)
   }, [ userProfile ])
 
-  const openModal = (e) => {
-    e.stopPropagation()
-    setEditBio(true)
-  }
-
   useEffect(() => {
     const checkClickedOutside = (event) => {
-      if (editBio && ref.current && !ref.current.contains(event.target)) {
-        console.log('clicked outside')
+      if (editBio  && ref.current && !ref.current.contains(event.target)) {
         setEditBio(false)
       }
+      if (editImage && ref.current && !ref.current.contains(event.target)) {
+        setEditImage(false)
+      }
+      if (imageStore && ref.current && !ref.current.contains(event.target)) {
+        setImageStore(false)
+      }
+
+
     }
-    const modal = document.querySelector('.modal-container');
-    ref.current = modal;
+    const modal = document.querySelectorAll('.modal-container');
+    modal.forEach(modal => {
+      ref.current = modal;
+    })
     document.addEventListener('click', checkClickedOutside)
     return () => {
       document.removeEventListener('click', checkClickedOutside)
     }
-  }, [ editBio ])
+  }, [ editBio, editImage, imageStore ])
+
+  const openEditInfo = (e) => {
+    e.stopPropagation()
+    setEditBio(true)
+  }
+
+  const openEditImage = (e) => { 
+    e.stopPropagation()
+    setEditImage(true)
+  }
+
+  const openImageStore = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setImageStore(true)
+    setEditImage(false);
+  }
 
 
   return (
@@ -68,12 +98,17 @@ function ProfilePage() {
       : <div className='profile-container' id='profile'>
       <div className='profile-header'>
         <div className='profile-image'>
-          <img src={userImage} alt='profile image' className='profile-img'/>
+          <img src={userImage[0]} alt='profile image' className='profile-img'/>
+          <button onClick={(e) => openEditImage(e)} className='edit-btn edit-image'>
+              <FontAwesomeIcon icon={faPenToSquare} />
+          </button>
+          {editImage && <EditImage setEditImage={setEditImage} openImageStore={openImageStore} setNewImage={setNewImage} newImage={newImage}/>}
+          {imageStore && <ImageStore setNewImage={setNewImage} setImageStore={setImageStore} />}
         </div>
         <div className='profile-info'>
           <div className='profile-title'>
             <h1>{user}</h1>
-            <button onClick={(e) => openModal(e)} className='edit-btn'>
+            <button onClick={(e) => openEditInfo(e)} className='edit-btn'>
               <FontAwesomeIcon icon={faPenToSquare} />
             </button>
           </div>
@@ -87,8 +122,43 @@ function ProfilePage() {
       </div>
       <div className='profile-body'>
         <div className='profile-posts'>
-          HERE GOES THE CARD WITH THE USER POSTS
-        </div>
+        {profilePost.map((post) => {
+            return (
+              <div>
+                <div className="postContainer">
+                  <div className="postContent">
+                    {post.type === "image" ? (
+                      <img className="postEmbed" src={post.content} alt="" />
+                    ) : (
+                      <iframe
+                        className="postEmbed"
+                        //   width="1200px"
+                        //   height="220px"
+                        src={post.content}
+                      ></iframe>
+                    )}
+                  </div>
+                  <div className="innerPost">
+                    <div>
+                      <h1 className="postTitle">{post.title}</h1>
+                      <p className="postDescription">{post.description}</p>
+                    </div>
+                    <div className="postButtonsParent">
+                      <button className="postInteractions">
+                        ❤️{post.likes}
+                      </button>
+                      <button className="postInteractions">
+                        😠{post.likes}
+                      </button>
+                      <button className="postInteractions">
+                        👤{post.likes}
+                      </button>
+                    </div>
+                  </div>
+                </div>                
+              </div>
+            );
+          })}                      </div>
       </div>
     </div>
     }

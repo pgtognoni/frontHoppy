@@ -77,13 +77,12 @@ function PostForm({
           <p>Description</p>
             {/* <input type="text" value={description}
               onChange={(event) => setDescription(event.target.value)}/> */}
-              <textarea cols='35' maxLength="300" rows='5' type='text' name='description' onChange={(event) => setDescription(event.target.value)}></textarea>
+              <textarea cols='35' maxLength="150" rows='3' type='text' name='description' onChange={(event) => setDescription(event.target.value)}></textarea>
           </label>
           <label className="select-form">
           <p>Choose a type:</p>
             <select value={type} onChange={(event) => setType(event.target.value)}>
               <option value="">Types</option>
-              <option value="link">Link</option>
               <option value="image">Image</option>
               <option value="video">Video</option>
             </select>
