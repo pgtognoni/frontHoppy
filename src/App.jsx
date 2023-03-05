@@ -40,7 +40,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            {/* <Route path="/store" element={<Store />} /> */}
+            <Route path="/store" element={<Store />} />
           </Routes>
         </div>
       <div className="fadeOut"></div>
