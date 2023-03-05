@@ -59,28 +59,28 @@ function PostCard(props) {
                 </button>
                 </div>                    
             </div>
-        {showComments
-         ? <>
-            <div className="postComments">
-                <div className='comment-container'>
-                {post.comments && post.comments.length > 0 ? post.comments.map((comment) => {
-                    return (
-                        <>
-                            <div className='nav-profile-img'>
-                                <img className="comment-img" src={comment.image} alt="profile" loading="lazy"/> 
-                            </div>
-                            <div className='comment-text'>
-                                <p>{comment.body}</p>
-                            </div>
-                        </>
-                    )
-                }) : null}
-                </div>
-            </div>
-          </>
-         : null
-        }
         </div>
+        {showComments
+        ? <>
+        <div className="postComments">
+            <div className='comment-container'>
+            {post.comments && post.comments.length > 0 ? post.comments.map((comment) => {
+                return (
+                    <>
+                        <div className='nav-profile-img'>
+                            <img className="comment-img" src={comment.image} alt="profile" loading="lazy"/> 
+                        </div>
+                        <div className='comment-text'>
+                            <p>{comment.body}</p>
+                        </div>
+                    </>
+                )
+            }) : null}
+            </div>
+        </div>
+        </>
+        : null
+        }
         <div className="postFooter">
             <button onClick={(e) => openComments(e, post._id)}>
                 {!showComments 
