@@ -56,8 +56,8 @@ function LandingPage() {
           {addNewPost && <PostForm setAddNewPost={setAddNewPost} />}
           {posts.map((post) => {
             return (
-              <div>
-              {console.log(post.createdBy)}
+              <div >
+              
                 <div className="postContainer">
                   <div className="postContent">
                     {post.type === "image" ? (
@@ -72,10 +72,6 @@ function LandingPage() {
                     )}
                   </div>
                   <div className="innerPost">
-                        <div className="postedBy">
-                            <img className="postedByImg" src={post.createdBy[0].image[0]} alt="profile" loading="lazy"/>
-                            {/* <h1 className="postedByName">{post.createdBy[0].username}</h1> */}
-                        </div>
                     <div className="postTexts">
                       <h1 className="postTitle">{post.title}</h1>
                       <p className="postDescription">{post.description}</p>
@@ -94,6 +90,15 @@ function LandingPage() {
                   </div>
                   
                 </div>
+                <div className="postedBy">
+                        {!!post.createdBy
+                          ? <>
+                            <img className="postedByImg" src={post.createdBy[0].image[0]} alt="profile" loading="lazy"/>
+                            <h1 className="postedByName">{post.createdBy[0].username}</h1>
+                            </>
+                          : null
+                        }
+                        </div>
               </div>
             );
           })}
