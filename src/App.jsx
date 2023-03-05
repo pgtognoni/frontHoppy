@@ -33,15 +33,14 @@ function App() {
                </>
              : null
              }
-            <Route
-              path="/profile"
+            <Route path="/profile"
               element={
                 <PrivateRoute>
                   <ProfilePage />
                 </PrivateRoute>
               }
             />
-          <Route path="/store" element={<Store />} />
+            {/* <Route path="/store" element={<Store />} /> */}
           </Routes>
         </div>
       <div className="fadeOut"></div>
