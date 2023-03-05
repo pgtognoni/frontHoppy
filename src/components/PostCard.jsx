@@ -33,6 +33,7 @@ function PostCard(props) {
         }
         <div className='postBody'>
             <div className="postContent">
+                {console.log(post.content)}
                 {post.type === "image" ? (
                 <img className="postEmbed" src={post.content} alt="" />
                 ) : (

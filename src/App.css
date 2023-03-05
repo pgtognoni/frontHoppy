@@ -747,8 +747,6 @@ background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145
   transition: margin .5s ease, padding .5s ease;
 }
 
-
-
 .dailyCollection {
   display: flex;
   font-size: 40px;
