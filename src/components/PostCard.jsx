@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function PostCard(props) {
     const location = useLocation().pathname
-    const { post, handleDislike, handleLike } = props;
+    const { post, handleDislike, handleLike, handleNewComment, setNewComment } = props;
     const [ showComments, setShowComments ] = useState(false)
 
     const openComments = (e, id) => {
@@ -33,7 +33,6 @@ function PostCard(props) {
         }
         <div className='postBody'>
             <div className="postContent">
-                {console.log(post.content)}
                 {post.type === "image" ? (
                 <img className="postEmbed" src={post.content} alt="" />
                 ) : (
@@ -55,7 +54,7 @@ function PostCard(props) {
                 <button className="postInteractions" onClick={(e) => handleDislike(e, post._id)}>
                     😠 {post.dislikes}
                 </button>
-                <button className="postInteractions" onClick={(e) => handleLike(e, post._id)}>
+                <button className="postInteractions" onClick={(e) => openComments(e)}>
                     💬 {post.comments && post.comments.length > 0 ? post.comments.length : 0}
                 </button>
                 </div>                    
@@ -64,20 +63,24 @@ function PostCard(props) {
         {showComments
         ? <>
         <div className="postComments">
-            <div className='comment-container'>
             {post.comments && post.comments.length > 0 ? post.comments.map((comment) => {
                 return (
-                    <>
+                    <div className='comment-container'>
                         <div className='nav-profile-img'>
                             <img className="comment-img" src={comment.image} alt="profile" loading="lazy"/> 
                         </div>
                         <div className='comment-text'>
-                            <p>{comment.body}</p>
+                            <p className='comment-username'>{comment.username}</p>
+                            <p className='comment-body'>{comment.body}</p>
                         </div>
-                    </>
+                    </div>
                 )
             }) : null}
-            </div>
+            <form onSubmit={(e)=> handleNewComment(e, post._id)} className='comment-form'>
+                <p>Add</p>
+                <input type="text" maxLength={140} onChange={e => setNewComment(e.target.value)} />
+                <button type="submit">Post</button>
+            </form>
         </div>
         </>
         : null

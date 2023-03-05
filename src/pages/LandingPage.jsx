@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
+import { SessionContext } from "../contexts/SessionContext";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,7 +13,10 @@ function LandingPage() {
   const [posts, setPosts] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
   const [addNewPost, setAddNewPost] = useState(false);
+  const [ newComment, setNewComment] = useState("");
   const ref = useRef();
+
+  const { user } = useContext(SessionContext)
 
   const fetchData = async () => {
     const response = await axios.get(`http://localhost:5005/posts`);
@@ -27,6 +31,22 @@ function LandingPage() {
             Authorization: `Bearer ${token}`,
         },
     })
+  }
+
+  const updateComment = async (comment, id) => {
+    const data = {
+      user: user._id,
+      body: comment,
+      postId: id
+    }
+  
+    const token = window.localStorage.getItem('token')
+    const res = await axios.post(`http://localhost:5005/comments/new`, data, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+    console.log(res.data)
   }
 
   useEffect(() => {
@@ -74,8 +94,28 @@ function LandingPage() {
           item.dislikes += 1;
       }});
     const post = newArr.find(item => item._id === id);
+    
     updatePost(post, id);
     setPosts(newArr);
+  }
+
+  const handleNewComment = (e, id) => { 
+    e.preventDefault();
+    const newArr = [...posts];
+    const comment = {
+      body: newComment,
+      image: user.image[0],
+      user: [user._id],
+      username: user.username
+    }
+    newArr.map(item =>{ 
+      if (item._id === id) {
+          item.comments.push(comment);
+      }});
+    const post = newArr.find(item => item._id === id);
+    updateComment(newComment, id);
+    setPosts(newArr);
+
   }
 
   return (
@@ -92,7 +132,10 @@ function LandingPage() {
               <PostCard key={post._id} 
                 post={post} 
                 handleLike={handleLike} 
-                handleDislike={handleDislike}/>
+                handleDislike={handleDislike}
+                handleNewComment={handleNewComment}
+                setNewComment={setNewComment}
+                />
             );
           })}
         </div>
