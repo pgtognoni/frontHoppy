@@ -74,12 +74,10 @@ function LandingPage() {
                         <div className="postedBy">
                         {!!post.createdBy
                           ? <>
-                            {/* <p>True</p> */}
-                            {console.log(post.createdBy)}
                             <img className="postedByImg" src={post.createdBy[0].image[0]} alt="profile" loading="lazy"/>
                             <h1 className="postedByName">{post.createdBy[0].username}</h1>
                             </>
-                          : <p>false</p>
+                          : null
                         }
                         </div>
                     <div className="postTexts">
