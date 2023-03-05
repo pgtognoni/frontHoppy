@@ -73,7 +73,7 @@ function LandingPage() {
                   </div>
                   <div className="innerPost">
                         <div className="postedBy">
-                            <img className="postedByImg" src={post.createdBy[0].image} alt="" />
+                            <img className="postedByImg" src={post.createdBy[0].image[0]} alt="" />
                             <h1 className="postedByName">{post.createdBy[0].username}</h1>
                         </div>
                     <div className="postTexts">
