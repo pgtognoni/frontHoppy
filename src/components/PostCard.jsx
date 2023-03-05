@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function PostCard(props) {
@@ -9,8 +9,7 @@ function PostCard(props) {
     const [ showComments, setShowComments ] = useState(false)
 
     const openComments = (e, id) => {
-        console.log(id)
-        setShowComments(true)
+        setShowComments(!showComments)
     }
 
   return (
@@ -64,9 +63,18 @@ function PostCard(props) {
          ? <>
             <div className="postComments">
                 <div className='comment-container'>
-                    <div className='nav-profile-img'>
-                        {/* <img className="comment-img" src={} alt="profile" loading="lazy"/> */}
-                    </div>
+                {post.comments && post.comments.length > 0 ? post.comments.map((comment) => {
+                    return (
+                        <>
+                            <div className='nav-profile-img'>
+                                <img className="comment-img" src={comment.image} alt="profile" loading="lazy"/> 
+                            </div>
+                            <div className='comment-text'>
+                                <p>{comment.body}</p>
+                            </div>
+                        </>
+                    )
+                }) : null}
                 </div>
             </div>
           </>
@@ -74,7 +82,12 @@ function PostCard(props) {
         }
         </div>
         <div className="postFooter">
-            <button onClick={(e) => openComments(e, post._id)}><FontAwesomeIcon icon={faAnglesDown} /></button>
+            <button onClick={(e) => openComments(e, post._id)}>
+                {!showComments 
+                    ? <FontAwesomeIcon icon={faAnglesDown} />
+                    : <FontAwesomeIcon icon={faAnglesUp} />
+                }
+            </button>
         </div>
     </div>
     </>
