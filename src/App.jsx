@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./components/PrivateRoute";
 import LandingPage from "./pages/LandingPage";
+import Store from "./pages/Store";
 import NewPost from "./pages/NewPost";
 import { SessionContext } from "./contexts/SessionContext";
 
@@ -28,7 +29,7 @@ function App() {
             {!isAuthenticated
              ? <>
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/signup" element={<SignupPage />} />                
                </>
              : null
              }
@@ -40,6 +41,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+          <Route path="/store" element={<Store />} />
           </Routes>
         </div>
       <div className="fadeOut"></div>

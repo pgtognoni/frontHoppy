@@ -23,7 +23,6 @@
 :root {
   --primary-btn: linear-gradient(0deg, #F37352, #EE326C);
   --secundary-btn: linear-gradient(0deg, #529af3, #32d5ee);
-  --edit-btn: linear-gradient(0deg, #267be2, #2da7dc);
   --cancel-btn: linear-gradient(#f36a52, #ee3232 40%);
   --save-btn: linear-gradient(#68e84c, #17bd30 50%);
   --nav-bg: #1f1e1e; 
@@ -172,16 +171,8 @@ textarea:-webkit-autofill:active {
 
 .edit-btn {
   background-color: inherit;
-  background: var(--edit-btn);
   color: inherit;
   border: none;
-}
-
-.edit-image {
-  padding: .2rem .4rem;
-  position: absolute;
-  bottom: 0;
-  right: .4rem;
 }
 
 /*** NAV BAR ***/
@@ -250,9 +241,9 @@ textarea:-webkit-autofill:active {
 .modal-container {
   position: fixed;
   top: 25%;
+  left: 25%;
   bottom: 25%;
-  left: 30%;
-  right: 30%;
+  right: 25%;
   /* top: 0;
   left: 0;
   width: 100vw;
@@ -262,7 +253,7 @@ textarea:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 20;
+  z-index: 90;
 }
 
 .modal-box {
@@ -453,42 +444,11 @@ form input {
   border-bottom: 1px solid var(--border-gray);
 }
 
-.profile-image {
-  position: relative;
-  min-width: 10rem;
-}
-
-.profile-img {
+.profile-image img{
   max-width: 10rem;
+  width: 100%;
   height: auto;
   border-radius: 100%;
-  position: relative
-}
-.btn-add-image {
-  height: 10rem;
-  font-size: 4rem;
-  margin: 0;
-  padding: 0;
-  color: var(--border-gray);
-  background-color: var(--nav-bg);
-  position: relative;
-  border: none;
-}
-
-.inactive {
-  opacity: .8;
-  filter: grayscale(70%)
-}
-
-.edit-image-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: space-around;
-  align-items: center;
-  max-width: 600px;
-  width: 100%;
-  gap: 2rem;
-  margin-bottom: 1rem;
 }
 
 .profile-title {
@@ -713,16 +673,26 @@ img.postedByImg {
 .postedBy {
   display: flex;
   align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.315);
+  border-radius: 100px;
+  padding: 10px;
   gap: 20px;
+  margin-top: -600px;
+  background-color: white;
+  width: 350px;
+  position: relative;
+  z-index: 5;
 }
 
 .postedByImg {
-  height: 100px;
+  height: 80px;
   border-radius: 100px;
 }
 
 .postedByName {
-  font-size: 32px;
+  font-size: 27px;
+  font-weight: bold;
+  margin-bottom: -2px;
 }
 
 /*** FADEOUT FOOTER ***/
@@ -747,4 +717,81 @@ background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145
   bottom: 0;
   left: 0;
   z-index: 0;
+}
+
+/***  STORE ***/
+/***  STORE ***/
+/***  STORE ***/
+
+.storeBody {
+  background-color: rgb(247, 247, 247);
+  width: 90vw;
+  height: 2000px;
+  margin-left: 7%;
+  margin-top: -10px;
+  border-radius: 40px;
+  padding: 100px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.24);
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+}
+
+.dailyCollectionImg {  
+  width: 300px;
+  margin: 20px;
+  padding: 0;
+  border-radius: 20px;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.3)));
+  transition: margin .5s ease, padding .5s ease;
+}
+
+.dailyCollection {
+  display: flex;
+  font-size: 40px;
+  font-weight: bolder;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.425);
+  justify-content: space-around;
+  align-items: center;
+  width: 1400px;
+  height: 800px;
+  gap:100px;
+  margin-top: 0px;
+}
+
+.itemCard {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemButton {  
+  width: 100px;
+  height: 60px;
+  font-size: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.459);
+  background-color: white;
+  margin-top: -40px;
+  position: relative;
+  z-index: 0;
+}
+
+.dailyCollectionContainer {
+  width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.storeTitle {
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.322);
+  padding: 10px 20px 10px 20px;
+  border-radius: 35px;
+  padding-bottom: 15px;
+  align-self: flex-start;
+  margin-top: -50px;
+  margin-left: -60px;
 }
