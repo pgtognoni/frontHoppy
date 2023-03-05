@@ -105,17 +105,16 @@ function LandingPage() {
     const comment = {
       body: newComment,
       image: user.image[0],
-      user: [user._id],
       username: user.username
     }
     newArr.map(item =>{ 
       if (item._id === id) {
           item.comments.push(comment);
-      }});
-    const post = newArr.find(item => item._id === id);
+      }
+    });
     updateComment(newComment, id);
     setPosts(newArr);
-
+    setNewComment("");
   }
 
   return (
@@ -131,10 +130,13 @@ function LandingPage() {
             return (
               <PostCard key={post._id} 
                 post={post} 
+                allposts={posts} 
                 handleLike={handleLike} 
                 handleDislike={handleDislike}
                 handleNewComment={handleNewComment}
                 setNewComment={setNewComment}
+                newComment={newComment}
+                setPosts={setPosts}
                 />
             );
           })}

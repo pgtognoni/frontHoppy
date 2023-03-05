@@ -184,6 +184,12 @@ textarea:-webkit-autofill:active {
   right: .4rem;
 }
 
+.btn-delete {
+  color: red;
+  background-color: inherit;
+  border: none;
+}
+
 /*** NAV BAR ***/
 /*** NAV BAR ***/
 /*** NAV BAR ***/
@@ -657,6 +663,13 @@ img.postedByImg {
   border-top: 1px solid var(--border-gray)
 }
 
+.comment-text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: var(--text-black);
+}
+
 .comment-text p {
   margin: 0
 }
@@ -675,7 +688,7 @@ img.postedByImg {
   width: 80%;
   margin: 1rem auto;
   border-radius: 5px;
-  color: inherit;
+  color: var(--text-black);
   font-size: 1.2rem;
 }
 
