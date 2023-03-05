@@ -57,7 +57,6 @@ function LandingPage() {
           {posts.map((post) => {
             return (
               <div>
-              {console.log(post.createdBy)}
                 <div className="postContainer">
                   <div className="postContent">
                     {post.type === "image" ? (
@@ -73,8 +72,15 @@ function LandingPage() {
                   </div>
                   <div className="innerPost">
                         <div className="postedBy">
-                            {/* <img className="postedByImg" src={post.createdBy[0].image[0]} alt="profile" loading="lazy"/> */}
-                            {/* <h1 className="postedByName">{post.createdBy[0].username}</h1> */}
+                        {!!post.createdBy
+                          ? <>
+                            {/* <p>True</p> */}
+                            {console.log(post.createdBy)}
+                            <img className="postedByImg" src={post.createdBy[0].image[0]} alt="profile" loading="lazy"/>
+                            <h1 className="postedByName">{post.createdBy[0].username}</h1>
+                            </>
+                          : <p>false</p>
+                        }
                         </div>
                     <div className="postTexts">
                       <h1 className="postTitle">{post.title}</h1>
