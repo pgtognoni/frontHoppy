@@ -4,14 +4,13 @@ import { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
 import PostForm from "../components/PostForm";
-import {  } from "@fortawesome/free-solid-svg-icons";
+import {} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 
 function LandingPage() {
   const [posts, setPosts] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
-  const [ addNewPost, setAddNewPost ] = useState(false);
+  const [addNewPost, setAddNewPost] = useState(false);
   const ref = useRef();
 
   const fetchData = async () => {
@@ -30,35 +29,35 @@ function LandingPage() {
   useEffect(() => {
     const checkClickedOutside = (event) => {
       if (addNewPost && ref.current && !ref.current.contains(event.target)) {
-        setAddNewPost(false)
+        setAddNewPost(false);
       }
-    }
-    const modal = document.querySelector('.modal-container');
+    };
+    const modal = document.querySelector(".modal-container");
     ref.current = modal;
-    document.addEventListener('click', checkClickedOutside)
+    document.addEventListener("click", checkClickedOutside);
     return () => {
-      document.removeEventListener('click', checkClickedOutside)
-    }
-  }, [ addNewPost ])
+      document.removeEventListener("click", checkClickedOutside);
+    };
+  }, [addNewPost]);
 
   const openModal = (e) => {
     e.stopPropagation();
     setAddNewPost(true);
-  }
-
+  };
 
   return (
     <>
       {!isLoading ? (
-        <div className='column-center'>
-          <button className='add-new-post' onClick={e => openModal(e)}> 
-            <p>Add New Post</p> 
-            <span className='btn-add'>+</span>
+        <div className="column-center">
+          <button className="add-new-post" onClick={(e) => openModal(e)}>
+            <p>Add New Post</p>
+            <span className="btn-add">+</span>
           </button>
-          {addNewPost && <PostForm setAddNewPost={setAddNewPost}/>}
+          {addNewPost && <PostForm setAddNewPost={setAddNewPost} />}
           {posts.map((post) => {
             return (
               <div>
+              {console.log(post)}
                 <div className="postContainer">
                   <div className="postContent">
                     {post.type === "image" ? (
@@ -73,7 +72,11 @@ function LandingPage() {
                     )}
                   </div>
                   <div className="innerPost">
-                    <div>
+                        <div className="postedBy">
+                            <img className="postedByImg" src={post.createdBy[0].image} alt="" />
+                            <h1 className="postedByName">{post.createdBy[0].username}</h1>
+                        </div>
+                    <div className="postTexts">
                       <h1 className="postTitle">{post.title}</h1>
                       <p className="postDescription">{post.description}</p>
                     </div>
@@ -87,17 +90,21 @@ function LandingPage() {
                       <button className="postInteractions">
                         👤{post.likes}
                       </button>
-                    </div>
+                    </div>                    
                   </div>
-                </div>                
+                  
+                </div>
               </div>
             );
-          })}              
+          })}
         </div>
       ) : (
         <h1>Loading...</h1>
       )}
-      <iframe className="background3d" src='https://my.spline.design/untitledcopy-858101b02d0e98d0da4179fadde8c638/'></iframe>
+      <iframe
+        className="background3d"
+        src="https://my.spline.design/untitledcopy-858101b02d0e98d0da4179fadde8c638/"
+      ></iframe>
     </>
   );
 }

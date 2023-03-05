@@ -203,8 +203,8 @@ textarea:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  font-family: 'Audiowide', cursive;
-  font-family: 'Orbitron', sans-serif;
+  /* font-family: 'Audiowide', cursive;
+  font-family: 'Orbitron', sans-serif; */
   text-transform: uppercase;
 }
 
@@ -380,12 +380,25 @@ textarea:-webkit-autofill:active {
   max-width: 400px;
   width: 100%;
   align-items: center;
-  box-shadow: 1px 1px 5px var(--border-gray);
+  justify-content: center;  
   position: relative;
   z-index: 3;
+  margin-left: 100px;
+  margin-top: -200px;
+  padding-bottom: 50px;
+  box-shadow: 0 0 20px  black;
+  transition: box-shadow .5s ease-out;
+}
+
+.login-container:hover {
+  box-shadow: 0 0 20px  rgba(255, 255, 255, 0.637);
 }
 
 .login-container h1 {
+  padding-bottom: 40px;
+  margin-top: -10px;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.301);
 }
 
 form {
@@ -395,14 +408,21 @@ form {
   align-items: flex-start;
   gap: 2rem;
   width: 80%;
+
 }
 
 form label {
-  width: 100%
+  width: 100%;
+  font-weight: 400;
+  font-size: 20px;
+  color: #505050;
 }
 
 form input {
-  width: 80%
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  border-radius: 15px;
 }
 
 /*** PROFILE ***/
@@ -570,7 +590,7 @@ padding: 15px;
   transition: width 1s ease, height 1s ease, border-radius 1s ease, box-shadow 1s ease;
 }
 
-.postContent:hover {
+.postContent:active {
   width: 2000px;
   height: 400px;
   border-radius: 0px;  
@@ -622,6 +642,21 @@ padding: 15px;
   font-weight: bold;
   font-size: 1.5rem;
   border-radius: 100%;
+}
+
+.postedBy {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.postedByImg {
+  height: 100px;
+  border-radius: 100px;
+}
+
+.postedByName {
+  font-size: 32px;
 }
 
 /*** FADEOUT FOOTER ***/
