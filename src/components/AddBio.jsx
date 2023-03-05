@@ -17,7 +17,7 @@ function AddBio(props) {
         })
         if (res.data.bio) {
             setBio(res.data.bio)
-            setUser(res.data.username)
+            setUser(res.data)
             setEditBio(false)
         }
     }
@@ -34,7 +34,7 @@ function AddBio(props) {
         <form className='modal-content column-center' onSubmit={e => updateBio(e)}>
              <label htmlFor='username'>
                 <p>Username: </p>
-                <input type='text' name='username' value={user} onChange={e => setUser(e.target.value)} />
+                <input type='text' name='username' value={user.username} onChange={e => setUser(e.target.value)} />
             </label>
             <label htmlFor='bio'>
                 <p>Bio: </p>

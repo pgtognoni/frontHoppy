@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
 import PostForm from "../components/PostForm";
+import PostCard from "../components/PostCard";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -17,6 +18,16 @@ function LandingPage() {
     const response = await axios.get(`http://localhost:5005/posts`);
     setPosts(response.data);
   };
+
+  const updatePost = async (post, id) => {
+    const data = post
+    const token = window.localStorage.getItem('token')
+    const res = await axios.put(`http://localhost:5005/posts/${id}/update`, data, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+  }
 
   useEffect(() => {
     fetchData();
@@ -45,6 +56,28 @@ function LandingPage() {
     setAddNewPost(true);
   };
 
+  const handleLike = (e, id) => {
+    const newArr = [...posts];
+    newArr.map(item =>{ 
+      if (item._id === id) {
+          item.likes += 1;
+      }});
+    const post = newArr.find(item => item._id === id);
+    updatePost(post, id);
+    setPosts(newArr);
+  }
+
+  const handleDislike = (e, id) => {
+    const newArr = [...posts];
+    newArr.map(item =>{ 
+      if (item._id === id) {
+          item.dislikes += 1;
+      }});
+    const post = newArr.find(item => item._id === id);
+    updatePost(post, id);
+    setPosts(newArr);
+  }
+
   return (
     <>
       {!isLoading ? (
@@ -56,49 +89,10 @@ function LandingPage() {
           {addNewPost && <PostForm setAddNewPost={setAddNewPost} />}
           {posts.map((post) => {
             return (
-              <div>
-                <div className="postContainer">
-                  <div className="postContent">
-                    {post.type === "image" ? (
-                      <img className="postEmbed" src={post.content} alt="" />
-                    ) : (
-                      <iframe
-                        className="postEmbed"
-                        //   width="1200px"
-                        //   height="220px"
-                        src={post.content}
-                      ></iframe>
-                    )}
-                  </div>
-                  <div className="innerPost">
-                        <div className="postedBy">
-                        {!!post.createdBy
-                          ? <>
-                            <img className="postedByImg" src={post.createdBy[0].image[0]} alt="profile" loading="lazy"/>
-                            <h1 className="postedByName">{post.createdBy[0].username}</h1>
-                            </>
-                          : null
-                        }
-                        </div>
-                    <div className="postTexts">
-                      <h1 className="postTitle">{post.title}</h1>
-                      <p className="postDescription">{post.description}</p>
-                    </div>
-                    <div className="postButtonsParent">
-                      <button className="postInteractions">
-                        ❤️{post.likes}
-                      </button>
-                      <button className="postInteractions">
-                        😠{post.likes}
-                      </button>
-                      <button className="postInteractions">
-                        👤{post.likes}
-                      </button>
-                    </div>                    
-                  </div>
-                  
-                </div>
-              </div>
+              <PostCard key={post._id} 
+                post={post} 
+                handleLike={handleLike} 
+                handleDislike={handleDislike}/>
             );
           })}
         </div>

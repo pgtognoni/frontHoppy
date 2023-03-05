@@ -511,19 +511,25 @@ form input {
 /*** POST ***/
 /*** POST ***/
 
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 97vw;  
+}
+
 .postContainer {
   width: 1000px;
-  height: 530px;
+  height: auto;
   margin-bottom: 30px;
   margin-left: 5%;
-  display: flex; 
-  align-items: flex-start;
   border-style: solid;
   border-width: 1px;
   border-radius: 30px;
   border-color:  transparent;
   background-color: #ececec;
-  padding: 60px 60px 35px 60px;
+  padding: 60px 60px 15px 60px;
   gap: 70px;
   overflow-y: hidden;
   box-shadow: 0 0 20px  black;
@@ -532,10 +538,41 @@ form input {
   position: relative;
   z-index: 1;
   transition: background-color .5s ease;
+  padding-top: 25px;
 }
 
 .postContainer:hover {
   background-color: #fff7e5;
+}
+
+.postBody {
+  display: flex; 
+  align-items: flex-start;
+}
+
+.postedBy {
+  margin-bottom: 25px;
+}
+
+img.postedByImg {
+  max-width: 4rem;
+}
+
+.postContent {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 45px;  
+  margin-bottom: 30px;  
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.438);
+  transition: width 1s ease, height 1s ease, border-radius 1s ease, box-shadow 1s ease;
+}
+
+.postContent:active {
+  width: 2000px;
+  height: 400px;
+  border-radius: 0px;  
+  box-shadow: 0 0 20px rgb(253, 173, 173);
 }
 
 .postEmbed {
@@ -546,50 +583,14 @@ form input {
 }
 
 .innerPost {
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-content: space-between;
-height: 410px;
-max-width: 50%;
-overflow: hidden;
-padding: 15px;
-}
-
-.landingPage {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 97vw;  
-}
-
-.postInteractions {
-  box-shadow: 0 0 13px rgba(0, 0, 0, 0.199);
-  width: 100px;
-  text-align: center;
-  padding: 18px 8px 18px 8px;
-  border-radius: 15px;
-  background-color: transparent;
-  margin-left: 20px;
-  transition: box-shadow .3s ease;
-}
-
-.postButtonsParent {
-  width: 400px;
-}
-
-@keyframes shake {
-  0% { transform: translate(0px, 0px); }
- 
-  50% { transform: translate(0px, 5px); }
-  
-  100% { transform: translate(0px, -3px); }
-}
-
-.postInteractions:hover {
-  animation: shake 0.2s;
-  box-shadow: 0 0 13px rgb(255, 82, 134);
+  justify-content: space-between;
+  align-content: space-between;
+  height: 410px;
+  max-width: 50%;
+  overflow: hidden;
+  padding: 15px;
 }
 
 .postTitle {
@@ -619,22 +620,47 @@ padding: 15px;
   margin-bottom: 0px;
 }
 
-
-.postContent {
+.postButtonsParent {
   width: 400px;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 45px;  
-  margin-bottom: 30px;  
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.438);
-  transition: width 1s ease, height 1s ease, border-radius 1s ease, box-shadow 1s ease;
 }
 
-.postContent:active {
-  width: 2000px;
-  height: 400px;
-  border-radius: 0px;  
-  box-shadow: 0 0 20px rgb(253, 173, 173);
+.postInteractions {
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.199);
+  width: 100px;
+  text-align: center;
+  padding: 18px 8px 18px 8px;
+  border-radius: 15px;
+  background-color: transparent;
+  margin-left: 20px;
+  transition: box-shadow .3s ease;
+}
+
+.postInteractions:hover {
+  animation: shake 0.2s;
+  box-shadow: 0 0 13px rgb(255, 82, 134);
+}
+
+@keyframes shake {
+  0% { transform: translate(0px, 0px); }
+ 
+  50% { transform: translate(0px, 5px); }
+  
+  100% { transform: translate(0px, -3px); }
+}
+
+.postFooter {
+  display: flex;
+  justify-content: center;
+}
+
+.postFooter button {
+  padding: 0;
+  border: none;
+  margin: 0;
+  background-color: transparent;
+  transform: scaleX(2.5);
+  color: var(--text-gray);
+  cursor: pointer;
 }
 
 /*** NEW POST FORM ***/

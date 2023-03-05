@@ -53,7 +53,7 @@ function Navbar() {
                             <div className='nav-profile-img'>
                                 <img src={userImage[0]} className='profile-img'/>
                             </div>
-                            <span className="text-white">{user}</span>
+                            <span className="text-white">{user.username}</span>
                         </NavLink>
                         }
                 </>

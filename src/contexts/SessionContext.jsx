@@ -9,6 +9,7 @@ function SessionContextProvider({ children }) {
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ token, setToken ] = useState(null);
     const [ user, setUser ] = useState(null);
+    const [ userName, setUserName ] = useState(null);
     const [ userImage, setUserImage ] = useState(null);
     const [ userId, setUserId ] = useState(null);
     const authenticated = useRef(isAuthenticated);
@@ -26,7 +27,8 @@ function SessionContextProvider({ children }) {
             if (json) {
                 setIsAuthenticated(true);
                 setIsLoading(false);
-                setUser(json.user.username)
+                setUser(json.user);
+                setUserName(json.user.username)
                 setUserId(json.user._id)
                 setUserImage(json.user.image)
             }
@@ -56,7 +58,22 @@ function SessionContextProvider({ children }) {
     }, [isAuthenticated])
 
   return (
-    <SessionContext.Provider value={{ isLoading, isAuthenticated, setToken, setIsAuthenticated, setIsLoading, user, setUser, userImage, setUserImage, authenticated, userId, setUserId }}>
+    <SessionContext.Provider value={{ 
+        isLoading, 
+        isAuthenticated, 
+        setToken, 
+        setIsAuthenticated, 
+        setIsLoading, 
+        user, 
+        setUser,
+        userName,
+        setUserName, 
+        userImage, 
+        setUserImage, 
+        authenticated, 
+        userId, 
+        setUserId 
+        }}>
         { children }
     </SessionContext.Provider>
   )
