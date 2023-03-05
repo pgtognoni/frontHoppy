@@ -648,6 +648,58 @@ img.postedByImg {
   100% { transform: translate(0px, -3px); }
 }
 
+.comment-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 1rem;
+  margin-left: 2rem;
+  border-top: 1px solid var(--border-gray)
+}
+
+.comment-text p {
+  margin: 0
+}
+
+.comment-username {
+  font-weight: 700;
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0;
+  box-shadow: 1px 1px 5px var(--border-gray);
+  width: 80%;
+  margin: 1rem auto;
+  border-radius: 5px;
+  color: inherit;
+  font-size: 1.2rem;
+}
+
+.comment-form p {
+  font-weight: 500;
+  margin: 0;
+  margin-left: .2rem;
+}
+
+.comment-form input {
+  width: 90%;
+  font-size: 100%;
+  margin: 0;
+  box-shadow: none;
+}
+
+.comment-form button {
+  font-size: inherit;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+}
+
+
 .postFooter {
   display: flex;
   justify-content: center;
