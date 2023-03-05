@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
+import { SessionContext } from '../contexts/SessionContext'
 
 const Store = () => {
+const { setUser, user } = useContext(SessionContext)
+console.log("USER", user)
+
 let date = new Date().getDay();
 console.log(date)
   return (

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import EditImage from '../components/EditImage'
 import ImageStore from '../components/ImageStore'
+import PostCard from '../components/PostCard'
 
 
 function ProfilePage() {
@@ -107,7 +108,7 @@ function ProfilePage() {
         </div>
         <div className='profile-info'>
           <div className='profile-title'>
-            <h1>{user}</h1>
+            <h1>{user.username}</h1>
             <button onClick={(e) => openEditInfo(e)} className='edit-btn'>
               <FontAwesomeIcon icon={faPenToSquare} />
             </button>
@@ -124,41 +125,10 @@ function ProfilePage() {
         <div className='profile-posts'>
         {profilePost.map((post) => {
             return (
-              <div>
-                <div className="postContainer">
-                  <div className="postContent">
-                    {post.type === "image" ? (
-                      <img className="postEmbed" src={post.content} alt="" />
-                    ) : (
-                      <iframe
-                        className="postEmbed"
-                        //   width="1200px"
-                        //   height="220px"
-                        src={post.content}
-                      ></iframe>
-                    )}
-                  </div>
-                  <div className="innerPost">
-                    <div>
-                      <h1 className="postTitle">{post.title}</h1>
-                      <p className="postDescription">{post.description}</p>
-                    </div>
-                    <div className="postButtonsParent">
-                      <button className="postInteractions">
-                        ❤️{post.likes}
-                      </button>
-                      <button className="postInteractions">
-                        😠{post.likes}
-                      </button>
-                      <button className="postInteractions">
-                        👤{post.likes}
-                      </button>
-                    </div>
-                  </div>
-                </div>                
-              </div>
+              <PostCard key={post._id} post={post} />
             );
-          })}                      </div>
+          })}                      
+        </div>
       </div>
     </div>
     }
