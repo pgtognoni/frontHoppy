@@ -53,7 +53,10 @@ function Navbar() {
                             <div className='nav-profile-img'>
                                 <img src={userImage[0]} className='profile-img'/>
                             </div>
-                            <span className="text-white">{user.username}</span>
+                            <div style={{display: "flex", flexDirection: "column", marginLeft: "-10px"}}>
+                            <span style={{fontSize: "15px", fontWeight: "100"}} className="text-white">{user.username}</span>
+                            <span>🪙{user.currency}</span>
+                            </div>
                         </NavLink>
                         }
                 </>
