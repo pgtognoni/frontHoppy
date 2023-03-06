@@ -12,7 +12,9 @@ function PostForm({
   isUpdating = false,
   postId,
   setAddNewPost,
-  setPosts
+  setPosts,
+  posts,
+  setPostsCall
 }) {
   const navigate = useNavigate();
   const [title, setTitle] = useState(postTitle);
@@ -49,10 +51,13 @@ function PostForm({
     );
     if (response.status === 201) {
       const data = await response.json()
-      console.log("data....", data._id);
+      console.log("DATA", data);
       navigate(`/`)
       setAddNewPost(false);
-      setPosts(prev => {[...prev, data]})
+      let newArr = [...posts];
+      newArr = [data, ...posts]
+      setPosts(newArr)
+      setPostsCall(true)
     }
     // if (response.status === 200) {
     //   navigate(`/${postId}`)

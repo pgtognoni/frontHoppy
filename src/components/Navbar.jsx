@@ -1,41 +1,67 @@
-import React from 'react'
-import { NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { SessionContext } from '../contexts/SessionContext'
-import { useContext } from 'react'
-import { faUser, faRightFromBracket, faHome, faStore } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { SessionContext } from "../contexts/SessionContext";
+import { useContext } from "react";
+import {
+  faUser,
+  faRightFromBracket,
+  faHome,
+  faStore,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Navbar() {
-    const { setIsLoading, setIsAuthenticated, isAuthenticated, user, userImage } = useContext(SessionContext)
-    const navigate = useNavigate()
-    const location = useLocation().pathname
+  const { setIsLoading, setIsAuthenticated, isAuthenticated, user, userImage } =
+    useContext(SessionContext);
+  const navigate = useNavigate();
+  const location = useLocation().pathname;
 
-    const logout = () => {
-      window.localStorage.clear()
-      setIsAuthenticated(false)
-      setIsLoading(true)
-      navigate('/')
-    }
-  
+  const logout = () => {
+    window.localStorage.clear();
+    setIsAuthenticated(false);
+    setIsLoading(true);
+    navigate("/");
+  };
+
   return (
-    <div className='navBar'>
-        <div className='logo-container'>
-            <img src='./image/hoppy_logo.png' className='nav-logo'/>
-        </div>
-            <div className='nav-links'>
-            {location !== '/' && 
-                <NavLink to='/' className="text-white">
-                    <FontAwesomeIcon icon={faHome} />
+    <div className="navBar">
+      <div className="logo-container">
+        <img src="./image/hoppy_logo.png" className="nav-logo" />
+      </div>
+      <div className="nav-links">
+        {location === "/" && (
+          <>
+            <NavLink to="/" className="text-white">
+              <FontAwesomeIcon style={{color: "#5E5E5E"}} icon={faHome} />
+            </NavLink>
+            <NavLink to="/store" className="text-white">
+              <FontAwesomeIcon icon={faStore} />
+            </NavLink>
+          </>
+        )}
+        {!!isAuthenticated && (
+          <>
+            {location === "/store" && (
+              <>
+                <NavLink to="/" className="text-white">
+                  <FontAwesomeIcon icon={faHome} />
                 </NavLink>
-            }
-            {!!isAuthenticated && 
-                <>
-                {location !== '/store' && 
-                <NavLink to='/store' className="text-white">
-                    <FontAwesomeIcon icon={faStore} />
+                <NavLink to="/store" className="text-white">
+                  <FontAwesomeIcon style={{color: "#5E5E5E"}} icon={faStore} />
                 </NavLink>
-                }
-                {/* {location !== '/profile' && 
+              </>
+            )}
+            {location === "/profile" && (
+              <>
+                <NavLink to="/" className="text-white">
+                  <FontAwesomeIcon icon={faHome} />
+                </NavLink>
+                <NavLink to="/store" className="text-white">
+                  <FontAwesomeIcon  icon={faStore} />
+                </NavLink>
+              </>
+            )}
+            {/* {location !== '/profile' && 
                 <NavLink to='/profile' className="text-white">
                     <FontAwesomeIcon icon={faUser} />
                 </NavLink>
@@ -63,17 +89,21 @@ function Navbar() {
             <button className='text-white logout' onClick={logout}>
                 <FontAwesomeIcon icon={faRightFromBracket} />
             </button>
-            </div>
-        }
-        {!isAuthenticated && 
-            <div className='btn-container'>
-                <NavLink to='/login' className="text-white">Login</NavLink>
-                <NavLink to='/signup' className="text-white">Register</NavLink>
-            </div>
-            }
-        </div>
+          </div>
+        )}
+        {!isAuthenticated && (
+          <div className="btn-container">
+            <NavLink to="/login" className="text-white">
+              Login
+            </NavLink>
+            <NavLink to="/signup" className="text-white">
+              Register
+            </NavLink>
+          </div>
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

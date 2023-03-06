@@ -76,9 +76,18 @@ function PostCard(props) {
                     <p className="postDescription">{post.description}</p>
                 </div>
                 <div className="postButtonsParent">
+                {console.log(post._id, user.liked )}
+                {!user.liked.includes(post._id) 
+                ? 
                 <button className="postInteractions" onClick={(e) => handleLike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
                     ❤️ {post.likes}
                 </button>
+                :
+                <button  className="postInteractionsLiked" onClick={(e) => handleLike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
+                    ❤️ {post.likes}
+                </button>
+                }
+                
                 <button className="postInteractions" onClick={(e) => handleDislike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
                     😠 {post.dislikes}
                 </button>
