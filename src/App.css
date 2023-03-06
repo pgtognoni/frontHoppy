@@ -548,6 +548,7 @@ form input {
 .postBody {
   display: flex; 
   align-items: flex-start;
+  gap: 70px;
 }
 
 .postedBy {
@@ -784,7 +785,7 @@ img.postedByImg {
 .fadeOut {
   height: 200px;
   background: rgb(27,156,204);
-background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145658263) 0%, rgba(0,0,0,0.23012955182072825) 38%, rgba(0,0,0,0) 67%);
+  background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0, 0, 0, 0.397) 0%, rgba(0,0,0,0.23012955182072825) 38%, rgba(0,0,0,0) 97%);
   width: 105%;
   margin-top: -200px;  
   position: fixed;
@@ -807,12 +808,12 @@ background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145
 .storeBody {
   background-color: rgb(247, 247, 247);
   width: 90vw;
-  height: 2000px;
+  height: 1600px;
   margin-left: 7%;
   margin-top: -10px;
   border-radius: 40px;
   padding: 100px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.24);
+  box-shadow: 0 0 100px 1000px rgb(27, 27, 27);
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;  
@@ -820,10 +821,11 @@ background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145
 }
 
 .dailyCollectionImg {  
-  width: 300px;
+  width: 250px;
   margin: 20px;
   padding: 0;
   border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.26);
   -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.3)));
   transition: margin .5s ease, padding .5s ease;
 }
@@ -837,8 +839,9 @@ background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145
   align-items: center;
   width: 1400px;
   height: 800px;
-  gap:100px;
-  margin-top: 0px;
+  gap:30px;
+  margin-top: -100px;
+  margin-left: 50px;
 }
 
 .itemCard {
@@ -858,6 +861,21 @@ background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145
   margin-top: -40px;
   position: relative;
   z-index: 0;
+  transition: background-color .3s ease, width .1s ease-out, height .1s ease-out;
+}
+
+.itemButton:hover {    
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.459);
+  background-color: rgb(198, 255, 145); 
+  border-style: none;
+}
+
+.itemButton:active {    
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.459);
+  background-color: rgb(255, 230, 7); 
+  border-style: none;
+  width: 110px;
+  height: 70px;
 }
 
 .dailyCollectionContainer {
@@ -868,11 +886,27 @@ background: linear-gradient(0deg, rgba(27,156,204,1) 0%, rgba(0,0,0,0.6222864145
 
 .storeTitle {
   font-weight: 600;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.322);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
   padding: 10px 20px 10px 20px;
   border-radius: 35px;
   padding-bottom: 15px;
   align-self: flex-start;
   margin-top: -50px;
-  margin-left: -60px;
+  margin-left: -70px;
+  width: 470px;
+  display: flex;
+align-items: center;}
+
+.rowCollection {
+  display: flex;
+  margin-top:  40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 50px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.322);
+  background-color: #ffd9d7;
 }

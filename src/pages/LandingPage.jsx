@@ -16,7 +16,7 @@ function LandingPage() {
   const [ newComment, setNewComment] = useState("");
   const ref = useRef();
 
-  const { user } = useContext(SessionContext)
+ const { setUser, user } = useContext(SessionContext);
 
   const fetchData = async () => {
     const response = await axios.get(`http://localhost:5005/posts`);
@@ -39,6 +39,19 @@ function LandingPage() {
       body: comment,
       postId: id
     }
+
+    const updateCurrency = async (amount) => {
+      const data = { currency: user.currency + price };
+      const token = window.localStorage.getItem("token");
+      const res = await axios.put("http://localhost:5005/auth/profile", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.data.currency) {        
+        setUser(res.data);
+      }
+    }; 
   
     const token = window.localStorage.getItem('token')
     const res = await axios.post(`http://localhost:5005/comments/new`, data, {
