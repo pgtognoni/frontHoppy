@@ -35,7 +35,6 @@ function timeAdv()  {
  useEffect(() => {
   timeAdv()
   setCurrency(userCurrency);
-  console.log("CURRENCY", userCurrency)
  }, [])
  
 
@@ -110,18 +109,16 @@ function timeAdv()  {
   }
   stopLoading();
 
-  function handleBuy(price, image) {    
-    console.log(currency)
-    if (user.currency && userCurrency >= price && !user.image.includes(image)) {
-      console.log("Buying!")
-      const newImageArr = [image, ...user.image];
-    
+  function handleBuy(price, image) { 
+    console.log(user.currency, user.image)   
+    if (user.currency && user.currency >= price && !user.image.includes(image)) {
+      const newImageArr = [image, ...user.image];    
       updateCurrency(price, newImageArr);
     }
   }
 
   const updateCurrency = async (price, newImageArr) => {
-    const data = { currency: currency - price, image: newImageArr };
+    const data = { currency: user.currency - price, image: newImageArr };
     const token = window.localStorage.getItem("token");
     const res = await axios.put("http://localhost:5005/auth/profile", data, {
       headers: {

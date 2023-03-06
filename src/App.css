@@ -372,7 +372,7 @@ textarea:-webkit-autofill:active {
 }
 
 #CDBSSide {
-  background-color: rgb(252, 112, 147);
+  background-color: rgb(241, 241, 241);
  
 }
 
@@ -649,6 +649,19 @@ img.postedByImg {
   box-shadow: 0 0 13px rgb(255, 82, 134);
 }
 
+.postInteractionsLiked {
+  box-shadow: 0 0 13px rgba(255, 7, 7, 0.199);
+  width: 100px;
+  text-align: center;
+  padding: 18px 8px 18px 8px;
+  border-radius: 15px;
+  background-color: transparent;
+  margin-left: 20px;
+  background-color: rgb(255, 123, 123);
+  color: white;
+  transition: box-shadow .3s ease;
+}
+
 @keyframes shake {
   0% { transform: translate(0px, 0px); }
  
@@ -752,10 +765,12 @@ img.postedByImg {
 }
 
 .add-new-post {
-  display: flex;
+  display: flex;  
+  margin-left: -17%;
+  align-self: flex-start;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 13%;
   max-width: 350px;
   background-color: var(--modal-form-bg);
   color: var(--text-white);
@@ -794,6 +809,38 @@ img.postedByImg {
   font-size: 32px;
 }
 
+/*** IMAGE CHANGE BACKGROUND ***/
+/*** IMAGE CHANGE BACKGROUND ***/
+/*** IMAGE CHANGE BACKGROUND ***/
+
+.imageBackgrounChange1 {
+  height: 50px;
+  width: 50px;
+  background-image: url("../public/image/Untitled\ -\ Copy@1-1904x993.png");
+  background-size: 300px;
+  background-position-y: -60px;
+  position: fixed;
+  z-index: 2;
+  border-radius: 100px;
+  align-self: flex-start;
+  margin-left: -43%;
+  margin-top: 14px;
+}
+
+.imageBackgrounChange2 {
+  height: 50px;
+  width: 50px;
+  background-image: url("../public/image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg");
+  background-size: 300px;
+  background-position-y: -150px;
+  position: fixed;
+  z-index: 2;
+  border-radius: 100px;
+  align-self: flex-start;
+  margin-left: -39.5%;
+  margin-top: 14px;
+}
+
 /*** FADEOUT FOOTER ***/
 /*** FADEOUT FOOTER ***/
 /*** FADEOUT FOOTER ***/
@@ -809,8 +856,8 @@ img.postedByImg {
 }
 
 .background3d {
-  height: 90vh;
-  width: 110%;
+  height: 110vh;
+  width: 110vw;
   margin: 0;
   position: fixed;
   bottom: 0;
@@ -926,3 +973,4 @@ align-items: center;}
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.322);
   background-color: #ffd9d7;
 }
+

@@ -7,20 +7,38 @@ import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
 import { SessionContext } from "../contexts/SessionContext";
 import {} from "@fortawesome/free-solid-svg-icons";
+import { PostContext } from "../contexts/PostContext";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function LandingPage() {
   const [posts, setPosts] = useState([""]);
+  const [postsCall, setPostsCall] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [ background, setBackground ] = useState("../../public/image/Untitled - Copy@1-1904x993.png")
   const [addNewPost, setAddNewPost] = useState(false);
   const [ newComment, setNewComment] = useState("");
   const ref = useRef();
 
- const { setUser, user } = useContext(SessionContext);
+ const { setUser, user, isAuthenticated } = useContext(SessionContext);
+ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } = useContext(PostContext);
+
+ 
+ const backgroundImages = [
+   "./image/Untitled - Copy@1-1904x993.png",
+   "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg"
+  ]
+  let backgroundImage = backgroundImages[0]
+
+  const handleBackground = (image => {
+    setBackground(backgroundImages[image])
+    console.log(backgroundImage)
+  })
 
   const fetchData = async () => {
     const response = await axios.get(`http://localhost:5005/posts`);
     setPosts(response.data);
+    setPostsContext(response.data);
   };
 
   const updatePost = async (post, id) => {
@@ -38,37 +56,43 @@ function LandingPage() {
       user: user._id,
       body: comment,
       postId: id
-    }
-
-    const updateCurrency = async (amount) => {
-      const data = { currency: user.currency + price };
-      const token = window.localStorage.getItem("token");
-      const res = await axios.put("http://localhost:5005/auth/profile", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (res.data.currency) {        
-        setUser(res.data);
-      }
-    }; 
-  
+    }  
     const token = window.localStorage.getItem('token')
     const res = await axios.post(`http://localhost:5005/comments/new`, data, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     })
-    console.log(res.data)
   }
 
-  useEffect(() => {
-    fetchData();
+  const updateUserLiked = async (likedPost) => {
+    const data = { liked: [...user.liked,  likedPost]};
+    const token = window.localStorage.getItem("token");
+    const res = await axios.put("http://localhost:5005/auth/profile", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.data.liked) {        
+      setUser(res.data);
+      console.log("NEW LIKED", user.liked)
+    }
+  }; 
+
+  useEffect(() => {    
+      setIsLoadingPost(false)      
+      fetchData()
+      setPosts(postsContext)    
   }, []);
 
   useEffect(() => {
     setIsLoading(false);
   }, [posts]);
+
+  useEffect(() => {
+    fetchData()
+    setPostsCall(false)
+  }, [postsCall]);
 
   useEffect(() => {
     const checkClickedOutside = (event) => {
@@ -90,14 +114,21 @@ function LandingPage() {
   };
 
   const handleLike = (e, id) => {
-    const newArr = [...posts];
-    newArr.map(item =>{ 
-      if (item._id === id) {
-          item.likes += 1;
-      }});
+    const newArr = [...posts];    
     const post = newArr.find(item => item._id === id);
-    updatePost(post, id);
-    setPosts(newArr);
+    
+    if (!user.liked.includes(id)) {
+      newArr.map(item =>{ 
+        if (item._id === id) {
+            item.likes += 1;
+        }});
+      updatePost(post, id);
+      updateUserLiked(post)
+      setPostsContext(newArr);
+      console.log("LIKED FOR FIRST TIME")
+    } else {
+      console.log("already liked")
+    }
   }
 
   const handleDislike = (e, id) => {
@@ -109,7 +140,7 @@ function LandingPage() {
     const post = newArr.find(item => item._id === id);
     
     updatePost(post, id);
-    setPosts(newArr);
+    setPostsContext(newArr);
   }
 
   const handleNewComment = (e, id) => { 
@@ -126,19 +157,25 @@ function LandingPage() {
       }
     });
     updateComment(newComment, id);
-    setPosts(newArr);
+    setPostsContext(newArr);
     setNewComment("");
   }
 
   return (
     <>
-      {!isLoading ? (
+      {!isLoadingPost && isAuthenticated ? (
         <div className="column-center">
           <button className="add-new-post" onClick={(e) => openModal(e)}>
             <p>Add New Post</p>
             <span className="btn-add">+</span>
           </button>
-          {addNewPost && <PostForm setPosts={setPosts} setAddNewPost={setAddNewPost} />}
+          <div >
+            <button className="imageBackgrounChange1" onClick={(e) => handleBackground(0)}></button>
+          </div>
+          <div >
+            <button className="imageBackgrounChange2" onClick={(e) => handleBackground(1)}></button>
+          </div>
+          {addNewPost && <PostForm setPostsCall={setPostsCall} posts={posts} setPosts={setPostsContext} setAddNewPost={setAddNewPost} />}
           {posts.map((post) => {
             return (
               <PostCard key={post._id} 
@@ -149,7 +186,7 @@ function LandingPage() {
                 handleNewComment={handleNewComment}
                 setNewComment={setNewComment}
                 newComment={newComment}
-                setPosts={setPosts}
+                setPosts={setPostsContext}
                 />
             );
           })}
@@ -157,10 +194,10 @@ function LandingPage() {
       ) : (
         <h1>Loading...</h1>
       )}
-      <iframe
+      <img
         className="background3d"
-        src="https://my.spline.design/untitledcopy-858101b02d0e98d0da4179fadde8c638/"
-      ></iframe>
+        src={background}
+      ></img>
     </>
   );
 }
