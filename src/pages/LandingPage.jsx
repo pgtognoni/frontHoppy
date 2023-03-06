@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
-import axios from "axios";
+import axios from "axios"
 import "../App.css";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
