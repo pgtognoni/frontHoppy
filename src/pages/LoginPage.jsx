@@ -20,7 +20,7 @@ const LoginPage = () => {
     })
     const json = await newUser.json()
     if (newUser.status === 200) {
-      setUser(json.user.username)
+      setUser(json.user)
       setUserId(json.user._id)
       setUserImage(json.user.image)
       setToken(json.token)

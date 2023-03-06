@@ -102,7 +102,7 @@ function PostCard(props) {
                             <p className='comment-username'>{comment.username}</p>
                             <p className='comment-body'>{comment.body}</p>
                             </div>
-                            {comment.user && comment.user[0] === user._id 
+                            {comment.user && comment.user[0] === user._id || location === '/profile'
                              ? <>
                                 <button className='btn-delete' onClick={(e) => deleteComment(e, comment._id)}>
                                     <FontAwesomeIcon icon={faTrashCan} />
