@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SessionContext } from "../contexts/SessionContext";
 
 function PostForm({
   heading,
@@ -18,13 +19,15 @@ function PostForm({
   const [type, setType] = useState(postType);
   const [content, setContent] = useState(postContent);
   const [section, setSection] = useState(postSection);
+
+  const { user } = useContext(SessionContext);
   
   const hundleSubmit = async (e) => {
     
     e.preventDefault()
 
     //const jwtToken = window.localStorage.getItem('token');
-    const userId = window.localStorage.getItem('userId');
+    const userId = user._id;
     console.log(userId)
     const response = await fetch(
       ` http://localhost:5005/posts${isUpdating ? `/${postId}/update` : "/new"}`,
