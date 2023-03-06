@@ -55,7 +55,7 @@ function Navbar() {
                             </div>
                             <div style={{display: "flex", flexDirection: "column", marginLeft: "-10px"}}>
                             <span style={{fontSize: "15px", fontWeight: "100"}} className="text-white">{user ? user.username : null}</span>
-                            <span>🪙{user.currency}</span>                            
+                            {user ? <span>💎 {user.currency}</span> : null}
                             </div>
                         </NavLink>
                         }

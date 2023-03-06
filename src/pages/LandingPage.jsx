@@ -13,7 +13,7 @@ function LandingPage() {
   const [posts, setPosts] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
   const [addNewPost, setAddNewPost] = useState(false);
-  const [ newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState("");
   const ref = useRef();
 
  const { setUser, user } = useContext(SessionContext);
@@ -23,8 +23,8 @@ function LandingPage() {
     setPosts(response.data);
   };
 
-  const updatePost = async (post, id) => {
-    const data = post
+  const updatePost = async (post, id, status) => {
+    const data = { data: post, status: {status} }
     const token = window.localStorage.getItem('token')
     const res = await axios.put(`http://localhost:5005/posts/${id}/update`, data, {
         headers: {
@@ -96,7 +96,7 @@ function LandingPage() {
           item.likes += 1;
       }});
     const post = newArr.find(item => item._id === id);
-    updatePost(post, id);
+    updatePost(post, id, 'like');
     setPosts(newArr);
   }
 
@@ -108,7 +108,7 @@ function LandingPage() {
       }});
     const post = newArr.find(item => item._id === id);
     
-    updatePost(post, id);
+    updatePost(post, id, 'dislike');
     setPosts(newArr);
   }
 
