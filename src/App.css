@@ -296,6 +296,7 @@ textarea:-webkit-autofill:active {
 
 .modal-box label {
   width: 100%;
+  color: var(--text-white);
 }
 
 .modal-box input,
@@ -303,7 +304,8 @@ textarea:-webkit-autofill:active {
   width: 100%;
   resize: none;
   border-radius: 5px;
-  padding: .5rem
+  padding: .5rem;
+  color: var(--text-white);
 }
 
 /*** BODY CONTAINER ***/
@@ -735,6 +737,7 @@ img.postedByImg {
 .new-post {
   max-width: 500px;
   width: 100%;
+  color: var(--text-white)
 }
 
 .select-form {
