@@ -76,19 +76,14 @@ function PostCard(props) {
                     <p className="postDescription">{post.description}</p>
                 </div>
                 <div className="postButtonsParent">
-                {console.log(post._id, user.liked )}
-                {!user.liked.includes(post._id) 
-                ? 
-                <button className="postInteractions" onClick={(e) => handleLike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
+                {/* {!user.liked.includes(post._id) 
+                ?  */}
+                <button className={`postInteractions ${user.liked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
                     ❤️ {post.likes}
                 </button>
-                :
-                <button  className="postInteractionsLiked" onClick={(e) => handleLike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
-                    ❤️ {post.likes}
-                </button>
-                }
                 
-                <button className="postInteractions" onClick={(e) => handleDislike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
+                
+                <button className={`postInteractions ${user.disliked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleDislike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
                     😠 {post.dislikes}
                 </button>
                 <button className="postInteractions" onClick={(e) => openComments(e)}>

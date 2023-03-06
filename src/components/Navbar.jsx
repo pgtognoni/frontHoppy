@@ -61,13 +61,13 @@ function Navbar() {
                 </NavLink>
               </>
             )}
-            {/* {location !== '/profile' && 
+                {/* {location !== '/profile' && 
                 <NavLink to='/profile' className="text-white">
                     <FontAwesomeIcon icon={faUser} />
                 </NavLink>
                 } */}
-                </>
-            }
+          </>
+        )}
             </div>
         <div className='nav-logout'>
         {!!isAuthenticated && 
@@ -85,12 +85,12 @@ function Navbar() {
                             </div>
                         </NavLink>
                         }
-                </> {console.log(user)}
+                </> 
             <button className='text-white logout' onClick={logout}>
                 <FontAwesomeIcon icon={faRightFromBracket} />
             </button>
           </div>
-        )}
+        }
         {!isAuthenticated && (
           <div className="btn-container">
             <NavLink to="/login" className="text-white">

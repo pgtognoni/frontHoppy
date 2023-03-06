@@ -65,8 +65,8 @@ function LandingPage() {
     })
   }
 
-  const updateUserLiked = async (likedPost) => {
-    const data = { liked: [...user.liked,  likedPost]};
+  const updateUserLiked = async () => {
+    let data = user;
     const token = window.localStorage.getItem("token");
     const res = await axios.put("http://localhost:5005/auth/profile", data, {
       headers: {
@@ -75,7 +75,7 @@ function LandingPage() {
     });
     if (res.data.liked) {        
       setUser(res.data);
-      console.log("NEW LIKED", user.liked)
+      console.log("NEW LIKED", res.data.liked, res.data.disliked)
     }
   }; 
 
@@ -118,14 +118,24 @@ function LandingPage() {
     const post = newArr.find(item => item._id === id);
     
     if (!user.liked.includes(id)) {
+      const newUser = {...user};
+      newUser.liked.push(id);
       newArr.map(item =>{ 
         if (item._id === id) {
             item.likes += 1;
+      }});
+
+      if(user.disliked.includes(id)) {
+        newUser.disliked.splice(newUser.disliked.indexOf(id), 1);
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.dislikes -= 1;
         }});
+      } 
+      setUser(newUser);
       updatePost(post, id, 'like');
-      updateUserLiked(post)
-      setPostsContext(newArr);
-      console.log("LIKED FOR FIRST TIME")
+      updateUserLiked()
+      setPostsContext(newArr);      
     } else {
       console.log("already liked")
     }
@@ -133,14 +143,31 @@ function LandingPage() {
 
   const handleDislike = (e, id) => {
     const newArr = [...posts];
-    newArr.map(item =>{ 
-      if (item._id === id) {
+    const post = newArr.find(item => item._id === id);
+
+    if (!user.disliked.includes(id)) {
+      const newUser = {...user};
+      newUser.disliked.push(id);
+      newArr.map(item =>{ 
+        if (item._id === id) {
           item.dislikes += 1;
       }});
-    const post = newArr.find(item => item._id === id);
-    
-    updatePost(post, id, 'dislike');
-    setPostsContext(newArr);
+
+      if(newUser.liked.includes(id)) {
+        newUser.liked.splice(newUser.liked.indexOf(id), 1);
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.likes -= 1;
+        }});
+      }
+      setUser(newUser);
+      updatePost(post, id, 'dislike');
+      updateUserLiked()
+      setPostsContext(newArr);
+        
+    } else {
+      console.log("already disliked")
+    }
   }
 
   const handleNewComment = (e, id) => { 
