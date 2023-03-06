@@ -1,15 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
-import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesDown, faAnglesUp, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SessionContext } from "../contexts/SessionContext";
+import axios from 'axios'
 
 function PostCard(props) {
     const location = useLocation().pathname
-    const { post, handleDislike, handleLike, handleNewComment, setNewComment } = props;
+    const { post, handleDislike, handleLike, handleNewComment, newComment, setNewComment, setProfilePost, setPosts, allposts } = props;
     const [ showComments, setShowComments ] = useState(false)
+    const { user, token } = useContext(SessionContext)
 
     const openComments = (e, id) => {
         setShowComments(!showComments)
+    }
+
+    const deleteAPI = async (id) => {
+        const res = await axios.delete(`http://localhost:5005/comments/${id}/delete`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        console.log(res.data)
+    }
+
+    const deleteComment = (e, id) => {
+        e.preventDefault();
+        const newArr = [...allposts];
+        newArr.map( item => {
+            if (item._id === post._id) {
+                const newCommentsArray = item.comments.filter(comment => comment._id !== id)
+                item.comments = newCommentsArray;
+            }
+        })
+        location === "/profile"
+            ? setProfilePost(newArr) 
+            : setPosts(newArr);
+
+        deleteAPI(id)
     }
 
   return (
@@ -48,10 +76,10 @@ function PostCard(props) {
                     <p className="postDescription">{post.description}</p>
                 </div>
                 <div className="postButtonsParent">
-                <button className="postInteractions" onClick={(e) => handleLike(e, post._id)}>
+                <button className="postInteractions" onClick={(e) => handleLike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
                     ❤️ {post.likes}
                 </button>
-                <button className="postInteractions" onClick={(e) => handleDislike(e, post._id)}>
+                <button className="postInteractions" onClick={(e) => handleDislike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
                     😠 {post.dislikes}
                 </button>
                 <button className="postInteractions" onClick={(e) => openComments(e)}>
@@ -70,15 +98,25 @@ function PostCard(props) {
                             <img className="comment-img" src={comment.image} alt="profile" loading="lazy"/> 
                         </div>
                         <div className='comment-text'>
+                            <div>
                             <p className='comment-username'>{comment.username}</p>
                             <p className='comment-body'>{comment.body}</p>
+                            </div>
+                            {comment.user && comment.user[0] === user._id || location === '/profile'
+                             ? <>
+                                <button className='btn-delete' onClick={(e) => deleteComment(e, comment._id)}>
+                                    <FontAwesomeIcon icon={faTrashCan} />
+                                </button>
+                             </>
+                             : null
+                             }
                         </div>
                     </div>
                 )
             }) : null}
             <form onSubmit={(e)=> handleNewComment(e, post._id)} className='comment-form'>
                 <p>Add</p>
-                <input type="text" maxLength={140} onChange={e => setNewComment(e.target.value)} />
+                <input type="text" maxLength={140}  value={newComment} onChange={e => setNewComment(e.target.value)} />
                 <button type="submit">Post</button>
             </form>
         </div>

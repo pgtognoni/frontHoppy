@@ -10,6 +10,7 @@ function SessionContextProvider({ children }) {
     const [ token, setToken ] = useState(null);
     const [ user, setUser ] = useState(null);
     const [ userName, setUserName ] = useState(null);
+    const [ userCurrency, setUserCurrency ] = useState(null);
     const [ userImage, setUserImage ] = useState(null);
     const [ userId, setUserId ] = useState(null);
     const authenticated = useRef(isAuthenticated);
@@ -68,6 +69,8 @@ function SessionContextProvider({ children }) {
         setUser,
         userName,
         setUserName, 
+        setUserCurrency,
+        userCurrency,
         userImage, 
         setUserImage, 
         authenticated, 

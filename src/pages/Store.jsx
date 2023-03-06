@@ -3,7 +3,7 @@ import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 
 const Store = () => {
-  const { setUser, user } = useContext(SessionContext);
+  const { setUser, user, setUserCurrency, setUserImage, userCurrency} = useContext(SessionContext);
   const [currency, setCurrency] = useState(0);
   const [loading, isLoading] = useState(true);
   const [clock, setClock] = useState("")
@@ -34,6 +34,8 @@ function timeAdv()  {
 
  useEffect(() => {
   timeAdv()
+  setCurrency(userCurrency);
+  console.log("CURRENCY", userCurrency)
  }, [])
  
 
@@ -108,11 +110,11 @@ function timeAdv()  {
   }
   stopLoading();
 
-  function handleBuy(price, image) {
-    setCurrency(user.currency);
-    if (user.currency && currency > 0 && !user.image.includes(image)) {
+  function handleBuy(price, image) {    
+    console.log(currency)
+    if (user.currency && userCurrency >= price && !user.image.includes(image)) {
       console.log("Buying!")
-      const newImageArr = [...user.image, image];
+      const newImageArr = [image, ...user.image];
     
       updateCurrency(price, newImageArr);
     }
@@ -128,6 +130,8 @@ function timeAdv()  {
     });
     if (res.data.currency) {
       setCurrency(res.data.currency);
+      setUserCurrency(res.data.currency)
+      setUserImage(res.data.image);
       setUser(res.data);
     }
   }; 

@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
   const navigate = useNavigate()
-  const { setToken, setUser, setUserImage, setUserId } = useContext(SessionContext)
+  const { setToken, setUser, setUserImage, setUserCurrency, setUserId } = useContext(SessionContext)
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -19,12 +19,12 @@ const LoginPage = () => {
       body: JSON.stringify({ username, password })
     })
     const json = await newUser.json()
-    console.log(json)
     if (newUser.status === 200) {
-      setUser(json.user.username)
+      setUser(json.user)
       setUserId(json.user._id)
       setUserImage(json.user.image)
       setToken(json.token)
+      setUserCurrency(json.user.currency)
       navigate('/')
     }
   }

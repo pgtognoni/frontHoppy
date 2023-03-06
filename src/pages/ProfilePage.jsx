@@ -125,7 +125,12 @@ function ProfilePage() {
         <div className='profile-posts'>
         {profilePost.map((post) => {
             return (
-              <PostCard key={post._id} post={post} />
+              <PostCard key={post._id} 
+                post={post} 
+                setProfilePost={setProfilePost} 
+                allposts={profilePost}
+                
+              />
             );
           })}                      
         </div>

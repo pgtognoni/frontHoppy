@@ -10,7 +10,8 @@ function PostForm({
   postSection ="",
   isUpdating = false,
   postId,
-  setAddNewPost
+  setAddNewPost,
+  setPosts
 }) {
   const navigate = useNavigate();
   const [title, setTitle] = useState(postTitle);
@@ -48,6 +49,7 @@ function PostForm({
       console.log("data....", data._id);
       navigate(`/`)
       setAddNewPost(false);
+      setPosts(prev => {[...prev, data]})
     }
     // if (response.status === 200) {
     //   navigate(`/${postId}`)
