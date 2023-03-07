@@ -61,11 +61,6 @@ function Navbar() {
                 </NavLink>
               </>
             )}
-            {/* {location !== '/profile' && 
-                <NavLink to='/profile' className="text-white">
-                    <FontAwesomeIcon icon={faUser} />
-                </NavLink>
-                } */}
           </>
         )}
       </div>
@@ -94,7 +89,7 @@ function Navbar() {
                     >
                       {user ? user.username : null}
                     </span>
-                    <span>{user ? <span>🪙{user.currency}</span> : null}</span>
+                    <span>{user ? <span>💎{user.currency}</span> : null}</span>
                   </div>
                 </NavLink>
               

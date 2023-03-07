@@ -8,10 +8,11 @@ import PostCard from "../components/PostCard";
 import { SessionContext } from "../contexts/SessionContext";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { PostContext } from "../contexts/PostContext";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import BodyMenu from "../components/BodyMenu";
+import { updatePost, updateComment, updateUserLiked } from "../methods/postMethods";
 
-function LandingPage({ background }) {
+function LandingPage() {
   const [posts, setPosts] = useState([""]);
   const [postsCall, setPostsCall] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,64 +20,10 @@ function LandingPage({ background }) {
   const [newComment, setNewComment] = useState(""); 
   const ref = useRef();
 
-  const { setUser, user, isAuthenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
+  const { setUser, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
     useContext(SessionContext);
   const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
     useContext(PostContext);
-
-  const backgroundImagesShow1 = [
-    "./image/Untitled - Copy@1-1904x993.png",
-    "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg",
-    "./image/164775-water-liquid-fluid-painting-art-1920x1080.jpg",
-  ];
-
-  const handleBackground = (image) => {
-    if (image === "./image/Untitled - Copy@1-1904x993.png") {
-      setBackgroundImages([
-        "imageBackgrounChange1",
-        "imageBackgrounChange2",
-        "imageBackgrounChange3",
-      ]);
-      setBackgroundImagesApply([
-        "./image/Untitled - Copy@1-1904x993.png",
-        "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg",
-        "./image/164775-water-liquid-fluid-painting-art-1920x1080.jpg",
-      ]);
-      setBackground(backgroundImagesShow1[0]);
-    }
-    if (
-      image ===
-      "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg"
-    ) {
-      setBackgroundImages([
-        "imageBackgrounChange2",
-        "imageBackgrounChange3",
-        "imageBackgrounChange1",
-      ]);
-      setBackgroundImagesApply([        
-        "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg",
-        "./image/164775-water-liquid-fluid-painting-art-1920x1080.jpg",
-        "./image/Untitled - Copy@1-1904x993.png",
-      ]);
-      setBackground(backgroundImagesShow1[1]);
-    }
-    if (
-      image === "./image/164775-water-liquid-fluid-painting-art-1920x1080.jpg"
-    ) {
-      setBackgroundImages([
-        "imageBackgrounChange3",
-        "imageBackgrounChange1",
-        "imageBackgrounChange2",
-      ]);
-      setBackgroundImagesApply([
-        "./image/164775-water-liquid-fluid-painting-art-1920x1080.jpg",
-        "./image/Untitled - Copy@1-1904x993.png",
-        "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg",        
-      ]);
-      setBackground(backgroundImagesShow1[2]);
-    }
-    console.log(image);
-  };
 
   const fetchData = async () => {
     const response = await axios.get(`http://localhost:5005/posts`);
@@ -84,43 +31,43 @@ function LandingPage({ background }) {
     setPostsContext(response.data);
   };
 
-  const updatePost = async (post, id, status) => {
-    const data = { data: post, status: {status} }
-    const token = window.localStorage.getItem('token')
-    const res = await axios.put(`http://localhost:5005/posts/${id}/update`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-  };
+  // const updatePost = async (post, id, status) => {
+  //   const data = { data: post, status: {status} }
+  //   const token = window.localStorage.getItem('token')
+  //   const res = await axios.put(`http://localhost:5005/posts/${id}/update`, data, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //   );
+  // };
 
-  const updateComment = async (comment, id) => {
-    const data = {
-      user: user._id,
-      body: comment,
-      postId: id,
-    };
-    const token = window.localStorage.getItem("token");
-    const res = await axios.post(`http://localhost:5005/comments/new`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  };
+  // const updateComment = async (comment, id) => {
+  //   const data = {
+  //     user: user._id,
+  //     body: comment,
+  //     postId: id,
+  //   };
+  //   const token = window.localStorage.getItem("token");
+  //   const res = await axios.post(`http://localhost:5005/comments/new`, data, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // };
 
-  const updateUserLiked = async () => {
-    let data = user;
-    const token = window.localStorage.getItem("token");
-    const res = await axios.put("http://localhost:5005/auth/profile", data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (res.data.liked) {
-      setUser(res.data);
-    }
-  };
+  // const updateUserLiked = async () => {
+  //   let data = user;
+  //   const token = window.localStorage.getItem("token");
+  //   const res = await axios.put("http://localhost:5005/auth/profile", data, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   if (res.data.liked) {
+  //     setUser(res.data);
+  //   }
+  // };
 
   useEffect(() => {
     setIsLoadingPost(false);
@@ -128,7 +75,6 @@ function LandingPage({ background }) {
     setPosts(postsContext);
     setBackgroundImages(backgroundImages);   
   }, []);
-  
 
   useEffect(() => {
     setIsLoading(false);
@@ -179,7 +125,7 @@ function LandingPage({ background }) {
       } 
       setUser(newUser);
       updatePost(post, id, 'like');
-      updateUserLiked()
+      updateUserLiked(user)
       setPostsContext(newArr);      
     } else {
     }
@@ -204,9 +150,10 @@ function LandingPage({ background }) {
             item.likes -= 1;
         }});
       }
+
       setUser(newUser);
       updatePost(post, id, 'dislike');
-      updateUserLiked()
+      updateUserLiked(user)
       setPostsContext(newArr);
         
     } else {
@@ -227,7 +174,7 @@ function LandingPage({ background }) {
         item.comments.push(comment);
       }
     });
-    updateComment(newComment, id);
+    updateComment(newComment, id, user);
     setPostsContext(newArr);
     setNewComment("");
   };
@@ -235,36 +182,9 @@ function LandingPage({ background }) {
   return (
     <>
     <div className="fullReturn">
-      {!isLoadingPost && isAuthenticated ? (
+      {!isLoadingPost && authenticated.current ? (
         <div className="column-center">
-          <button className="add-new-post" onClick={(e) => openModal(e)}>
-            <p>Add New Post</p>
-            <span className="btn-add">➕</span>
-          </button>
-
-          <div className="backgroundsChoose">
-            <button
-              className={backgroundImages[0]}
-              onClick={(e) => handleBackground(backgroundImagesApply[0])}
-            >
-              B
-            </button>
-
-            <button
-              className={backgroundImages[1]}
-              onClick={(e) => handleBackground(backgroundImagesApply[1])}
-            >
-              B
-            </button>
-
-            <button
-              className={backgroundImages[2]}
-              onClick={(e) => handleBackground(backgroundImagesApply[2])}
-            >
-              B
-            </button>
-          </div>
-
+          <BodyMenu openModal={openModal} />
           {addNewPost && (
             <PostForm
               setPostsCall={setPostsCall}

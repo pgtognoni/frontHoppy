@@ -1,47 +1,50 @@
 import React from 'react'
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDownShortWide, faBars, faCircleChevronDown, faPlus, faUsersLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function MobileNavBar({ handleBackground }) {
+function MobileNavBar() {
     return (
-        <div className='onTop'>
-<button class="btn btn-primary open-sidebar add-new-post" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvasResponsive">
-      <FontAwesomeIcon icon={faBars} />
-</button>
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasResponsiveLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Responsive offcanvas</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-        <h1>WTF</h1>
-        <div>
-      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        <button class="imageBackgrounChange1" 
-            onClick={(e) => handleBackground(0)}
-        ></button>
-        <button class="imageBackgrounChange2" 
-            onClick={(e) => handleBackground(1)}
-        ></button>
+    <div className='onTop'>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasResponsiveLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">
+                    <p className=''>Explore</p>
+                    <FontAwesomeIcon className='title-icon' icon={faArrowDownShortWide} />
+                </h5>
+                <button type="button" class="btn-close btn-sidebar " data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="dropdown mt-3">
+                    <button class="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <p className=''>Categories</p>
+                        <FontAwesomeIcon icon={faCircleChevronDown} />
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item">Memes</button></li>
+                        <li><button class="dropdown-item">Lifestyle</button></li>
+                        <li><button class="dropdown-item">Education</button></li>
+                        <li><button class="dropdown-item">Gaming</button></li>
+                        <li><button class="dropdown-item">Food</button></li>
+                        <li><button class="dropdown-item">Business</button></li>
+                    </ul>
+                </div>
+                <div class="dropdown mt-3">
+                    <button class="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <p className=''>Groups</p>
+                        <FontAwesomeIcon icon={faUsersLine} />
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item">Create <FontAwesomeIcon icon={faPlus} /></button></li>
+                        <li><button class="dropdown-item">Explore</button></li>
+                    </ul>
+                </div>
+            <div >
+        </div>
+            <div >
+            </div>
+        </div>
+        </div>    
     </div>
-    <div class="dropdown mt-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
-    <div >
-    </div>
-    <div >
-    </div>
-  </div>
-</div>    
-</div>
   )
 }
 
