@@ -27,6 +27,8 @@ const Sidebar = () => {
     <div className ="subSide sideSub" >
     
       <CDBSidebar
+        breakpoint={4000}
+        maxWidth="180px"
         toggled={toggle}
         onMouseLeave={onMouseLeave}
         className="text-black" id="CDBSSide">

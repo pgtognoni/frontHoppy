@@ -11,11 +11,11 @@ import { PostContext } from "../contexts/PostContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function LandingPage() {
+function LandingPage({ background }) {
   const [posts, setPosts] = useState([""]);
   const [postsCall, setPostsCall] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [ background, setBackground ] = useState("../../public/image/Untitled - Copy@1-1904x993.png")
+  // const [ background, setBackground ] = useState("../../public/image/Untitled - Copy@1-1904x993.png")
   const [addNewPost, setAddNewPost] = useState(false);
   const [newComment, setNewComment] = useState("");
   const ref = useRef();
@@ -24,16 +24,16 @@ function LandingPage() {
  const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } = useContext(PostContext);
 
  
- const backgroundImages = [
-   "./image/Untitled - Copy@1-1904x993.png",
-   "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg"
-  ]
-  let backgroundImage = backgroundImages[0]
+//  const backgroundImages = [
+//    "./image/Untitled - Copy@1-1904x993.png",
+//    "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg"
+//   ]
+//   let backgroundImage = backgroundImages[0]
 
-  const handleBackground = (image => {
-    setBackground(backgroundImages[image])
-    console.log(backgroundImage)
-  })
+//   const handleBackground = (image => {
+//     setBackground(backgroundImages[image])
+//     console.log(backgroundImage)
+//   })
 
   const fetchData = async () => {
     const response = await axios.get(`http://localhost:5005/posts`);
@@ -75,7 +75,6 @@ function LandingPage() {
     });
     if (res.data.liked) {        
       setUser(res.data);
-      console.log("NEW LIKED", res.data.liked, res.data.disliked)
     }
   }; 
 
@@ -192,16 +191,16 @@ function LandingPage() {
     <>
       {!isLoadingPost && isAuthenticated ? (
         <div className="column-center">
-          <button className="add-new-post" onClick={(e) => openModal(e)}>
-            <p>Add New Post</p>
-            <span className="btn-add">+</span>
+          <button className="show-add" onClick={(e) => openModal(e)}>
+            <span className="btn-add add-new-post">+</span>
+            <p className="text-add add-new-post">Add New Post</p>
           </button>
-          <div >
+          {/* <div >
             <button className="imageBackgrounChange1" onClick={(e) => handleBackground(0)}></button>
           </div>
           <div >
             <button className="imageBackgrounChange2" onClick={(e) => handleBackground(1)}></button>
-          </div>
+          </div> */}
           {addNewPost && <PostForm setPostsCall={setPostsCall} posts={posts} setPosts={setPostsContext} setAddNewPost={setAddNewPost} />}
           {posts.map((post) => {
             return (
