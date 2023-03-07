@@ -84,13 +84,10 @@ function LandingPage() {
     setPostsContext(response.data);
   };
 
-  const updatePost = async (post, id) => {
-    const data = post;
-    const token = window.localStorage.getItem("token");
-    const res = await axios.put(
-      `http://localhost:5005/posts/${id}/update`,
-      data,
-      {
+  const updatePost = async (post, id, status) => {
+    const data = { data: post, status: {status} }
+    const token = window.localStorage.getItem('token')
+    const res = await axios.put(`http://localhost:5005/posts/${id}/update`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -112,8 +109,8 @@ function LandingPage() {
     });
   };
 
-  const updateUserLiked = async (likedPost) => {
-    const data = { liked: [...user.liked, likedPost] };
+  const updateUserLiked = async () => {
+    let data = user;
     const token = window.localStorage.getItem("token");
     const res = await axios.put("http://localhost:5005/auth/profile", data, {
       headers: {
@@ -122,6 +119,7 @@ function LandingPage() {
     });
     if (res.data.liked) {
       setUser(res.data);
+      console.log("NEW LIKED", res.data.liked, res.data.disliked)
     }
   };
 
@@ -166,30 +164,56 @@ function LandingPage() {
     const post = newArr.find((item) => item._id === id);
 
     if (!user.liked.includes(id)) {
-      newArr.map((item) => {
+      const newUser = {...user};
+      newUser.liked.push(id);
+      newArr.map(item =>{ 
         if (item._id === id) {
-          item.likes += 1;
-        }
-      });
-      updatePost(post, id);
-      updateUserLiked(post);
-      setPostsContext(newArr);
+            item.likes += 1;
+      }});
+
+      if(user.disliked.includes(id)) {
+        newUser.disliked.splice(newUser.disliked.indexOf(id), 1);
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.dislikes -= 1;
+        }});
+      } 
+      setUser(newUser);
+      updatePost(post, id, 'like');
+      updateUserLiked()
+      setPostsContext(newArr);      
     } else {
     }
   };
 
   const handleDislike = (e, id) => {
     const newArr = [...posts];
-    newArr.map((item) => {
-      if (item._id === id) {
-        item.dislikes += 1;
-      }
-    });
-    const post = newArr.find((item) => item._id === id);
+    const post = newArr.find(item => item._id === id);
 
-    updatePost(post, id);
-    setPostsContext(newArr);
-  };
+    if (!user.disliked.includes(id)) {
+      const newUser = {...user};
+      newUser.disliked.push(id);
+      newArr.map(item =>{ 
+        if (item._id === id) {
+          item.dislikes += 1;
+      }});
+
+      if(newUser.liked.includes(id)) {
+        newUser.liked.splice(newUser.liked.indexOf(id), 1);
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.likes -= 1;
+        }});
+      }
+      setUser(newUser);
+      updatePost(post, id, 'dislike');
+      updateUserLiked()
+      setPostsContext(newArr);
+        
+    } else {
+      console.log("already disliked")
+    }
+  }
 
   const handleNewComment = (e, id) => {
     e.preventDefault();

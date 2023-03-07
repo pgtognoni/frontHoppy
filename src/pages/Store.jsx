@@ -165,7 +165,7 @@ function timeAdv()  {
                       >
                         {user.image.includes(`${dailyImages[0]}`)
                           ? "✅"
-                          : "🪙 20"}
+                          : "💎 20"}
                       </button>
                     </div>
                     <div className="itemCard">
@@ -180,7 +180,7 @@ function timeAdv()  {
                       >
                         {user.image.includes(`${dailyImages[1]}`)
                           ? "✅"
-                          : "🪙 20"}
+                          : "💎 20"}
                       </button>
                     </div>
                     <div className="itemCard">
@@ -195,7 +195,7 @@ function timeAdv()  {
                       >
                         {user.image.includes(`${dailyImages[2]}`)
                           ? "✅"
-                          : "🪙 20"}
+                          : "💎 20"}
                       </button>
                     </div>
                     <div className="itemCard">
@@ -210,7 +210,7 @@ function timeAdv()  {
                       >
                         {user.image.includes(`${dailyImages[3]}`)
                           ? "✅"
-                          : "🪙 20"}
+                          : "💎 20"}
                       </button>
                     </div>
                   </div>
@@ -239,7 +239,7 @@ function timeAdv()  {
                       onClick={(e) => handleBuy(5, dailyImages[4])}
                       className="itemButton"
                     >
-                      {user.image.includes(`${dailyImages[4]}`) ? "✅" : "🪙 5"}
+                      {user.image.includes(`${dailyImages[4]}`) ? "✅" : "💎 5"}
                     </button>
                   </div>
                   <div className="itemCard">
@@ -253,7 +253,7 @@ function timeAdv()  {
                       onClick={(e) => handleBuy(5, dailyImages[5])}
                       className="itemButton"
                     >
-                      {user.image.includes(`${dailyImages[5]}`) ? "✅" : "🪙 5"}
+                      {user.image.includes(`${dailyImages[5]}`) ? "✅" : "💎 5"}
                     </button>
                   </div>
                   <div className="itemCard">
@@ -267,7 +267,7 @@ function timeAdv()  {
                       onClick={(e) => handleBuy(5, dailyImages[6])}
                       className="itemButton"
                     >
-                      {user.image.includes(`${dailyImages[6]}`) ? "✅" : "🪙 5"}
+                      {user.image.includes(`${dailyImages[6]}`) ? "✅" : "💎 5"}
                     </button>
                   </div>
                   <div className="itemCard">
@@ -281,7 +281,7 @@ function timeAdv()  {
                       onClick={(e) => handleBuy(5, dailyImages[7])}
                       className="itemButton"
                     >
-                      {user.image.includes(`${dailyImages[7]}`) ? "✅" : "🪙 5"}
+                      {user.image.includes(`${dailyImages[7]}`) ? "✅" : "💎 5"}
                     </button>
                   </div>
                 </div>
