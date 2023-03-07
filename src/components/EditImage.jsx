@@ -65,14 +65,14 @@ function EditImage(props) {
 
   return (
     <div className='modal-container'>
-    <div className='modal-box dark-form' >
+    <div className='modal-box dark-form image-modal' >
         <button className="close-modal" onClick={(e) => cancelEdit(e)}>x</button>
         <div className='modal-content'>
             <div className='edit-image-form'>
             {userImage.map((image, index) => {
                 return (
-                    <button className={`btn-add-image profile-image profile-img`} onClick={(e) => selectImage(image)}>
-                        <img src={image} alt='profile image' className={`profile-img ${index !== 0 ? "inactive" : null}`}/>
+                    <button className={`btn-add-image profile-image profile-img modal-miniatures`} onClick={(e) => selectImage(image)}>
+                        <img src={image} alt='profile image' className={`profile-img modal-miniatures ${index !== 0 ? "inactive" : null}`}/>
                     </button>
                 )
             })}

@@ -3,7 +3,7 @@ import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 
 const Store = () => {
-  const { setUser, user, setUserCurrency, setUserImage, userCurrency} = useContext(SessionContext);
+  const { setUser, user, setUserCurrency, setUserImage, userCurrency, background} = useContext(SessionContext);
   const [currency, setCurrency] = useState(0);
   const [loading, isLoading] = useState(true);
   const [clock, setClock] = useState("")
@@ -24,7 +24,7 @@ function timeAdv()  {
   if ((sec + "").length == 1) {
     sec = "0" + sec;
   }
-  let newTime = hours + "h" +' and '+ min + "min"
+  let newTime = hours + "h"
   
   setClock( newTime ) 
 };
@@ -110,7 +110,7 @@ function timeAdv()  {
   stopLoading();
 
   function handleBuy(price, image) { 
-    console.log(user.currency, user.image)   
+     
     if (user.currency && user.currency >= price && !user.image.includes(image)) {
       const newImageArr = [image, ...user.image];    
       updateCurrency(price, newImageArr);
@@ -134,9 +134,11 @@ function timeAdv()  {
   }; 
 
   return (
-    <div className="storeBody">
+    <>
+    <div className="fullReturn">
+    <div className="storeBody bringItemFront">
       {!loading ? (
-        <div>
+        <div >
           <h1 className="storeTitle">Store <span style={{fontSize: "20px", fontWeight: "100", marginLeft: "30px", marginTop:  "10px",textAlign: "center", alignSelf: "center"}} id="the-final-countdown">New Collection in {clock}</span>
 </h1>
           
@@ -291,6 +293,9 @@ function timeAdv()  {
         <h1>Loading...</h1>
       )}
     </div>
+    </div>
+      <img className="background3d" src={background}></img>
+    </>
   );
 };
 

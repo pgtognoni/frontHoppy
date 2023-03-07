@@ -32,10 +32,10 @@ function Navbar() {
         {location === "/" && (
           <>
             <NavLink to="/" className="text-white">
-              <FontAwesomeIcon style={{color: "#5E5E5E"}} icon={faHome} />
+              <FontAwesomeIcon icon={faHome} />
             </NavLink>
             <NavLink to="/store" className="text-white">
-              <FontAwesomeIcon icon={faStore} />
+              <FontAwesomeIcon style={{color: "rgba(182, 182, 182, .7)"}} icon={faStore} />
             </NavLink>
           </>
         )}
@@ -44,10 +44,10 @@ function Navbar() {
             {location === "/store" && (
               <>
                 <NavLink to="/" className="text-white">
-                  <FontAwesomeIcon icon={faHome} />
+                  <FontAwesomeIcon style={{color: "rgba(182, 182, 182, .7)"}} icon={faHome} />
                 </NavLink>
                 <NavLink to="/store" className="text-white">
-                  <FontAwesomeIcon style={{color: "#5E5E5E"}} icon={faStore} />
+                  <FontAwesomeIcon icon={faStore} />
                 </NavLink>
               </>
             )}
@@ -61,36 +61,50 @@ function Navbar() {
                 </NavLink>
               </>
             )}
-                {/* {location !== '/profile' && 
+            {/* {location !== '/profile' && 
                 <NavLink to='/profile' className="text-white">
                     <FontAwesomeIcon icon={faUser} />
                 </NavLink>
                 } */}
           </>
         )}
-            </div>
-        <div className='nav-logout'>
-        {!!isAuthenticated && 
-            <div className='nav-user'>
-                <>
-                    {location === '/profile' 
-                        ? null
-                        : <NavLink to='/profile' className="text-white nav-user">
-                            <div className='nav-profile-img'>
-                                <img src={userImage ? userImage[0] : null} className='profile-img'/>
-                            </div>
-                            <div style={{display: "flex", flexDirection: "column", marginLeft: "-10px"}}>
-                            <span style={{fontSize: "15px", fontWeight: "100"}} className="text-white">{user ? user.username : null}</span>
-                            {user ? <span>💎 {user.currency}</span> : null}
-                            </div>
-                        </NavLink>
-                        }
-                </> 
-            <button className='text-white logout' onClick={logout}>
-                <FontAwesomeIcon icon={faRightFromBracket} />
+      </div>
+      <div className="nav-logout">
+        {!!isAuthenticated && (
+          <div className="nav-user">
+            <>
+              
+                <NavLink to="/profile" className="text-white nav-user">
+                  <div className="nav-profile-img">
+                    <img
+                      src={userImage ? userImage[0] : null}
+                      className="profile-img"
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      marginLeft: "-10px",
+                    }}
+                  >
+                    <span
+                      style={{ fontSize: "15px", fontWeight: "100" }}
+                      className="text-white"
+                    >
+                      {user ? user.username : null}
+                    </span>
+                    <span>{user ? <span>🪙{user.currency}</span> : null}</span>
+                  </div>
+                </NavLink>
+              
+            </>{" "}
+            
+            <button className="text-white logout" onClick={logout}>
+              <FontAwesomeIcon icon={faRightFromBracket} />
             </button>
           </div>
-        }
+        )}
         {!isAuthenticated && (
           <div className="btn-container">
             <NavLink to="/login" className="text-white">
