@@ -32,10 +32,10 @@ function Navbar() {
         {location === "/" && (
           <>
             <NavLink to="/" className="text-white">
-              <FontAwesomeIcon style={{color: "#5E5E5E"}} icon={faHome} />
+              <FontAwesomeIcon icon={faHome} />
             </NavLink>
             <NavLink to="/store" className="text-white">
-              <FontAwesomeIcon icon={faStore} />
+              <FontAwesomeIcon style={{color: "rgba(182, 182, 182, .7)"}} icon={faStore} />
             </NavLink>
           </>
         )}
@@ -44,10 +44,10 @@ function Navbar() {
             {location === "/store" && (
               <>
                 <NavLink to="/" className="text-white">
-                  <FontAwesomeIcon icon={faHome} />
+                  <FontAwesomeIcon style={{color: "rgba(182, 182, 182, .7)"}} icon={faHome} />
                 </NavLink>
                 <NavLink to="/store" className="text-white">
-                  <FontAwesomeIcon style={{color: "#5E5E5E"}} icon={faStore} />
+                  <FontAwesomeIcon icon={faStore} />
                 </NavLink>
               </>
             )}
@@ -73,7 +73,7 @@ function Navbar() {
         {!!isAuthenticated && (
           <div className="nav-user">
             <>
-              {location === "/profile" ? null : (
+              
                 <NavLink to="/profile" className="text-white nav-user">
                   <div className="nav-profile-img">
                     <img
@@ -97,9 +97,9 @@ function Navbar() {
                     <span>{user ? <span>🪙{user.currency}</span> : null}</span>
                   </div>
                 </NavLink>
-              )}
+              
             </>{" "}
-            {console.log(user)}
+            
             <button className="text-white logout" onClick={logout}>
               <FontAwesomeIcon icon={faRightFromBracket} />
             </button>

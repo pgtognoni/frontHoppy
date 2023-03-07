@@ -31,7 +31,7 @@ function PostForm({
 
     //const jwtToken = window.localStorage.getItem('token');
     const userId = user._id;
-    console.log(userId)
+    
     const response = await fetch(
       ` http://localhost:5005/posts${isUpdating ? `/${postId}/update` : "/new"}`,
       {
@@ -51,7 +51,7 @@ function PostForm({
     );
     if (response.status === 201) {
       const data = await response.json()
-      console.log("DATA", data);
+      
       navigate(`/`)
       setAddNewPost(false);
       let newArr = [...posts];
@@ -87,7 +87,7 @@ function PostForm({
           <p>Description</p>
             {/* <input type="text" value={description}
               onChange={(event) => setDescription(event.target.value)}/> */}
-              <textarea cols='35' maxLength="150" rows='3' type='text' name='description' onChange={(event) => setDescription(event.target.value)}></textarea>
+              <textarea cols='35' maxLength="250" rows='3' type='text' name='description' onChange={(event) => setDescription(event.target.value)}></textarea>
           </label>
           <label className="select-form">
           <p>Choose a type:</p>
