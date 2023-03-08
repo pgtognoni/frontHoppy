@@ -595,88 +595,7 @@ form input {
 /*** PROFILE ***/
 /*** PROFILE ***/
 
-.profile-container {
-  max-width: 80%;  
-  position: relative;
-  z-index: 1;
-  background-color: #f0f0f0;
-  padding: 5rem;
-  border-radius: 50px;
-  color: var(--text-black);
-  align-self: center;
-}
 
-.profile-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 3rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--border-gray);
-}
-
-.profile-image {
-  position: relative;
-  min-width: 10rem;
-}
-
-.profile-img {
-  max-width: 10rem;
-  height: auto;
-  border-radius: 100%;
-  position: relative
-}
-.btn-add-image {
-  height: 10rem;
-  font-size: 4rem;
-  margin: 0;
-  padding: 0;
-  color: var(--border-gray);
-  background-color: var(--nav-bg);
-  position: relative;
-  border: none;
-}
-
-.inactive {
-  opacity: .8;
-  filter: grayscale(70%)
-}
-
-.edit-image-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: space-around;
-  align-items: center;
-  max-width: 600px;
-  width: 100%;
-  gap: 2rem;
-  margin-bottom: 1rem;
-}
-
-.profile-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.profile-title button {
-  align-self: flex-start;
-}
-
-.profile-info {
-  margin-left: 2rem;
-  width: 100%;
-}
-
-.modal-miniatures {
-  width: 7rem;
-}
 
 /*** POST ***/
 /*** POST ***/
@@ -830,7 +749,7 @@ img.postedByImg {
   display: flex;
   justify-content: space-between;
   min-width: 300px;
-  align-self: center;
+  align-self: flex-start;
 }
 
 .postInteractions {
@@ -1002,16 +921,109 @@ img.postedByImg {
   margin: 0;
 }
 
+.profile-container {
+  max-width: 80%;  
+  position: relative;
+  z-index: 1;
+  background-color: #f0f0f0;
+  padding: 5rem;
+  border-radius: 50px;
+  color: var(--text-black);
+  align-self: center;
+}
+
+.profile-posts {
+  margin-left: 10px;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.profile-image {
+  position: relative;
+  min-width: 10rem;
+}
+
+.profile-img {
+  max-width: 10rem;
+  height: auto;
+  border-radius: 100%;
+  position: relative
+}
+.btn-add-image {
+  height: 10rem;
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  color: var(--border-gray);
+  background-color: var(--nav-bg);
+  position: relative;
+  border: none;
+}
+
+.inactive {
+  opacity: .8;
+  filter: grayscale(70%)
+}
+
+.edit-image-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.profile-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-title button {
+  align-self: flex-start;
+}
+
+.profile-info {
+  margin-left: 2rem;
+  width: 100%;
+}
+
+.modal-miniatures {
+  width: 7rem;
+}
+
 }
 
 @media screen and (max-width: 999px) and (min-width: 425px) {
+
+  .fullReturn {
+    width: 100vw;
+    align-self: center;
+    margin-left: auto;    
+  }
   .column-center {
     display: flex;
     width: 100vw;
     flex-direction: column;
     align-items: center;   
     gap: 0px;
-    margin-left: 14px;
+    margin-left: -10px;
   }
   
   .postContainer {
@@ -1027,9 +1039,9 @@ img.postedByImg {
   background-color: #ececec;
   padding: 60px 15px 15px 15px;
   gap: 0px;
-  overflow-y: hidden;
+  
   box-shadow: 0 0 20px  rgba(0, 0, 0, 0.356);
-  overflow: hidden;
+  
   flex-basis: auto;
   position: relative;
   z-index: 1;
@@ -1049,7 +1061,7 @@ img.postedByImg {
 }
 .postContent {
   width: auto;
-  max-width: 400px;
+  max-width: 300px;
   max-height: 300px;
   height: 100%;
   overflow: hidden;
@@ -1093,8 +1105,7 @@ img.postedByImg {
   justify-content: space-between;
   align-content: space-between;
   height: 370px;
-  max-width: 43%;
-  overflow: hidden;
+  max-width: 43%; 
   padding: 15px;
   padding-top: 30px;
   margin-top: -15px;
@@ -1113,38 +1124,40 @@ img.postedByImg {
   border-color:  transparent;
   margin-bottom: 20px;
   margin-top: -15px;
-  width: 86%;
-  min-width: 280px;
+  width: 95%;
+  min-width: 250px;
   background-color: transparent;
   box-shadow: 0 0 20px rgba(48, 48, 48, 0.151);
 }
 
 .postDescription {
   text-align: justify;
-  width: 89%;  
+  width: 95%;  
   min-width: 300px;
   color: #363636;
   font-weight: 300;
   font-size: 15px;
   text-shadow: 0px 0px 6px #00000036;
   margin-bottom: 0px;
-  min-width: 280px;
+  min-width: 250px;
 }
 
 .postButtonsParent {
-  width: 87%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  min-width: 300px;
-  align-self: center;
+  min-width: 260px;
+  align-self: flex-start;
   margin-bottom: 30px;
   padding: 0px 10px;
+  margin-left: -10px;
+  gap: 0;
 }
 
 .postInteractions {
   box-shadow: 0 0 13px rgba(0, 0, 0, 0.199);
-  width: 20%;
-  min-width: 80px;
+  width: 30%;
+  min-width: 25%;
   text-align: center;
   padding: 15px 8px;
   border-radius: 15px;
@@ -1155,8 +1168,8 @@ img.postedByImg {
 
 .postInteractions2 {
   box-shadow: 0 0 13px rgba(0, 0, 0, 0.199);
-  width: 20%;
-  min-width: 80px;
+  width: 30%;
+  min-width: 25%;
   text-align: center;
   padding: 15px 8px;
   border-radius: 15px;
@@ -1179,8 +1192,8 @@ img.postedByImg {
 
 .postInteractionsLiked {
   box-shadow: 0 0 13px rgba(255, 7, 7, 0.199);
-  width: 20%;
-  min-width: 80px;
+  width: 30%;
+  min-width: 25%;
   text-align: center;
   padding: 15px 8px;
   border-radius: 15px;
@@ -1249,7 +1262,7 @@ img.postedByImg {
   padding: 10px 15px 10px 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
   border-radius: 12px;
-  margin-right: -30px;
+  margin-right: -53px;
 }
 
 .comment-container {
@@ -1308,6 +1321,93 @@ img.postedByImg {
   background-color: transparent;
   border: none;
   margin: 0;
+}
+
+.profile-container {
+  width: 95%;  
+  position: relative;
+  z-index: 1;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-radius: 50px;
+  color: var(--text-black);
+  align-self: center;
+}
+
+.profile-posts {
+  margin-left: 10px;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;  
+  padding: 2.5rem 2.5rem;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.profile-image {
+  position: relative;
+  min-width: 10rem;
+}
+
+.profile-img {
+  max-width: 10rem;
+  height: auto;
+  border-radius: 100%;
+  position: relative
+}
+.btn-add-image {
+  height: 10rem;
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  color: var(--border-gray);
+  background-color: var(--nav-bg);
+  position: relative;
+  border: none;
+}
+
+.inactive {
+  opacity: .8;
+  filter: grayscale(70%)
+}
+
+.edit-image-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.profile-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-title button {
+  align-self: flex-start;
+}
+
+.profile-info {
+  margin-left: 2rem;
+  width: 100%;
+}
+
+.modal-miniatures {
+  width: 7rem;
 }
 
 }
@@ -1955,6 +2055,89 @@ img.postedByImg {
 
 .comment-body {
   padding-right: 10px;
+}
+
+.profile-container {
+  max-width: 80%;  
+  position: relative;
+  z-index: 1;
+  background-color: #f0f0f0;
+  padding: 5rem;
+  border-radius: 50px;
+  color: var(--text-black);
+  align-self: center;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.profile-image {
+  position: relative;
+  min-width: 10rem;
+}
+
+.profile-img {
+  max-width: 10rem;
+  height: auto;
+  border-radius: 100%;
+  position: relative
+}
+.btn-add-image {
+  height: 10rem;
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  color: var(--border-gray);
+  background-color: var(--nav-bg);
+  position: relative;
+  border: none;
+}
+
+.inactive {
+  opacity: .8;
+  filter: grayscale(70%)
+}
+
+.edit-image-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.profile-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-title button {
+  align-self: flex-start;
+}
+
+.profile-info {
+  margin-left: 2rem;
+  width: 100%;
+}
+
+.modal-miniatures {
+  width: 7rem;
 }
 
 }
