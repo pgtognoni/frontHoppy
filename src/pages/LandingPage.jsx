@@ -3,8 +3,8 @@ import { useState, useRef } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
-import PostForm from "../components/PostForm";
-import PostCard from "../components/PostCard";
+import PostForm from '../components/posts/PostForm'
+import PostCard from "../components/posts/PostCard";
 import { SessionContext } from "../contexts/SessionContext";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { PostContext } from "../contexts/PostContext";
@@ -30,44 +30,6 @@ function LandingPage() {
     setPosts(response.data);
     setPostsContext(response.data);
   };
-
-  // const updatePost = async (post, id, status) => {
-  //   const data = { data: post, status: {status} }
-  //   const token = window.localStorage.getItem('token')
-  //   const res = await axios.put(`http://localhost:5005/posts/${id}/update`, data, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   );
-  // };
-
-  // const updateComment = async (comment, id) => {
-  //   const data = {
-  //     user: user._id,
-  //     body: comment,
-  //     postId: id,
-  //   };
-  //   const token = window.localStorage.getItem("token");
-  //   const res = await axios.post(`http://localhost:5005/comments/new`, data, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  // };
-
-  // const updateUserLiked = async () => {
-  //   let data = user;
-  //   const token = window.localStorage.getItem("token");
-  //   const res = await axios.put("http://localhost:5005/auth/profile", data, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  //   if (res.data.liked) {
-  //     setUser(res.data);
-  //   }
-  // };
 
   useEffect(() => {
     setIsLoadingPost(false);
@@ -194,7 +156,6 @@ function LandingPage() {
             />
           )}
           {posts.map((post) => {
-            {console.log(post)}
             return (
               <>
               <PostCard

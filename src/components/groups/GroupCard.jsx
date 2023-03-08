@@ -15,9 +15,9 @@ function GroupCard({ group}) {
             <p className="postDescription">{group.description}</p>
         </div>
         <div className="postButtons">
-            <button className="postInteractions" onClick={(e) => openComments(e)}>
-                <Link to={`/${group._id}`} ><FontAwesomeIcon icon={faRightToBracket} /></Link>
-            </button>
+            <div className="postInteractions">
+                <Link to={`/groups/${group._id}`} ><FontAwesomeIcon icon={faRightToBracket} /></Link>
+            </div>
         </div>
         </div>
     </div>

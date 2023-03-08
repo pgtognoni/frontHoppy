@@ -5,7 +5,7 @@ import {
     faTrashCan,
   } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from "../../contexts/SessionContext";
   
 function Comments( { comment, deleteComment } ) {
     const { token, setUser, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply }=useContext(SessionContext);

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
-import { SessionContext } from '../contexts/SessionContext'
+import { SessionContext } from '../../contexts/SessionContext'
 import { faCamera, faStore } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

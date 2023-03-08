@@ -289,6 +289,12 @@ textarea:-webkit-autofill:active {
   background-color: inherit;
 }
 
+.dropdown-item:hover {
+  background-color: inherit;
+  font-weight: 600;
+  border-color: inherit;
+}
+
 .profileFilterButtons {
   margin-bottom: 50px;
   display: flex;

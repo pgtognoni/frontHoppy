@@ -6,7 +6,7 @@ import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from "../../contexts/SessionContext";
 import axios from "axios";
 
 

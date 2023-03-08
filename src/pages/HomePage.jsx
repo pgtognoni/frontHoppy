@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import "../App.css";
-import PostForm from "../components/PostForm";
+import PostForm from "../components/posts/PostForm";
 import {  } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
