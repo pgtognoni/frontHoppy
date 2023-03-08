@@ -1661,7 +1661,7 @@ img.postedByImg {
   }
   
   .postContainer {
-  width: 95%;  
+  width: 92%;  
   max-width: 1000px;
   height: auto;
   margin-bottom: 30px;
@@ -1987,29 +1987,47 @@ img.postedByImg {
   padding-right: 10px;
 }
 
+.fullReturn {
+  width: 102.5vw;
+  align-self: center;
+  margin-left: 2px;
+  overflow-x: hidden;
+}
+
+.fullReturn2 {
+  background-color: rgb(241, 241, 241);
+  height: 100vh;
+  position: fixed;
+}
+
 .profile-container {
-  max-width: 80%;  
+  min-width: 95%;  
   position: relative;
   z-index: 1;
+  margin-left: 9px;
+  
   background-color: #f0f0f0;
-  padding: 5rem;
-  border-radius: 50px;
+  padding: 3rem 0rem;
+  border-radius: 0px;
   color: var(--text-black);
-  align-self: center;
+  align-self: center;  
+  margin-bottom: 50px;
 }
 
 .profile-body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: center;
 }
 
 .profile-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--border-gray);
+  border-bottom: 1px solid var(--border-gray);  
 }
 
 .profile-image {
@@ -2018,10 +2036,11 @@ img.postedByImg {
 }
 
 .profile-img {
-  max-width: 10rem;
+  max-width: 14rem;
   height: auto;
   border-radius: 100%;
-  position: relative
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.466);
 }
 .btn-add-image {
   height: 10rem;
@@ -2053,17 +2072,46 @@ img.postedByImg {
 .profile-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  align-self: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.315);
 }
 
-.profile-title button {
-  align-self: flex-start;
+.profile-title button {  
+  font-size: 12px;
+  margin-bottom: -100px;
+  margin-left: -132px;
+  padding-top: 20px;
+  padding-bottom: 100px;
+  width: 280px;
+  opacity: 0;
+}
+
+.profUsername {
+  font-size: 50px;
+  font-weight: bolder;
 }
 
 .profile-info {
   margin-left: 2rem;
-  width: 100%;
+  width: 80%;
+}
+
+.profEdit {
+  margin-top: -200px;
+  padding: 10px 20px;
+}
+
+.bio {
+  font-size: 15px;
+  width: 90%;
+  align-self: center;
+  color: #363636;
 }
 
 .modal-miniatures {
