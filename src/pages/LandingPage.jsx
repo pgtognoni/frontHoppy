@@ -125,13 +125,8 @@ function LandingPage() {
       } 
       setUser(newUser);
       updatePost(post, id, 'like');
-<<<<<<< HEAD
-      updateUserLiked()
-      setPostsContext(newArr);
-=======
       updateUserLiked(user)
       setPostsContext(newArr);      
->>>>>>> 91d109dec6eb915baade4a2fc664149c7e31f740
     } else {
     }
   };
