@@ -57,6 +57,8 @@ function PostCard(props) {
     deleteAPI(id);
   };
 
+  console.log(user._id, post.createdBy)
+
   return (
     <>
       <div className="postContainer">
@@ -98,10 +100,10 @@ function PostCard(props) {
               <p className="postDescription">{post.description}</p>
             </div>
             <div className="postButtonsParent">
-            <button className={`postInteractions ${user && user.liked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
+            <button className={`postInteractions ${user && user.liked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy[0]._id ) ? {pointerEvents: 'none'} : null}>
                     ❤️ {post.likes}
                 </button>
-                <button className={`postInteractions ${user && user.disliked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleDislike(e, post._id)} style={location === '/profile' ? {pointerEvents: 'none'} : null}>
+                <button className={`postInteractions2 ${user && user.disliked.includes(post._id) ? "postInteractionsLiked postInteractionsDisiked" : null}`} onClick={(e) => handleDislike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy[0]._id ) ? {pointerEvents: 'none'} : null}>
                     😠 {post.dislikes}
                 </button>
                 <button className="postInteractions" onClick={(e) => openComments(e)}>
