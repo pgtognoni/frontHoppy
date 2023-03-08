@@ -9,7 +9,7 @@ function MobileNavBar() {
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">
                     <p className=''>Explore</p>
-                    <FontAwesomeIcon className='title-icon' icon={faArrowDownShortWide} />
+                    {/* <FontAwesomeIcon className='title-icon' icon={faArrowDownShortWide} /> */}
                 </h5>
                 <button type="button" class="btn-close btn-sidebar " data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
             </div>
@@ -17,7 +17,7 @@ function MobileNavBar() {
                 <div class="dropdown mt-3">
                     <button class="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <p className=''>Categories</p>
-                        <FontAwesomeIcon icon={faCircleChevronDown} />
+                        <FontAwesomeIcon icon={faArrowDownShortWide} />
                     </button>
                     <ul class="dropdown-menu">
                         <li><button class="dropdown-item">Memes</button></li>

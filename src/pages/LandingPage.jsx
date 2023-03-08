@@ -197,6 +197,7 @@ function LandingPage() {
             return (
               <PostCard
                 key={post._id}
+                
                 post={post}
                 allposts={posts}
                 handleLike={handleLike}

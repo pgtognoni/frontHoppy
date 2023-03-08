@@ -35,7 +35,7 @@ function Navbar() {
               <FontAwesomeIcon icon={faHome} />
             </NavLink>
             <NavLink to="/store" className="text-white">
-              <FontAwesomeIcon style={{color: "rgba(182, 182, 182, .7)"}} icon={faStore} />
+              <FontAwesomeIcon className={location === '/' ? 'nav-link-active' : null} icon={faStore} />
             </NavLink>
           </>
         )}
