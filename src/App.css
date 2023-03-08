@@ -36,6 +36,7 @@
   --white: white;
   --modal-form-bg: #383535;
   --btn-bg: rgba(255, 255, 255, 0.7);
+  --post-background: #ececec;
 }
 
 .dark-form {
@@ -157,14 +158,24 @@ textarea:-webkit-autofill:active {
 .register {
   background: var(--secundary-btn);
 }
-.logout{
+
+.btn-reset-style{
   background-color: transparent;
   border: none;
   outline: none;
 }
-.logout:hover {
+
+.btn-reset-style:hover {
+  background-color: transparent;
   border: none;
+  outline: none;
 }
+
+.logout {
+  border-top: 1px solid var(--modal-form-bg);
+  margin-top: .2rem;
+}
+
 .cancel {
   background: var(--cancel-btn);
 }
@@ -229,8 +240,8 @@ textarea:-webkit-autofill:active {
   align-items: center;
   gap: 1.5rem;
   /* font-family: 'Audiowide', cursive;
-  font-family: 'Orbitron', sans-serif; */
-  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif; 
+  text-transform: uppercase;*/
 }
 
 .navBar {
@@ -243,8 +254,19 @@ textarea:-webkit-autofill:active {
   left: 50%;
 }
 
-.nav-link-active {
+.nav-link-inactive {
   color: rgba(182, 182, 182, .7);
+}
+
+.nav-user {
+  gap: .5rem;
+  margin-right: 1rem;
+}
+
+.nav-user button {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
 }
 
 .logo-container img,
@@ -256,6 +278,15 @@ textarea:-webkit-autofill:active {
 
 .nav-profile-img img {
   border-radius: 100%;
+}
+
+.nav-dropdown {
+  background-color: var(--nav-bg);
+  color: var(--text-white);
+}
+
+.nav-dropdown .dropdown-item.active {
+  background-color: inherit;
 }
 
 .profileFilterButtons {
@@ -349,21 +380,6 @@ textarea:-webkit-autofill:active {
   text-align: center;
 }
 
-.text-hide {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-.add-new-btn {
-  padding-left: 1.8rem;
-}
-
-.add-new-btn .add-new-post:hover .text-hide {
-  opacity: 1;
-  visibility: visible;
-}
-
 .btn-menu-container {
   width: 70.3px;
   height: 70px;
@@ -379,8 +395,33 @@ textarea:-webkit-autofill:active {
   margin-left: 6%;
 }
 
+.open-sidebar {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: auto;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 900;
+  border: none;
+}
+
+.add-new-post {
+  display: flex;  
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  color: var(--text-black);
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: none;  
+  width: 100%;
+  overflow: hidden;
+  opacity: .8;
+}
+
 .add-new-btn {
-  transition: width .3s ease, margin-left .3s ease;
+  transition: all .5s ease;
 }
 
 .add-new-btn:hover {
@@ -388,17 +429,85 @@ textarea:-webkit-autofill:active {
   margin-left: 6%;
   padding-left: 0rem;
 }
-.open-sidebar {
+
+.btn-add {
+  font-weight: bold;
   font-size: 2rem;
-  font-weight: 900;
-  border: none;
 }
 
-.open-sidebar:hover {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.text-hide {
+  margin: 0;
+  opacity: 0;
+  transition: all .5s ease;
 }
+
+.add-new-btn .add-new-post:hover .text-hide {
+  opacity: 1;
+}
+
+/*** IMAGE CHANGE BACKGROUND ***/
+/*** IMAGE CHANGE BACKGROUND ***/
+/*** IMAGE CHANGE BACKGROUND ***/
+
+.backgroundsChoose {
+  background-color: var(--btn-bg);
+  display: flex;
+  gap: 20px;
+  width: 70.3px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 100px;
+  padding: 10px;
+  transition: width .5s ease, margin-left .5s ease;
+}
+
+.backgroundsChoose:hover {
+  width: 212px;
+  margin-left: 6%;
+}
+
+@media screen and (max-width: 768px){
+  .backgroundsChoose {
+    transition: height .5s ease, margin-top .5s ease;
+  }
+
+  .backgroundsChoose:hover {
+  flex-direction: column;
+  width: 70.3px;
+  height: 220px;
+  margin-top: 15px;
+}
+
+}
+
+.image-bg-change {
+  height: 50px;
+  width: 50px;
+  background-size: 300px;
+  z-index: 2;
+  border-radius: 100px;
+  align-self: flex-start;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.747);
+  color: transparent;
+}
+
+.imageBackgrounChange1 {
+  background-image: url("./image/Untitled\ -\ Copy@1-1904x993.png");
+  background-position-y: -60px;
+}
+
+.imageBackgrounChange2 {
+  background-image: url("./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg");
+  background-position-y: -100px;
+  background-position-x: -90px;
+}
+
+.imageBackgrounChange3 {
+  background-image: url("../public/image/164775-water-liquid-fluid-painting-art-1920x1080.jpg");
+  background-position-y: -100px;
+  background-position-x: -90px;
+}
+
 
 /*** BODY CONTAINER ***/
 /*** BODY CONTAINER ***/
@@ -427,49 +536,6 @@ textarea:-webkit-autofill:active {
   align-items: flex-end;
   margin-top: 40px;
 }
-
-/*** SIDE BAR ***/
-/*** SIDE BAR ***/
-/*** SIDE BAR ***/
-
-
-.mainSide {
-  display: flex;
-  height: 100vh; 
-  overflow: scroll initial; 
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding-top: 4.45rem;
-  max-width: 30%; 
-  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.151);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 8;
-}
-
-
-.subSide.sideSub {
-  height: 100%;
-  background-color: var(--nav-bg);
-}
-
-#CDBSSide {
-  background-color: rgb(251, 253, 253); 
-}
-
-
-.sideIcons {
-  
-}
-
-.sideText {
-  
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-}
-
 
 /*** LOG IN / SIGN UP ***/
 /*** LOG IN / SIGN UP ***/
@@ -659,7 +725,7 @@ form input {
   border-width: 1px;
   border-radius: 30px;
   border-color:  transparent;
-  background-color: #ececec;
+  background-color: var(--post-background);
   padding: 60px 60px 15px 60px;
   gap: 70px;
   overflow-y: hidden;
@@ -1942,148 +2008,6 @@ img.postedByImg {
   margin: 0;
 }
 
-.add-new-post {
-  display: flex;  
-  /* margin-left: 6%; */
-  /* align-self: flex-start; */
-  align-items: center;
-  justify-content: space-between;
-  /* width: 10%; */
-  /* max-width: 350px; */
-  background-color: rgb(255, 255, 255);
-  color: var(--text-black);
-  box-sizing: border-box;
-  /* padding: .3rem 1.5rem; */
-  border-radius: 20px;
-  /* position: fixed; */
-  /* top: 90px; */
-  border: none;  
-  opacity: .8;
-  /* z-index: 2;  */
-  transition:width .5s ease;
-}
-
-.add-new-post:hover {  
-  width: 100%;
-}
-
-.btn-add {
-  font-weight: bold;
-  font-size: 2rem;
-  /* border-radius: 10px; */
-  /* left: 1rem; */
-  /* padding: .4rem 1.2rem; */
-  /* margin: 0; */
-  /* height: 2.5rem; */
-  /* display: flex; */
-  /* align-items: center; */
-}
-
-.add-new-post span:hover + .text-add {
-  display: flex;
-  transition: display .4s ease;
-}
-
-.text-add {
-  left: 5rem;
-  top: 95px;
-  font-size: 1.2rem;
-  padding: .4rem 1.2rem;
-  border-radius: 10px;
-  display: none;
-  margin-top: 0px;
-  transition: transform .5s ease;
-}
-
-.add-new-post:hover span {
-  transform: rotate(-180deg);
-}
-/*** IMAGE CHANGE BACKGROUND ***/
-/*** IMAGE CHANGE BACKGROUND ***/
-/*** IMAGE CHANGE BACKGROUND ***/
-
-.backgroundsChoose {
-  background-color: var(--btn-bg);
-  /* align-self: flex-start;   */
-  /* top: 150px; */
-  display: flex;
-  gap: 20px;
-  /* position: fixed;   */
-  /* z-index: 1; */
-  width: 70.3px;
-  height: 70px;
-  /* margin-left: 6%; */
-  /* margin-top: 15px; */
-  overflow: hidden;
-  border-radius: 100px;
-  padding: 10px;
-  transition: width .5s ease, margin-left .5s ease;
-  /* transition: height .5s ease, margin-top .5s ease; */
-}
-
-.backgroundsChoose:hover {
-  width: 212px;
-  margin-left: 6%;
-}
-
-@media screen and (max-width: 768px){
-  .backgroundsChoose {
-    transition: height .5s ease, margin-top .5s ease;
-  }
-
-  .backgroundsChoose:hover {
-  flex-direction: column;
-  height: 220px;
-  margin-top: 15px;
-}
-
-}
-
-.imageBackgrounChange1 {
-  height: 50px;
-  width: 50px;
-  background-image: url("./image/Untitled\ -\ Copy@1-1904x993.png");
-  background-size: 300px;
-  background-position-y: -60px;
-  
-  z-index: 2;
-  border-radius: 100px;
-  align-self: flex-start;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.747);
-  color: transparent;
-}
-
-.imageBackgrounChange2 {
-  height: 50px;
-  width: 50px;
-  background-image: url("./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg");
-  background-size: 300px;
-  background-position-y: -100px;
-  background-position-x: -90px;
-  
-  z-index: 2;
-  border-radius: 100px;
-  align-self: flex-start;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.747);
-  color: transparent;
-}
-
-.imageBackgrounChange3 {
-  height: 50px;
-  width: 50px;
-  
-  background-image: url("../public/image/164775-water-liquid-fluid-painting-art-1920x1080.jpg");
-  background-size: 300px;
-  background-position-y: -100px;
-  background-position-x: -90px;
- 
-  z-index: 2;
-  border-radius: 100px;
-  align-self: flex-start;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.747);
-  color: transparent;
-}
-
 /*** FADEOUT FOOTER ***/
 /*** FADEOUT FOOTER ***/
 /*** FADEOUT FOOTER ***/
@@ -2319,4 +2243,11 @@ align-items: center;}
 
 }
 
+/*** GROUPS ***/
+/*** GROUPS ***/
+/*** GROUPS ***/
 
+.groups-page-title {
+  z-index: 2;
+  background-color: var(--post-background);
+}

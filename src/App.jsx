@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import LandingPage from "./pages/LandingPage";
 import Store from "./pages/Store";
 import NewPost from "./pages/NewPost";
+import GroupsPage from "./pages/GroupsPage";
 import { SessionContext } from "./contexts/SessionContext";
 import MobileNavbar from "./components/MobileNavBar";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -46,6 +47,7 @@ function App() {
               }
             />
             <Route path="/store" element={<Store />} />
+            <Route path='/groups' element={<GroupsPage />} />
           </Routes>
         </div>
       <div className="fadeOut"></div>

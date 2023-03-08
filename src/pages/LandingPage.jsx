@@ -194,10 +194,11 @@ function LandingPage() {
             />
           )}
           {posts.map((post) => {
+            {console.log(post)}
             return (
+              <>
               <PostCard
                 key={post._id}
-                
                 post={post}
                 allposts={posts}
                 handleLike={handleLike}
@@ -207,6 +208,7 @@ function LandingPage() {
                 newComment={newComment}
                 setPosts={setPostsContext}
               />
+              </>
             );
           })}
         </div>

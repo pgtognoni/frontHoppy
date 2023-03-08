@@ -57,8 +57,6 @@ function PostCard(props) {
     deleteAPI(id);
   };
 
-  console.log(user._id, post.createdBy)
-
   return (
     <>
       <div className="postContainer">

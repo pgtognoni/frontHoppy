@@ -45,7 +45,8 @@ function PostForm({
           type,
           content,
           section,
-          createdBy: userId
+          createdBy: userId,
+          group: 'FALSE'
         }),
       }
     );
