@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 
+
 function PostCard(props) {
   const location = useLocation().pathname;
   const {
@@ -85,7 +86,6 @@ function PostCard(props) {
             ) : null}
           </div>
         </>
-
         <div className="postBody">
           <div className="postContent">
             {post.type === "image" ? (

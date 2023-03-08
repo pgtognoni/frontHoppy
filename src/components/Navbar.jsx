@@ -61,11 +61,6 @@ function Navbar() {
                 </NavLink>
               </>
             )}
-            {/* {location !== '/profile' && 
-                <NavLink to='/profile' className="text-white">
-                    <FontAwesomeIcon icon={faUser} />
-                </NavLink>
-                } */}
           </>
         )}
       </div>
