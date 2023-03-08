@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
-import { SessionContext } from '../contexts/SessionContext'
+import { SessionContext } from '../../contexts/SessionContext'
 
 function AddBio(props) {
     const { setBio, setEditBio, bio } = props

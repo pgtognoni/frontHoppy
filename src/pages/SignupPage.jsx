@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../components/user/LoginForm'
 
 function SignupPage() {
   // Add some states to control your inputs

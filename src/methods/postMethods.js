@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+export const fetchData = async () => {
+    const response = await axios.get(`http://localhost:5005/posts`);
+    return response.data;
+}
+
 export const updatePost = async (post, id, status) => {
     const data = { data: post, status: {status} }
     const token = window.localStorage.getItem('token')

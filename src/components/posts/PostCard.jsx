@@ -6,7 +6,7 @@ import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from "../../contexts/SessionContext";
 import axios from "axios";
 
 
@@ -56,8 +56,6 @@ function PostCard(props) {
 
     deleteAPI(id);
   };
-
-  console.log(user._id, post.createdBy)
 
   return (
     <>

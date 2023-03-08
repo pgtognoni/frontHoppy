@@ -65,21 +65,21 @@ function HandleBackground() {
     <div>
           <div className="backgroundsChoose">
             <button
-              className={backgroundImages[0]}
+              className={`image-bg-change ${backgroundImages[0]}`}
               onClick={(e) => handleBackground(backgroundImagesApply[0])}
             >
               B
             </button>
 
             <button
-              className={backgroundImages[1]}
+              className={`image-bg-change ${backgroundImages[1]}`}
               onClick={(e) => handleBackground(backgroundImagesApply[1])}
             >
               B
             </button>
 
             <button
-              className={backgroundImages[2]}
+              className={`image-bg-change ${backgroundImages[2]}`}
               onClick={(e) => handleBackground(backgroundImagesApply[2])}
             >
               B

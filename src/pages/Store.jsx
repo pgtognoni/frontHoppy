@@ -28,14 +28,20 @@ function timeAdv()  {
   
   setClock( newTime ) 
 };
- setInterval(() => {
+
+const intervalID = setInterval(() => {
   timeAdv()
  }, 20000);
 
- useEffect(() => {
+useEffect(() => {
+
   timeAdv()
   setCurrency(userCurrency);
- }, [])
+
+  return () => {
+      clearInterval(intervalID)
+  }
+}, [])
  
 
   

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from "../../contexts/SessionContext";
 
 function PostForm({
   heading,
@@ -45,7 +45,8 @@ function PostForm({
           type,
           content,
           section,
-          createdBy: userId
+          createdBy: userId,
+          group: 'FALSE'
         }),
       }
     );

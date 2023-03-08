@@ -26,41 +26,17 @@ function Navbar() {
   return (
     <div className="navBar">
       <div className="logo-container">
-        <img src="./image/hoppy_logo.png" className="nav-logo" />
+        <img src="../image/hoppy_logo.png" className="nav-logo" />
       </div>
       <div className="nav-links">
-        {location === "/" && (
-          <>
-            <NavLink to="/" className="text-white">
-              <FontAwesomeIcon icon={faHome} />
-            </NavLink>
-            <NavLink to="/store" className="text-white">
-              <FontAwesomeIcon style={{color: "rgba(182, 182, 182, .7)"}} icon={faStore} />
-            </NavLink>
-          </>
-        )}
         {!!isAuthenticated && (
           <>
-            {location === "/store" && (
-              <>
-                <NavLink to="/" className="text-white">
-                  <FontAwesomeIcon style={{color: "rgba(182, 182, 182, .7)"}} icon={faHome} />
-                </NavLink>
-                <NavLink to="/store" className="text-white">
-                  <FontAwesomeIcon icon={faStore} />
-                </NavLink>
-              </>
-            )}
-            {location === "/profile" && (
-              <>
-                <NavLink to="/" className="text-white">
-                  <FontAwesomeIcon icon={faHome} />
-                </NavLink>
-                <NavLink to="/store" className="text-white">
-                  <FontAwesomeIcon  icon={faStore} />
-                </NavLink>
-              </>
-            )}
+            <NavLink to="/"  className={location === '/store' ? 'nav-link-inactive' : "text-white"}>
+              <FontAwesomeIcon icon={faHome} />
+            </NavLink>
+            <NavLink to="/store" className={location === '/' ? 'nav-link-inactive' : "text-white"}>
+              <FontAwesomeIcon icon={faStore} />
+            </NavLink>
           </>
         )}
       </div>
@@ -68,36 +44,22 @@ function Navbar() {
         {!!isAuthenticated && (
           <div className="nav-user">
             <>
-              
-                <NavLink to="/profile" className="text-white nav-user">
-                  <div className="nav-profile-img">
-                    <img
-                      src={userImage ? userImage[0] : null}
-                      className="profile-img"
-                    />
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      marginLeft: "-10px",
-                    }}
-                  >
-                    <span
-                      style={{ fontSize: "15px", fontWeight: "100" }}
-                      className="text-white"
-                    >
-                      {user ? user.username : null}
-                    </span>
-                    <span>{user ? <span>💎{user.currency}</span> : null}</span>
-                  </div>
+              <div>
+                <span>{user ? `💎 ${user.currency}` : null}</span>
+              </div>
+              <button className="nav-profile-img btn-reset-style" data-bs-toggle="dropdown">
+                <img
+                  src={userImage ? userImage[0] : null}
+                  className="profile-img"
+                />
+              </button>
+              <ul className="dropdown-menu nav-dropdown">
+                <NavLink to="/profile" className="dropdown-item text-white">
+                  Profile
                 </NavLink>
-              
+                <li><button className="dropdown-item text-white logout" onClick={logout}>Log out</button></li>
+              </ul>
             </>{" "}
-            
-            <button className="text-white logout" onClick={logout}>
-              <FontAwesomeIcon icon={faRightFromBracket} />
-            </button>
           </div>
         )}
         {!isAuthenticated && (

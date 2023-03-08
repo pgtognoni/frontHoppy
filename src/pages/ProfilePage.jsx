@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import AddBio from "../components/AddBio";
-import LoginForm from "../components/LoginForm";
-import PostForm from "../components/PostForm";
+import AddBio from "../components/user/AddBio";
+import LoginForm from "../components/user/LoginForm";
+import PostForm from "../components/posts/PostForm";
 import { SessionContext } from "../contexts/SessionContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import EditImage from "../components/EditImage";
+import EditImage from "../components/user/EditImage";
 import ImageStore from "../components/ImageStore";
-import PostCard from "../components/PostCard";
+import PostCard from "../components/posts/PostCard";
 import axios from "axios";
 
 function ProfilePage() {
