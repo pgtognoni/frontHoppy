@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="body">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="body-content landingPage">
           <Routes>
             <Route path="/" element={isAuthenticated ? <LandingPage /> : <HomePage />} />

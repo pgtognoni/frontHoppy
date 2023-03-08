@@ -94,7 +94,7 @@ function Navbar() {
                     >
                       {user ? user.username : null}
                     </span>
-                    <span>{user ? <span>🪙{user.currency}</span> : null}</span>
+                    <span>{user ? <span>💎{user.currency}</span> : null}</span>
                   </div>
                 </NavLink>
               

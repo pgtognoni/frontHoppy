@@ -181,7 +181,7 @@ function LandingPage() {
       setUser(newUser);
       updatePost(post, id, 'like');
       updateUserLiked()
-      setPostsContext(newArr);      
+      setPostsContext(newArr);
     } else {
     }
   };
