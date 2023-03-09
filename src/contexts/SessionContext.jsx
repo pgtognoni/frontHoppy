@@ -16,7 +16,7 @@ function SessionContextProvider({ children }) {
   const [userImage, setUserImage] = useState(null);
   const [userId, setUserId] = useState(null);
   const [background, setBackground] = useState(
-    "../public/image/Untitled-Copy@1-1904x993.png"
+    "./image/Untitled-Copy@1-1904x993.png"
   );
   const [backgroundImages, setBackgroundImages] = useState([
     "imageBackgrounChange1",
