@@ -32,7 +32,7 @@ function App() {
       <div className={`body ${location === "/profile" ? "body2" : null }`}>
         {/* <Sidebar /> */}
         <div className={`body-content landingPage ${location === "/store" ? "landingPage2 body-content2" : null }`}>
-          <MobileNavbar post={posts} setPosts={setPosts} responseMessage={responseMessage} setResponseMessage={setResponseMessage} />
+          {!isAuthenticated && <MobileNavbar post={posts} setPosts={setPosts} responseMessage={responseMessage} setResponseMessage={setResponseMessage} />}
           <Routes>
             {/* <Route path="/" element={!isAuthenticated ? <LandingPage /> : <HomePage />} /> */}
             {!isAuthenticated

@@ -152,14 +152,11 @@ function ProfilePage() {
               <div className="profile-info">
                 <div className="profile-title">
                   <h1 className="profUsername">{user.username}</h1>
-                  <button onClick={(e) => openEditInfo(e)} className="edit-btn">
+                  <button type="button" class="edit-btn" data-bs-toggle="modal" data-bs-target="#editBio" >
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                 </div>
                 {bio ? <h5 className="bio">{bio}</h5> : <h5 className="text-gray bio">Add Bio</h5>}
-                {editBio ? (
-                  <AddBio bio={bio} setBio={setBio} setEditBio={setEditBio} />
-                ) : null}
               </div>
             </div>
             <div className="profile-body">
@@ -198,6 +195,7 @@ function ProfilePage() {
             </div>
           </div>
         )}
+      <AddBio bio={bio} setBio={setBio} setEditBio={setEditBio} />
       </div>
       <img className="background3d" src={background}></img>
     </>

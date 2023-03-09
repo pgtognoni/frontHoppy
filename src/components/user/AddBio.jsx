@@ -29,26 +29,33 @@ function AddBio(props) {
     }
 
   return (
-    <div className='modal-container'>
-    <div className='modal-box dark-form' >
-        <button className="close-modal" onClick={() => setEditBio(false)}>x</button>
-        <form className='modal-content column-center' onSubmit={e => updateBio(e)}>
-             <label htmlFor='username'>
-                <p>Username: </p>
-                <input type='text' name='username' value={user.username} />
-            </label>
-            <label htmlFor='bio'>
-                <p>Bio: </p>
-                <textarea cols='35' maxLength="70" rows='3' type='text' name='bio' value={bio} onChange={e => setBio(e.target.value)}></textarea>
-            </label>
-            <div className='btn-container'>
-                <button type='button' className='btn-form cancel' onClick={(e) => cancelEdit(e)}>Cancel</button>
-                <button type='submit' className='btn-form save'>Update</button>
+    <div className="modal fade" id="editBio" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal-dialog">
+    <div className="modal-content">
+        <div className="modal-header">
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div className="modal-body">
+        <form className='' onSubmit={e => updateBio(e)}>
+            <div className="mb-3">
+                <label htmlFor="name" className="col-form-label">Name:</label>
+                <input type="text" className="form-control" id="name" name='username' value={user.username} onChange={(e) => {setUserName(e.target.value)}}/>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="bio" className="col-form-label" >Bio: </label>
+                <textarea className="form-control" name='bio' maxLength={70} id="description" value={bio} onChange={e => setBio(e.target.value)}></textarea>
+            </div>
+            <div className='error'>DELETE PROFILE</div>
+            <div className="modal-footer btn-container">
+                <button type="submit" className='btn-form save' data-bs-toggle="modal">UPDATE</button>
+                <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
             </div>
         </form>
+        </div>
     </div>
     </div>
-  )
+    </div>  
+)
 }
 
 export default AddBio
