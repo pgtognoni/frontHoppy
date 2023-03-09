@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import {
   faUser,
   faRightFromBracket,
@@ -23,9 +23,20 @@ function Navbar() {
     navigate("/");
   };
 
-  function handleMenu() {
-    const menu = document.querySelector(".body-menu")
-    
+  useEffect(() => {
+    async function handleMenu() {
+      const menu = document.querySelector(".body-menu")
+      menu.style.display = "none"
+    }    
+    setTimeout(() => {
+      handleMenu()
+    }, 100)
+  }, [])
+  
+
+  async function handleMenu() {
+    const menu = await document.querySelector(".body-menu")
+    console.log(menu.style.display)
     if (menu.style.display === "none") {
         menu.style.display = "flex"
     }
