@@ -311,6 +311,77 @@ textarea:-webkit-autofill:active {
 /*** END NAV BAR ***/
 
 
+/**** MOBILE NAVBAR ****/
+/**** MOBILE NAVBAR ****/
+/**** MOBILE NAVBAR ****/
+
+
+.btn-sidebar {
+  display: none;
+}
+
+.offcanvas {
+  margin-top: 4.4rem;
+  max-width: 15rem;
+  transition: max-width .5s ease;
+}
+
+.offcanvas-title {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.offcanvas-title .title-icon {
+  margin-top: .4rem;
+}
+
+.offcanvas.show,
+.offcanvas {
+  transition: all .4s ease;
+}
+
+.offcanvas:hover {  
+  max-width: 15rem;
+}
+
+.btn-close.btn-sidebar {
+  margin-bottom: .5rem;
+}
+
+.btn-sidebar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-sidebar p {
+  margin: 0;
+}
+
+/* .offcanvas:hover .text-hide {
+  display: block;
+} */
+
+.offcanvas-backdrop.show {
+  opacity: 0;
+}
+
+.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (min-width: 960px) {
+
+  .onTop {
+    /* display: none; */
+  }
+
+}
+
 /*** MODAL ***/
 /*** MODAL ***/
 /*** MODAL ***/
@@ -2863,6 +2934,8 @@ bottom: 0;
 
 
 
+<<<<<<< HEAD
+=======
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
@@ -2934,6 +3007,7 @@ bottom: 0;
   justify-content: space-between;
   align-items: center;
 }
+>>>>>>> 1058aee83bc028a8fadb73d927f6fb9ab6b75fe1
 
 /*** GROUPS ***/
 /*** GROUPS ***/

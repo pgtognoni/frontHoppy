@@ -22,6 +22,9 @@ function App() {
   const location = useLocation().pathname
   const {isAuthenticated, authenticated } = useContext(SessionContext);
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [ responseMessage, setResponseMessage ] = useState("");
+
   
   return (
     <div className="App">
@@ -29,7 +32,7 @@ function App() {
       <div className="body">
         {/* <Sidebar /> */}
         <div className={`body-content landingPage ${location === "/store" ? "landingPage2 body-content2" : null }`}>
-          <MobileNavbar />
+          <MobileNavbar post={posts} setPosts={setPosts} responseMessage={responseMessage} setResponseMessage={setResponseMessage} />
           <Routes>
             {/* <Route path="/" element={!isAuthenticated ? <LandingPage /> : <HomePage />} /> */}
             {!isAuthenticated
@@ -39,7 +42,7 @@ function App() {
                 <Route path="/signup" element={<SignupPage />} />                
                </>
              : <>
-                <Route path="/" element={<LandingPage />} />
+                <Route path="/" element={<LandingPage posts={posts} setPosts={setPosts} />} />
                 <Route path="/profile"
                   element={
                     <PrivateRoute>

@@ -32,10 +32,10 @@ function PostForm({
     const userId = user._id;
     let group = '' 
     
-    if (location === '/') {
-      group = 'FALSE'
-    } else {
+    if (location === '/groups') {
       group = 'TRUE'
+    } else {
+      group = 'FALSE'
     }
     
     const response = await fetch(
@@ -64,6 +64,7 @@ function PostForm({
         setAddNewPost(false);
         let newArr = [...posts];
         newArr = [data, ...posts]
+        newArr.unshift(data);
         setPosts(newArr)
         setPostsCall(true)
       } else {
@@ -119,6 +120,7 @@ function PostForm({
               <option value="meme">Meme</option>
               <option value="lifestyle">lifestyle</option>
               <option value="gaming">Gaming</option>
+              <option value="educational">Education</option>
               <option value="food">Food</option>
               <option value="business">Business</option>
             </select>

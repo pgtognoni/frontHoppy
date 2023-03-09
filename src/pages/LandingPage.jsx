@@ -13,12 +13,10 @@ import BodyMenu from "../components/BodyMenu";
 import { updateLike, updateDislike, updateComment, updateUserLiked } from "../methods/postMethods";
 const VITE_BACK_URL = import.meta.env.VITE_BACK_URL;
 
-function LandingPage() {
-  const [posts, setPosts] = useState([""]);
+function LandingPage({posts, setPosts}) {
   const [postsCall, setPostsCall] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [addNewPost, setAddNewPost] = useState(false);
-  //const [newComment, setNewComment] = useState(""); 
   const ref = useRef();
 
   const { setUser, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
@@ -28,16 +26,18 @@ function LandingPage() {
 
   const fetchData = async () => {
     const response = await axios.get(`${VITE_BACK_URL}/posts`);
-    setPosts(response.data);
     setPostsContext(response.data);
   };
 
   useEffect(() => {
     setIsLoadingPost(false);
     fetchData();
-    setPosts(postsContext);
     setBackgroundImages(backgroundImages);   
   }, []);
+
+  useEffect(() => {
+    setPosts(postsContext);
+  }, [postsContext]);
 
   useEffect(() => {
     setIsLoading(false);
@@ -66,10 +66,6 @@ function LandingPage() {
     e.stopPropagation();
     setAddNewPost(true);
   };
-
-  // const handleLike = (e, id) => {
-  //   const newArr = [...posts];
-  //   const post = newArr.find((item) => item._id === id);
 
   //   if (!user.liked.includes(id)) {
   //     const newUser = {...user};
@@ -156,21 +152,16 @@ function LandingPage() {
               setAddNewPost={setAddNewPost}
             />
           )}
-          {posts.map((post) => {
+          {!isLoading ? posts.map((post) => {
             return (
               <PostCard
                 key={post._id}
                 post={post}
                 allposts={posts}
-                //handleLike={handleLike}
-                //handleDislike={handleDislike}
-                //handleNewComment={handleNewComment}
-                //setNewComment={setNewComment}
-                //newComment={newComment}
                 setPosts={setPostsContext}
               />
             );
-          })}
+          }) : <h1>Loading...</h1>}
         </div>
       ) : (
         <h1>Loading...</h1>
