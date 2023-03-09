@@ -2108,9 +2108,14 @@ img.postedByImg {
     overflow-x: hidden;
   }
 
+  .body2 {
+    padding-top: 300px;
+    overflow-x: hidden;
+  }
+
   #generalBody {
     margin-top: -20px;
-    margin-bottom: 0px;
+    margin-bottom: 0px;    
   }
 
   .navBar {
