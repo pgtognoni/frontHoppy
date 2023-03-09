@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 import GroupCard from "../components/groups/GroupCard";
+import BodyMenu from "../components/BodyMenu";
 const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 const Store = () => {
@@ -24,12 +25,12 @@ const Store = () => {
   useEffect(() => {
       if (groups && loading) {
           isLoading(false);
-          console.log(groups);
       }
   }, [groups])
 
   return (
     <div className="column-center">
+      <BodyMenu />
       {!loading ? (
         <>
         <h1 className="groups-page-title postTitle">The Hoppy Community</h1>

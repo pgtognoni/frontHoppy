@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SessionContext } from "../../contexts/SessionContext";
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 function PostForm({
   heading,
@@ -39,7 +40,7 @@ function PostForm({
     }
     
     const response = await fetch(
-      ` http://localhost:5005/posts${isUpdating ? `/${postId}/update` : "/new"}`,
+      ` ${BACK_URL}/posts${isUpdating ? `/${postId}/update` : "/new"}`,
       {
         method: `${isUpdating ? "PUT" : "POST"}`,
         headers: {

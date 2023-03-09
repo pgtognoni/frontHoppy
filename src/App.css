@@ -1100,7 +1100,11 @@ img.postedByImg {
 .storeBody {
   background-color: rgb(247, 247, 247);
   width: 95vw;
+<<<<<<< HEAD
+  max-width: 2000px;
+=======
   max-width: 2000px;  
+>>>>>>> 18cae48aa905039c6c1d1ed374672aa20a52a0b6
   margin-left: 2%;
   margin-right: auto;
   margin-top: -10px;
@@ -2947,7 +2951,10 @@ bottom: 0;
 
 
 .onTop {
+<<<<<<< HEAD
+=======
   
+>>>>>>> 18cae48aa905039c6c1d1ed374672aa20a52a0b6
 }
 
 .btn-sidebar {

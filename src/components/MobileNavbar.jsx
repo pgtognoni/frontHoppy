@@ -40,13 +40,13 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                         <p className=''>Categories</p>
                         <FontAwesomeIcon icon={faArrowDownShortWide} />
                     </button>
-                    <ul className="dropdown-menu">
-                        <li><button className="dropdown-item" onClick={e => filterPosts('memes')}>Memes</button></li>
-                        <li><button className="dropdown-item" onClick={e => filterPosts('lifestyle')}>Lifestyle</button></li>
-                        <li><button className="dropdown-item" onClick={e => filterPosts('educational')}>Education</button></li>
-                        <li><button className="dropdown-item" onClick={e => filterPosts('gaming')}>Gaming</button></li>
-                        <li><button className="dropdown-item" onClick={e => filterPosts('food')}>Food</button></li>
-                        <li><button className="dropdown-item" onClick={e => filterPosts('business')}>Business</button></li>
+                    <ul className="dropdown-menu" >
+                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('memes')}>Memes</button></li>
+                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('lifestyle')}>Lifestyle</button></li>
+                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('educational')}>Education</button></li>
+                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('gaming')}>Gaming</button></li>
+                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('food')}>Food</button></li>
+                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('business')}>Business</button></li>
                     </ul>
                 </div>
                 {responseMessage && <p style={{color: 'red'}}>{responseMessage}</p>}
