@@ -2137,7 +2137,7 @@ img.postedByImg {
     flex-direction: column;
     gap: 20px;
     height: 50vh;
-    width: 100vw;
+    width: auto;
     align-items: flex-start;
     margin: 0;
     background: transparent;
