@@ -110,7 +110,7 @@ textarea:-webkit-autofill:active {
   border: none;
   background-clip: text;
   -webkit-background-clip: text;
-  color: inherit;
+  /* color: inherit; */
   -webkit-text-fill-color: inherit;
   outline: none;
   user-select: none;
@@ -322,7 +322,9 @@ textarea:-webkit-autofill:active {
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
-
+.onTop {
+  z-index: 11;
+}
 
 .btn-sidebar {
   display: none;
@@ -3029,3 +3031,4 @@ bottom: 0;
   z-index: 2;
   background-color: var(--post-background);
 }
+

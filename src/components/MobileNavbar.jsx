@@ -56,7 +56,7 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                         <FontAwesomeIcon icon={faUsersLine} />
                     </button>
                     <ul className="dropdown-menu">
-                        <li><button type="button" class="btn btn-primary dropdown-item btn-reset-style" data-bs-toggle="modal" data-bs-target="#exampleModal" >Create <FontAwesomeIcon icon={faPlus} /></button></li>
+                        <li><button type="button" className="btn btn-primary dropdown-item btn-reset-style" data-bs-toggle="modal" data-bs-target="#exampleModal" >Create <FontAwesomeIcon icon={faPlus} /></button></li>
                         <li><Link to='/groups' className="dropdown-item">Explore</Link></li>
                     </ul>
                 </div>
