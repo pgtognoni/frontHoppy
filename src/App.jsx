@@ -31,25 +31,28 @@ function App() {
         <div className="body-content landingPage">
           <MobileNavbar />
           <Routes>
-            <Route path="/" element={isAuthenticated ? <LandingPage /> : <HomePage />} />
-            <Route path="/new" element={<NewPost/>}/>
+            {/* <Route path="/" element={!isAuthenticated ? <LandingPage /> : <HomePage />} /> */}
             {!isAuthenticated
              ? <>
+                <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />                
                </>
-             : null
+             : <>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/profile"
+                  element={
+                    <PrivateRoute>
+                      <ProfilePage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="/new" element={<NewPost/>}/>
+                <Route path="/store" element={<Store />} />
+                <Route path='/groups' element={<GroupsPage />} />
+                <Route path='/groups/:id' element={<GroupInfo />} />
+             </>
              }
-            <Route path="/profile"
-              element={
-                <PrivateRoute>
-                  <ProfilePage />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/store" element={<Store />} />
-            <Route path='/groups' element={<GroupsPage />} />
-            <Route path='/groups/:id' element={<GroupInfo />} />
           </Routes>
         </div>
       <div className="fadeOut"></div>

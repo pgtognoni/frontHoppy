@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { createContext, useState, useEffect, useRef } from "react";
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 export const PostContext = createContext();
 
@@ -9,7 +10,7 @@ function PostContextProvider({children}) {
     const [ isLoadingPost, setIsLoadingPost ] = useState(true);
 
     const fetchData = async () => {
-        const response = await axios.get(`http://localhost:5005/posts`);
+        const response = await axios.get(`${BACK_URL}/posts`);
         setPostsContext(response.data);
       };
 

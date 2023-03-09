@@ -9,6 +9,7 @@ import EditImage from "../components/user/EditImage";
 import ImageStore from "../components/ImageStore";
 import PostCard from "../components/posts/PostCard";
 import axios from "axios";
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 function ProfilePage() {
   const [userProfile, setUserProfile] = useState({});
@@ -31,7 +32,7 @@ function ProfilePage() {
     const token = window.localStorage.getItem("token"); 
 
     const fetchAPI = async () => {
-      const res = await fetch("http://localhost:5005/auth/profile", {
+      const res = await fetch(`${BACK_URL}/auth/profile`, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + token,
@@ -45,7 +46,7 @@ function ProfilePage() {
     };
       
     const fetchAPILiked = async () => {
-      const res = await fetch("http://localhost:5005/auth/profile", {
+      const res = await fetch(`${BACK_URL}/auth/profile`, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + token,

@@ -1,14 +1,15 @@
 import axios from 'axios';
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 export const fetchData = async () => {
-    const response = await axios.get(`http://localhost:5005/posts`);
+    const response = await axios.get(`${BACK_URL}/posts`);
     return response.data;
 }
 
-export const updatePost = async (post, id, status) => {
-    const data = { data: post, status: {status} }
+export const updateLike = async (post, id) => {
+    const data = { data: post }
     const token = window.localStorage.getItem('token')
-    const res = await axios.put(`http://localhost:5005/posts/${id}/update`, data, {
+    const res = await axios.put(`${BACK_URL}/posts/${id}/update/like`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -16,6 +17,19 @@ export const updatePost = async (post, id, status) => {
     );
     console.log(res.data)
 };
+
+export const updateDislike = async (post, id) => {
+    const data = { data: post }
+    const token = window.localStorage.getItem('token')
+    const res = await axios.put(`${BACK_URL}/posts/${id}/update/dislike`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(res.data)
+};
+
 
 export const updateComment = async (comment, id, user) => {
 
@@ -25,7 +39,24 @@ export const updateComment = async (comment, id, user) => {
         postId: id,
     };
     const token = window.localStorage.getItem("token");
-    const res = await axios.post(`http://localhost:5005/comments/new`, data, {
+    const res = await axios.post(`${BACK_URL}/comments/new`, data, {
+        headers: {
+        Authorization: `Bearer ${token}`,
+        },
+    });
+    console.log(res.data)
+};
+
+export const updateGroupComment = async (comment, id, user) => {
+
+    const data = {
+        user: user._id,
+        body: comment,
+        groupId: id,
+    };
+
+    const token = window.localStorage.getItem("token");
+    const res = await axios.post(`${BACK_URL}/comments/new`, data, {
         headers: {
         Authorization: `Bearer ${token}`,
         },
@@ -37,7 +68,7 @@ export const updateUserLiked = async (user) => {
 
     let data = user;
     const token = window.localStorage.getItem("token");
-    const res = await axios.put("http://localhost:5005/auth/profile", data, {
+    const res = await axios.put(`${BACK_URL}/auth/profile`, data, {
         headers: {
         Authorization: `Bearer ${token}`,
         },
@@ -46,3 +77,14 @@ export const updateUserLiked = async (user) => {
         return res.data;
     }
 };
+
+export const deleteCommentAPI = async (id, token) => {
+    const res = await axios.delete(
+        `http://localhost:5005/comments/${id}/delete`,
+        {
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        }
+    );
+}

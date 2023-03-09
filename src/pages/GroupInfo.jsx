@@ -1,18 +1,35 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import PostCard from "../components/posts/PostCard";
+import PostForm from "../components/posts/PostForm";
+import Comments from "../components/comments/Comments";
 import axios from "axios";
+import { deleteCommentAPI, updateLike, updateDislike, updateGroupComment, updateUserLiked } from "../methods/postMethods";
 
-function ProfilePage() {
-    const { background,  backgroundImages, setBackgroundImages }=useContext(SessionContext);
-    const [group, setGroups] = useState();
-    const [whatToSee, setWhatToSee] = useState("posted");
+const BACK_URL = import.meta.env.VITE_BACK_URL;
+
+
+function GroupInfo () {
+    const { background,  backgroundImages, setBackgroundImages, user }=useContext(SessionContext);
+    const [group, setGroup] = useState();
+    const [ groupPosts, setGroupPosts ] = useState([]);
+    const [ members, setMembers ] = useState([]);
+    const [ groupComments, setGroupComments ] = useState([]);
+    const [whatToSee, setWhatToSee] = useState("posts");
     const [isLoading, setIsLoading] = useState(true);
+    const [ addNewPost, setAddNewPost] = useState(false);
+    const [newComment, setNewComment] = useState(""); 
+    const [ join, setJoin] = useState(true);
+    const ref = useRef();
+    const { id } = useParams();
   
-      const fetchData = async () => {
-      const response = await axios.get(`http://localhost:5005/groups/`);
-      setGroups(response.data);
+    const fetchData = async () => {
+        const userId = user._id
+        const response = await axios.get(`${BACK_URL}/groups/${id}/${userId}`);
+        setGroup(response.data.group);
     };
   
   
@@ -23,28 +40,100 @@ function ProfilePage() {
   
     useEffect(() => {
         if (group && isLoading) {
-            isLoading(false);
-            console.log(group);
+            setIsLoading(false);
+            const posts = group.posts; 
+            const members = group.members;
+            const comments = group.comments;
+            const alreadyJoin = group.members.find((member) => member._id === user._id)
+            if (alreadyJoin) {
+                setJoin(true);
+            }
+            setGroupPosts(posts)
+            setMembers(members)
+            setGroupComments(comments)
         }
     }, [group])
+
+    useEffect(() => {
+
+    }, [groupComments])
   
-  
+    // useEffect(() => {
+    //     const checkClickedOutside = (event) => {
+    //       if (addNewPost && ref.current && !ref.current.contains(event.target)) {
+    //         setAddNewPost(false);
+    //       }
+    //     };
+    //     const modal = document.querySelector(".modal-container");
+    //     ref.current = modal;
+    //     document.addEventListener("click", checkClickedOutside);
+    //     return () => {
+    //       document.removeEventListener("click", checkClickedOutside);
+    //     };
+    // }, [addNewPost]);
+    
+    const handleNewComment = (e, id) => {
+        e.preventDefault();
+        const newObj = {...group}
+        const comment = {
+          body: newComment,
+          image: user.image[0],
+          username: user.username,
+        };
+        newObj.comments.push(comment);
+        updateGroupComment(newComment, id, user);
+        setNewComment("");
+        setGroup(newObj);
+        setGroupComments([...groupComments, comment]);
+    };
+    
+    
+      const deleteComment = (e, id) => {
+        e.preventDefault();
+        const token = window.localStorage.getItem('token');
+        const newObj = JSON.parse(JSON.stringify(group))
+        const newCommentsArray = newObj.comments.filter((item) => item.user !== user._id) 
+        newObj.comments = newCommentsArray;
+        
+        setGroupPosts(newObj);
+        setGroupComments(newCommentsArray);  
+        deleteCommentAPI(id, token);
+      };
+    
+
+    const openModal = () => {
+        setAddNewPost(true);
+    }
 
   const seeMine = (tag) => {
-    if (tag === "posted") {      
+    if (tag === "posts") {      
       setWhatToSee(tag);      
     }    
-    if (tag === "liked") {      
+    if (tag === "members") {      
       setWhatToSee(tag);        
+    } 
+    if (tag === "chat") {      
+        setWhatToSee(tag);        
     }   
   }
 
 
-  useEffect(() => {
-    setIsLoading(false);
-  }, [group]);
-
-
+  const joinGroup = async () => {
+    const data = user._id;
+    console.log(data)
+    const token = window.localStorage.getItem('token')
+    const res = await axios.put(`${BACK_URL}/groups/join/${id}`, {data}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (res.status === 200) {
+    console.log(res.data);
+        setMembers(prev => [...prev, user]);
+        setJoin(false);
+    }
+  }
 
   return (
     <>
@@ -56,57 +145,113 @@ function ProfilePage() {
             <div className="profile-header">
               <div className="profile-image">
                 <img
-                //   src={}
-                  alt="profile image"
-                  className="profile-img"
+                    src={group.image}
+                    alt="profile image"
+                    className="postEmbed"
                 />
               </div>
               <div className="profile-info">
-                <div className="profile-title">
-                  <h1>{}</h1>
+                <h1 className="postTitle groups-page-title">{group.name}</h1>
+                <p>{group.section}</p>
+                <div className="center">
+                    <span>
+                        <img
+                        className="postedByImg"
+                        src={group.createdByImg}
+                        alt="profile"
+                        loading="lazy"
+                        />
+                    </span>
+                    <span className="postedByName">
+                        By {group.createdByName}
+                    </span>
                 </div>
               </div>
             </div>
             <div className="profile-body">
-              <div className="profileFilterButtons">
-                <button >Posted</button>
-                <button >Liked</button>
-              </div>
-              {/* {whatToSee === "posted" && (
+                <div className="postTexts">
+                    <p className="postDescription">{group.description}</p>
+                    {group.tags.map((tag) => {
+                        return(
+                            <>
+                                <span> #{tag} </span>
+                            </>
+                        )
+                    })}
+                </div>
+                <div className="profileFilterButtons">
+                    <button onClick={(e) => seeMine("posts")}>Posts</button>
+                    <button onClick={(e) => seeMine("members")}>Members {members.length}</button>
+                    {join 
+                    ? <button onClick={(e) => openModal()}>New Post</button>
+                    : <button onClick={(e) => joinGroup()}>JOIN</button>}
+                    <button onClick={(e) => seeMine("chat")}>Group Chat 💬 </button>
+                </div>
+                {whatToSee === "posts" && (
                 <div className="profile-posts">
-                  {profilePost.map((post) => {
+                    {groupPosts.map((post) => {
+                        return (
+                        <>
+                            <PostCard post={post} allposts={groupPosts} setGroupPosts={setGroupPosts} />
+                        </>
+                        );
+                    })}
+                </div>
+                )}
+              {whatToSee === "members" && (
+                <div className="profile-posts">
+                  {members.map((member) => {
                     return (
-                      <PostCard
-                        key={post._id}
-                        post={post}
-                        setProfilePost={setProfilePost}
-                        allposts={profilePost}
-                      />
+                        <div className="profile-header">
+                        <button className="nav-profile-img btn-reset-style" data-bs-toggle="dropdown">
+                            <Link to={`user/${member._id}`}><img
+                            src={member.image[0]}
+                            className="profile-img"
+                            /></Link>
+                        </button>
+                        <p>{member.username}</p>
+                        </div>
                     );
                   })}
                 </div>
-              )} */}
-              {/* {whatToSee === "liked" && (
-                <div className="profile-posts">
-                  {profilePost2.map((post) => {
-                    return (
-                      <PostCard
-                        key={post._id}
-                        post={post}
-                        setProfilePost={setProfilePost}
-                        allposts={profilePost}
-                      />
-                    );
-                  })}
+              )}
+              {whatToSee === "chat" && (
+                <div className="postComments">
+                    {groupComments && groupComments.length > 0
+                        ? groupComments.map((comment) => {
+                            return (
+                                <Comments comment={comment} key={comment._id} deleteComment={deleteComment} />
+                            );
+                        })
+                        : null}
+                    <form
+                        onSubmit={(e) => handleNewComment(e, group._id)}
+                        className="comment-form"
+                    >
+                        <p>Add</p>
+                        <input
+                        type="text"
+                        maxLength={140}
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        />
+                        <button type="submit">Post</button>
+                    </form>
                 </div>
-              )} */}
+              )}
+
             </div>
           </div>
         )}
       </div>
+      {addNewPost && <PostForm 
+        groupId={id}
+        setAddNewPost={setAddNewPost} 
+        setGroupPosts={setGroupPosts} 
+        groupPosts={groupPosts}/>}
       <img className="background3d" src={background}></img>
     </>
   );
 }
 
-export default ProfilePage;
+export default GroupInfo;

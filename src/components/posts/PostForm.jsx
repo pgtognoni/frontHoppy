@@ -1,29 +1,28 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SessionContext } from "../../contexts/SessionContext";
 
 function PostForm({
   heading,
-  postTitle ="",
-  postDescription= "",
-  postType ="",
-  postContent = "",
-  postSection ="",
   isUpdating = false,
   postId,
   setAddNewPost,
   setPosts,
   posts,
-  setPostsCall
+  setPostsCall,
+  setGroupPosts,
+  groupPosts,
+  groupId
 }) {
   const navigate = useNavigate();
-  const [title, setTitle] = useState(postTitle);
-  const [description, setDescription] = useState(postDescription);
-  const [type, setType] = useState(postType);
-  const [content, setContent] = useState(postContent);
-  const [section, setSection] = useState(postSection);
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+  const [type, setType] = useState();
+  const [content, setContent] = useState();
+  const [section, setSection] = useState();
 
   const { user } = useContext(SessionContext);
+  const location = useLocation().pathname;
   
   const hundleSubmit = async (e) => {
     
@@ -31,6 +30,13 @@ function PostForm({
 
     //const jwtToken = window.localStorage.getItem('token');
     const userId = user._id;
+    let group = '' 
+    
+    if (location === '/') {
+      group = 'FALSE'
+    } else {
+      group = 'TRUE'
+    }
     
     const response = await fetch(
       ` http://localhost:5005/posts${isUpdating ? `/${postId}/update` : "/new"}`,
@@ -46,23 +52,28 @@ function PostForm({
           content,
           section,
           createdBy: userId,
-          group: 'FALSE'
+          group: group,
+          groupId: groupId
         }),
       }
     );
     if (response.status === 201) {
       const data = await response.json()
-      
-      navigate(`/`)
-      setAddNewPost(false);
-      let newArr = [...posts];
-      newArr = [data, ...posts]
-      setPosts(newArr)
-      setPostsCall(true)
+      if (location === '/') {
+        navigate(`/`)
+        setAddNewPost(false);
+        let newArr = [...posts];
+        newArr = [data, ...posts]
+        setPosts(newArr)
+        setPostsCall(true)
+      } else {
+        navigate(`/groups/${groupId}`)
+        setAddNewPost(false);
+        let newArr = [...groupPosts];
+        newArr = [data, ...groupPosts]
+        setGroupPosts(newArr)
+      }
     }
-    // if (response.status === 200) {
-    //   navigate(`/${postId}`)
-    // }
   };
 
   const cancelEdit = (e) => {
@@ -86,8 +97,6 @@ function PostForm({
           </label>
           <label>
           <p>Description</p>
-            {/* <input type="text" value={description}
-              onChange={(event) => setDescription(event.target.value)}/> */}
               <textarea cols='35' maxLength="250" rows='3' type='text' name='description' onChange={(event) => setDescription(event.target.value)}></textarea>
           </label>
           <label className="select-form">

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 import GroupCard from "../components/groups/GroupCard";
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 const Store = () => {
 
@@ -10,7 +11,7 @@ const Store = () => {
   const [groups, setGroups] = useState();
 
   const fetchData = async () => {
-    const response = await axios.get(`http://localhost:5005/groups/`);
+    const response = await axios.get(`${BACK_URL}/groups/`);
     setGroups(response.data);
   };
 

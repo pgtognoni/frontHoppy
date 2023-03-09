@@ -1,5 +1,7 @@
 import React from "react";
 import { createContext, useState, useEffect, useRef } from "react";
+const BACK_URL = import.meta.env.VITE_BACK_URL;
+
 // Create and export your context
 
 export const SessionContext = createContext();
@@ -26,11 +28,12 @@ function SessionContextProvider({ children }) {
     "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg",
     "./image/164775-water-liquid-fluid-painting-art-1920x1080.jpg",
   ]);
+
   const authenticated = useRef(isAuthenticated);
 
   const verifyToken = async (jwt) => {
     try {
-      const response = await fetch("http://localhost:5005/auth/verify", {
+      const response = await fetch(`${BACK_URL}/auth/verify`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${jwt}`,
@@ -38,7 +41,7 @@ function SessionContextProvider({ children }) {
       });
       const json = await response.json();
       setToken(jwt);
-      if (json) {
+      if (!json.message) {
         setIsAuthenticated(true);
         setIsLoading(false);
         setUser(json.user);
