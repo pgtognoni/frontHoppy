@@ -23,6 +23,17 @@ function Navbar() {
     navigate("/");
   };
 
+  function handleMenu() {
+    const menu = document.querySelector(".body-menu")
+    
+    if (menu.style.display === "none") {
+        menu.style.display = "flex"
+    }
+    else {
+      menu.style.display = "none"      
+    }
+  }
+
   return (
     <div className="navBar">
       {/* <div className="logo-container">
@@ -63,6 +74,7 @@ function Navbar() {
               
             </>{" "}
           </div>
+          
         )}
         {!isAuthenticated && (
           <div className="btn-container">
@@ -75,6 +87,13 @@ function Navbar() {
           </div>
         )}
       </div>
+      <div>
+      {location === '/' || location === '/groups' ? 
+      <button onClick={(e) => handleMenu()} className="burguerPop">🧭</button>
+      :
+      null
+      }      
+    </div>
     </div>
   );
 }

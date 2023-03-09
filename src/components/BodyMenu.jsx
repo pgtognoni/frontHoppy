@@ -21,7 +21,7 @@ const location = useLocation().pathname;
         {location === '/' && 
         <div className='btn-menu-container add-new-btn'>
         <button type="button" class="add-new-post add-new-btn" data-bs-toggle="modal" data-bs-target="#createNewPost" >
-                <span className="btn-add">➕</span>
+                <span className="btn-add">+</span>
                 <p className='text-hide'>Add New Post</p>
             </button>
         </div>

@@ -290,6 +290,10 @@ textarea:-webkit-autofill:active {
   height: auto;
 }
 
+.burguerPop {
+  display: none;
+}
+
 .nav-profile-img img {
   border-radius: 100%;
 }
@@ -472,8 +476,10 @@ textarea:-webkit-autofill:active {
   margin: 0;
   background: transparent;
   position: fixed;
-  top: 80px;
-  left: 10px;
+  top: 100px;
+  left: 20px;
+  animation-duration: 1s;
+  animation-name: slidein; 
 }
 
 .body-menu button {
@@ -493,7 +499,7 @@ textarea:-webkit-autofill:active {
 }
 
 .btn-menu-container:hover {
-  margin-left: 6%;
+  margin-left: 1%;
 }
 
 .open-sidebar {
@@ -509,9 +515,9 @@ textarea:-webkit-autofill:active {
 
 .add-new-post {
   display: flex;  
-  align-items: center;
-  justify-content: space-between;
+  align-items: center; 
   background-color: rgb(255, 255, 255);
+  justify-content: center;
   color: var(--text-black);
   box-sizing: border-box;
   border-radius: 20px;
@@ -519,27 +525,39 @@ textarea:-webkit-autofill:active {
   width: 100%;
   overflow: hidden;
   opacity: .8;
+  gap: 0;
 }
 
 .add-new-btn {
   transition: all .5s ease;
+  color: rgb(158, 160, 158);
 }
 
 .add-new-btn:hover {
-  width: 212px;
-  margin-left: 6%;
+  width: 102px;
+  margin-left: 0%;
   padding-left: 0rem;
 }
 
 .btn-add {
-  font-weight: bold;
-  font-size: 2rem;
+  font-weight: bolder;
+  font-size: 3rem;
+  text-align: center;
+  align-self: center;
+  margin-left: -1px;
+  margin-bottom: 10px;
 }
+
+.btn-add:hover {  
+  margin-left: 10px;  
+}
+
 
 .text-hide {
   margin: 0;
   opacity: 0;
   transition: all .5s ease;
+  display: none;
 }
 
 .add-new-btn .add-new-post:hover .text-hide {
@@ -559,26 +577,17 @@ textarea:-webkit-autofill:active {
   overflow: hidden;
   border-radius: 100px;
   padding: 10px;
+  margin-top: -20px;
   transition: width .5s ease, margin-left .5s ease;
 }
 
 .backgroundsChoose:hover {
   width: 212px;
-  margin-left: 6%;
+  margin-left: 0%;
 }
 
 @media screen and (max-width: 768px){
-  .backgroundsChoose {
-    transition: height .5s ease, margin-top .5s ease;
-  }
-
-  .backgroundsChoose:hover {
-  flex-direction: column;
-  width: 70.3px;
-  height: 220px;
-  margin-top: 15px;
-}
-
+  
 }
 
 .image-bg-change {
@@ -2124,6 +2133,21 @@ img.postedByImg {
     margin-bottom: 0px;    
   }
 
+  .body-menu {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 50vh;
+    width: auto;
+    align-items: flex-start;
+    margin: 0;
+    background: transparent;
+    position: fixed;
+    top: 45vh;
+    left: 20px;
+  }
+
   .navBar {
     position: fixed;
     bottom: 0;
@@ -2141,8 +2165,34 @@ img.postedByImg {
     z-index: 10;
   }
 
+  .burguerPop {
+    display: block;
+    background-color: transparent;
+    font-size: 30px;
+    padding: 10px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.568);
+    transition: font-size .1s ease, margin-left .1s ease;
+    border: none;
+    margin-top: -2px;
+    animation-duration: 1s;
+    animation-name: slidein; 
+  }
+
+  .burguerPop:active {
+    font-size: 35px;
+    margin-left: -5px;
+  }
+
   .currencyNav {
-    display: none;
+   background-color: rgba(58, 58, 58, 0.233);
+   padding: 10px;
+   margin-right: -10px; 
+   border-radius: 12px;
+   position: fixed;
+   top: 10px;
+   width: 70px;
+   font-size: 15px;
+   right: 5vw;
   }
   
   .navBar,
