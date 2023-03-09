@@ -65,6 +65,10 @@
   width: 100vw;
 }
 
+.modal-backdrop {
+  z-index: 0;
+}
+
 .text-white {
   color: var(--text-white);
 }
@@ -446,13 +450,15 @@ textarea:-webkit-autofill:active {
 /*** BODY MENU ***/
 /*** BODY MENU ***/
 /*** BODY MENU ***/
-.modal-backdrop.fade.show {
-  z-index: 0;
-  background-color: transparent;
+
+#createNewPost {
+  position: fixed;
+  top: 50px;
+  z-index: 11;
 }
 
 .body-menu {
-  z-index: 99;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -626,7 +632,6 @@ textarea:-webkit-autofill:active {
   justify-content: center;
   align-items: flex-end;
   margin-top: 40px;
-  height: 100vh;
 }
 
 /*** LOG IN / SIGN UP ***/
@@ -2947,6 +2952,14 @@ bottom: 0;
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
 
+
+
+.onTop {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 18cae48aa905039c6c1d1ed374672aa20a52a0b6
+}
 
 .btn-sidebar {
   display: none;

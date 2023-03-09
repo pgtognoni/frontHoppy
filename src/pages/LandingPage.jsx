@@ -141,7 +141,11 @@ function LandingPage({posts, setPosts}) {
     <div className="fullReturn">
       {!isLoadingPost && isAuthenticated ? (
         <div className="column-center">
-          <BodyMenu openModal={openModal} />
+          <BodyMenu openModal={openModal} 
+              setPostsCall={setPostsCall}
+              posts={posts}
+              setPosts={setPostsContext}
+              setAddNewPost={setAddNewPost}/>
           {addNewPost && (
             <PostForm
               setPostsCall={setPostsCall}
