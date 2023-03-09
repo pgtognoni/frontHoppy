@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="body">
+      <div className={`body ${location === "/profile" ? "body2" : null }`}>
         {/* <Sidebar /> */}
         <div className={`body-content landingPage ${location === "/store" ? "landingPage2 body-content2" : null }`}>
           {!isAuthenticated && <MobileNavbar post={posts} setPosts={setPosts} responseMessage={responseMessage} setResponseMessage={setResponseMessage} />}
