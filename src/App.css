@@ -622,6 +622,7 @@ textarea:-webkit-autofill:active {
   justify-content: center;
   align-items: flex-end;
   margin-top: 40px;
+  height: 100vh;
 }
 
 /*** LOG IN / SIGN UP ***/
