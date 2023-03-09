@@ -116,7 +116,7 @@ function ProfilePage() {
 
   return (
     <>
-      <div className="fullReturn">
+      <div className="fullReturn fullReturn2">
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
@@ -130,7 +130,7 @@ function ProfilePage() {
                 />
                 <button
                   onClick={(e) => openEditImage(e)}
-                  className="edit-btn edit-image"
+                  className="edit-btn edit-image profEdit"
                 >
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
@@ -151,12 +151,12 @@ function ProfilePage() {
               </div>
               <div className="profile-info">
                 <div className="profile-title">
-                  <h1>{user.username}</h1>
+                  <h1 className="profUsername">{user.username}</h1>
                   <button onClick={(e) => openEditInfo(e)} className="edit-btn">
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                 </div>
-                {bio ? <h5>{bio}</h5> : <h5 className="text-gray">Add Bio</h5>}
+                {bio ? <h5 className="bio">{bio}</h5> : <h5 className="text-gray bio">Add Bio</h5>}
                 {editBio ? (
                   <AddBio bio={bio} setBio={setBio} setEditBio={setEditBio} />
                 ) : null}

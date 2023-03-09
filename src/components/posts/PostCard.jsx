@@ -169,6 +169,8 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
     deleteCommentAPI(id, token);
   };
 
+  console.log()
+
   return (
     <>
       <div className="postContainer">
