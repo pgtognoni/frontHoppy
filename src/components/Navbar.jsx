@@ -26,11 +26,11 @@ function Navbar() {
   function handleMenu() {
     const menu = document.querySelector(".body-menu")
     
-    if (menu.style.display === "flex") {
-        menu.style.display = "none"
+    if (menu.style.display === "none") {
+        menu.style.display = "flex"
     }
     else {
-      menu.style.display = "flex"      
+      menu.style.display = "none"      
     }
   }
 
