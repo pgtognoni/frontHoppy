@@ -15,6 +15,7 @@ function SessionContextProvider({ children }) {
   const [userCurrency, setUserCurrency] = useState(null);
   const [userImage, setUserImage] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [ fetchGroups, setFetchGroups ] = useState(false);
   const [background, setBackground] = useState(
     "./image/Untitled-Copy@1-1904x993.png"
   );
@@ -98,7 +99,9 @@ function SessionContextProvider({ children }) {
         backgroundImages,
         setBackgroundImages,
         backgroundImagesApply,
-        setBackgroundImagesApply
+        setBackgroundImagesApply,
+        fetchGroups, 
+        setFetchGroups
       }}
     >
       {children}

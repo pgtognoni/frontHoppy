@@ -14,9 +14,9 @@ function GroupCard({ group}) {
             <h2 className="group-title">{group.name}</h2>
             <p className="postDescription">{group.description}</p>
         </div>
-        <div className="postButtons">
+        <div className="postButtons group-btn">
             <div className="postInteractions">
-                <Link to={`/groups/${group._id}`} ><FontAwesomeIcon icon={faRightToBracket} /></Link>
+                <Link to={`/groups/${group._id}`} >{console.log(group._id)}<FontAwesomeIcon icon={faRightToBracket} /></Link>
             </div>
         </div>
         </div>

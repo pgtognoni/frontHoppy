@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { faArrowDownShortWide, faBars, faCircleChevronDown, faPlus, faUsersLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SessionContext } from "../contexts/SessionContext";
@@ -10,7 +10,7 @@ const VITE_BACK_URL = import.meta.env.VITE_BACK_URL;
 
 function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
 
-    const { setUser, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
+    const { setUser, setFetchGroups, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
     useContext(SessionContext);
   const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
     useContext(PostContext);
@@ -56,8 +56,8 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                         <FontAwesomeIcon icon={faUsersLine} />
                     </button>
                     <ul className="dropdown-menu">
-                        <li><button type="button" className="btn btn-primary dropdown-item btn-reset-style" data-bs-toggle="modal" data-bs-target="#exampleModal" >Create <FontAwesomeIcon icon={faPlus} /></button></li>
-                        <li><Link to='/groups' className="dropdown-item">Explore</Link></li>
+                        <li><button type="button" className="btn btn-primary dropdown-item btn-reset-style" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-dismiss="offcanvas">Create <FontAwesomeIcon icon={faPlus} /></button></li>
+                        <li><Link to='/groups' className="dropdown-item" onClick={e => setFetchGroups(true)}>Explore</Link></li>
                     </ul>
                 </div>
                 <div className="dropdown mt-3">
@@ -67,9 +67,9 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                     </button>
                     <ul className="dropdown-menu">
                     {user && user.groups.map(group => {
-                        {console.log(group)}
                         return (
-                        <li><Link to={`/groups/${group._id}`} className="dropdown-item">
+                        <li><Link to={`/groups/${group._id}`} className="dropdown-item" >
+                            {console.log(group._id)}
                             <div className="postContent">
                                 <img className="postEmbed" src={group.image} alt="" />
                             </div>

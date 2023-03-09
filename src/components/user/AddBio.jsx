@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { SessionContext } from '../../contexts/SessionContext'
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 function AddBio(props) {
     const { setBio, setEditBio, bio } = props

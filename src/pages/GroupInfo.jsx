@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +26,7 @@ function GroupInfo () {
     const [ join, setJoin] = useState(true);
     const ref = useRef();
     const { id } = useParams();
+    const location = useLocation().pathname;
     
     const fetchData = async () => {
         const userId = user._id
@@ -38,6 +39,10 @@ function GroupInfo () {
       fetchData();
       setBackgroundImages(backgroundImages);   
     }, []);
+
+    useEffect(() => {
+        fetchData();
+      }, [location]);
   
     useEffect(() => {
         if (group && isLoading) {
