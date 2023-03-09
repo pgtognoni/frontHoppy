@@ -39,6 +39,7 @@
   --post-background: #ececec;
 }
 
+
 .dark-form {
   --white: #383535;
   --border-gray: #424242df;
@@ -60,6 +61,8 @@
 
 #root {
   position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
 .text-white {

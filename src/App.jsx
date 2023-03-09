@@ -27,7 +27,7 @@ function App() {
 
   
   return (
-    <div className="App">
+    <>
       <Navbar />
       <div className="body">
         {/* <Sidebar /> */}
@@ -60,7 +60,7 @@ function App() {
         </div>
       <div className="fadeOut"></div>
       </div>
-    </div>
+    </>
   );
 }
 
