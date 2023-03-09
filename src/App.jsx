@@ -14,7 +14,7 @@ import NewPost from "./pages/NewPost";
 import GroupsPage from "./pages/GroupsPage";
 import GroupInfo from "./pages/GroupInfo";
 import { SessionContext } from "./contexts/SessionContext";
-import MobileNavbar from "./components/MobileNavBar";
+import MobileNavbar from "./components/MobileNavbar";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -31,25 +31,28 @@ function App() {
         <div className={`body-content landingPage ${location === "/store" ? "landingPage2 body-content2" : null }`}>
           <MobileNavbar />
           <Routes>
-            <Route path="/" element={isAuthenticated ? <LandingPage /> : <HomePage />} />
-            <Route path="/new" element={<NewPost/>}/>
+            {/* <Route path="/" element={!isAuthenticated ? <LandingPage /> : <HomePage />} /> */}
             {!isAuthenticated
              ? <>
+                <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />                
                </>
-             : null
+             : <>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/profile"
+                  element={
+                    <PrivateRoute>
+                      <ProfilePage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="/new" element={<NewPost/>}/>
+                <Route path="/store" element={<Store />} />
+                <Route path='/groups' element={<GroupsPage />} />
+                <Route path='/groups/:id' element={<GroupInfo />} />
+             </>
              }
-            <Route path="/profile"
-              element={
-                <PrivateRoute>
-                  <ProfilePage />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/store" element={<Store />} />
-            <Route path='/groups' element={<GroupsPage />} />
-            <Route path='/groups/:id' element={<GroupInfo />} />
           </Routes>
         </div>
       <div className="fadeOut"></div>

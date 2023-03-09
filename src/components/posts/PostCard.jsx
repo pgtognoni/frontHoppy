@@ -7,42 +7,128 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SessionContext } from "../../contexts/SessionContext";
+import { PostContext } from "../../contexts/PostContext";
 import axios from "axios";
-
+import Comments from "../comments/Comments";
+import { deleteCommentAPI, updateLike, updateDislike, updateComment, updateUserLiked } from "../../methods/postMethods";
 
 function PostCard(props) {
+  const { setUser, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
+  useContext(SessionContext);
+const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
+  useContext(PostContext);
+
   const location = useLocation().pathname;
   const {
     post,
-    handleDislike,
-    handleLike,
-    handleNewComment,
-    newComment,
-    setNewComment,
+    //handleDislike,
+    //handleLike,
+    //handleNewComment,
+    //newComment,
+    //setNewComment,
     setProfilePost,
     setPosts,
     allposts,
+    setGroupPosts
   } = props;
+
   const [showComments, setShowComments] = useState(false);
-  const { user, token } = useContext(SessionContext);
+  const [newComment, setNewComment] = useState(""); 
+
+  const handleDislike = (e, id) => {
+    const newArr = [...allposts];
+    const post = newArr.find(item => item._id === id);
+
+    if (!user.disliked.includes(id)) {
+      const newUser = {...user};
+      newUser.disliked.push(id);
+      newArr.map(item =>{ 
+        if (item._id === id) {
+          item.dislikes += 1;
+      }});
+
+      if(newUser.liked.includes(id)) {
+        newUser.liked.splice(newUser.liked.indexOf(id), 1);
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.likes -= 1;
+        }});
+      }
+      setUser(newUser);
+      updateDislike(post, id);
+      updateUserLiked(user)
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
+      } else {
+      console.log("already disliked")
+    }
+  }
+
+  const handleLike = (e, id) => {
+    const newArr = [...allposts];
+    console.log(newArr);
+    const post = newArr.find((item) => item._id === id);
+
+    if (!user.liked.includes(id)) {
+      const newUser = {...user};
+      newUser.liked.push(id);
+      newArr.map(item =>{ 
+        if (item._id === id) {
+            item.likes += 1;
+      }});
+
+      if(user.disliked.includes(id)) {
+        newUser.disliked.splice(newUser.disliked.indexOf(id), 1);
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.dislikes -= 1;
+        }});
+      } 
+      setUser(newUser);
+      updateLike(post, id);
+      updateUserLiked(user)
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
+    } else {
+    }
+  };
 
   const openComments = (e, id) => {
     setShowComments(!showComments);
   };
 
-  const deleteAPI = async (id) => {
-    const res = await axios.delete(
-      `http://localhost:5005/comments/${id}/delete`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+  const handleNewComment = (e, id) => {
+    e.preventDefault();
+    const newArr = [...allposts];
+    const comment = {
+      body: newComment,
+      image: user.image[0],
+      username: user.username,
+    };
+    newArr.map((item) => {
+      if (item._id === id) {
+        item.comments.push(comment);
       }
-    );
+    });
+    updateComment(newComment, id, user);
+    setNewComment("");
+    if (location === '/') {
+      setPostsContext(newArr);
+    } else {
+        setGroupPosts(newArr);
+      }
   };
+
 
   const deleteComment = (e, id) => {
     e.preventDefault();
+    const token = window.localStorage.getItem('token');
     const newArr = [...allposts];
     newArr.map((item) => {
       if (item._id === post._id) {
@@ -52,9 +138,10 @@ function PostCard(props) {
         item.comments = newCommentsArray;
       }
     });
+
     location === "/profile" ? setProfilePost(newArr) : setPosts(newArr);
 
-    deleteAPI(id);
+    deleteCommentAPI(id, token);
   };
 
   return (
@@ -68,13 +155,13 @@ function PostCard(props) {
                   <span>
                     <img
                       className="postedByImg"
-                      src={post.createdBy[0].image[0]}
+                      src={post.createdBy.image[0]}
                       alt="profile"
                       loading="lazy"
                     />
                   </span>
                   <span className="postedByName">
-                    {post.createdBy[0].username}
+                    {post.createdBy.username}
                   </span>
                 </div>
                 <div>
@@ -98,10 +185,10 @@ function PostCard(props) {
               <p className="postDescription">{post.description}</p>
             </div>
             <div className="postButtonsParent">
-            <button className={`postInteractions ${user && user.liked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy[0]._id ) ? {pointerEvents: 'none'} : null}>
+            <button className={`postInteractions ${user && user.liked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy._id ) ? {pointerEvents: 'none'} : null}>
                     ❤️ {post.likes}
                 </button>
-                <button className={`postInteractions2 ${user && user.disliked.includes(post._id) ? "postInteractionsLiked postInteractionsDisiked" : null}`} onClick={(e) => handleDislike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy[0]._id ) ? {pointerEvents: 'none'} : null}>
+                <button className={`postInteractions2 ${user && user.disliked.includes(post._id) ? "postInteractionsLiked postInteractionsDisiked" : null}`} onClick={(e) => handleDislike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy._id ) ? {pointerEvents: 'none'} : null}>
                     😠 {post.dislikes}
                 </button>
                 <button className="postInteractions" onClick={(e) => openComments(e)}>
@@ -116,35 +203,7 @@ function PostCard(props) {
               {post.comments && post.comments.length > 0
                 ? post.comments.map((comment) => {
                     return (
-                      <div className="comment-container">
-                        <div className="nav-profile-img">
-                          <img
-                            className="comment-img"
-                            src={comment.image}
-                            alt="profile"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="comment-text">
-                          <div>
-                            <p className="comment-username">
-                              {comment.username}
-                            </p>
-                            <p className="comment-body">{comment.body}</p>
-                          </div>
-                          {(comment.user && comment.user[0] === user._id) ||
-                          location === "/profile" ? (
-                            <>
-                              <button
-                                className="btn-delete"
-                                onClick={(e) => deleteComment(e, comment._id)}
-                              >
-                                <FontAwesomeIcon icon={faTrashCan} />
-                              </button>
-                            </>
-                          ) : null}
-                        </div>
-                      </div>
+                      <Comments comment={comment} key={comment._id} deleteComment={deleteComment} />
                     );
                   })
                 : null}

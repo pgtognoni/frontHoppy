@@ -3,6 +3,7 @@ import axios from 'axios'
 import { SessionContext } from '../../contexts/SessionContext'
 import { faCamera, faStore } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+const VITE_BACK_URL = import.meta.env.VITE_BACK_URL;
 
 function EditImage(props) {
 
@@ -27,7 +28,7 @@ function EditImage(props) {
             newArr.shift(newImage)
         }
         data = {image: newArr}
-        const res = await axios.put('http://localhost:5005/auth/profile', data, {
+        const res = await axios.put(`${VITE_BACK_URL}/auth/profile`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
