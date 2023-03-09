@@ -60,6 +60,24 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                         <li><Link to='/groups' className="dropdown-item">Explore</Link></li>
                     </ul>
                 </div>
+                <div className="dropdown mt-3">
+                    <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <p className=''>Groups Joined</p>
+                        <FontAwesomeIcon icon={faUsersLine} />
+                    </button>
+                    <ul className="dropdown-menu">
+                    {user && user.groups.map(group => {
+                        {console.log(group)}
+                        return (
+                        <li><Link to={`/groups/${group._id}`} className="dropdown-item">
+                            <div className="postContent">
+                                <img className="postEmbed" src={group.image} alt="" />
+                            </div>
+                            <p className="group-title">{group.name}</p>
+                        </Link></li>
+                    )})}
+                    </ul>
+                </div>
             </div>
         </div>
         <CreateNewGroup />

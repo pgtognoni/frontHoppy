@@ -89,10 +89,10 @@ function CreateNewGroup() {
                 <label htmlFor="tags" className="col-form-label"><p>Hashtags can make your group more popular, add some but <code>no more than 5</code> separeted by a <code>space</code></p></label>
                 <input type="text" className="form-control" id="tags" value={tags} onChange={(e) => {setTags(e.target.value)}} />
             </div>
-        <div className="modal-footer">
-            <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
-            <button type="submit" className='btn-form save'>CREATE</button>
-        </div>
+            <div className="modal-footer btn-container">
+                <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
+                <button type="submit" className='btn-form save'>CREATE</button>
+            </div>
             </form>
         </div>
         </div>
