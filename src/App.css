@@ -1068,6 +1068,12 @@ img.postedByImg {
   transition: margin .5s ease, padding .5s ease;
 }
 
+#the-final-countdown {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
 .dailyCollection {
   display: flex;
   font-size: 40px;
@@ -1139,11 +1145,12 @@ img.postedByImg {
   margin-left: -3%;
   width: 400px;
   display: flex;
-align-items: center;}
+  align-items: center;
+}
 
 .rowCollection {
   display: flex;
-  margin-top:  0px;
+  margin-top:  70px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -1616,6 +1623,12 @@ img.postedByImg {
   gap:50px;
   margin-top: -20px;
   margin-left: 50px;
+}
+
+#the-final-countdown {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .itemCard {
@@ -2680,7 +2693,7 @@ bottom: 0;
   align-items: center;  
   margin: 0px 0px;
   margin-left: 5vw;
-  margin-bottom: 70px;
+  margin-bottom: 8vh;
   flex-basis: 35%;
 }
 
@@ -2837,6 +2850,7 @@ bottom: 0;
   transition: filter 2s ease, -webkit-filter 2s ease;
   z-index: 0;
 }
+
 /***  STORE ***/
 /***  STORE ***/
 /***  STORE ***/

@@ -145,8 +145,7 @@ const Store = () => {
             <div className="storeBody bringItemFront">
               <h1 className="storeTitle">
                 Store{" "}
-                <span
-                  
+                <span                 
                   id="the-final-countdown"
                 >
                   New Collection in {clock}
