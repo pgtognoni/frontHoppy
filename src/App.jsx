@@ -2,7 +2,7 @@ import Sidebar from "./components/Sidebar";
 import { useState, useContext } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -19,7 +19,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
-
+  const location = useLocation().pathname
   const {isAuthenticated, authenticated } = useContext(SessionContext);
   const navigate = useNavigate();
   
@@ -28,7 +28,7 @@ function App() {
       <Navbar />
       <div className="body">
         {/* <Sidebar /> */}
-        <div className="body-content landingPage">
+        <div className={`body-content landingPage ${location === "/store" ? "landingPage2 body-content2" : null }`}>
           <MobileNavbar />
           <Routes>
             <Route path="/" element={isAuthenticated ? <LandingPage /> : <HomePage />} />

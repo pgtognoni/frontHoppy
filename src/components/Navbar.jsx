@@ -25,9 +25,9 @@ function Navbar() {
 
   return (
     <div className="navBar">
-      <div className="logo-container">
+      {/* <div className="logo-container">
         <img src="../image/hoppy_logo.png" className="nav-logo" />
-      </div>
+      </div> */}
       <div className="nav-links">
         {!!isAuthenticated && (
           <>
@@ -45,20 +45,22 @@ function Navbar() {
           <div className="nav-user">
             <>
               <div>
-                <span>{user ? `💎 ${user.currency}` : null}</span>
+                <span className="currencyNav">{user ? `💎 ${user.currency}` : null}</span>
               </div>
-              <button className="nav-profile-img btn-reset-style" data-bs-toggle="dropdown">
+              <button className="nav-profile-img btn-reset-style dropDownRelative" data-bs-toggle="dropdown">
                 <img
                   src={userImage ? userImage[0] : null}
                   className="profile-img"
                 />
               </button>
+              
               <ul className="dropdown-menu nav-dropdown">
                 <NavLink to="/profile" className="dropdown-item text-white">
                   Profile
                 </NavLink>
                 <li><button className="dropdown-item text-white logout" onClick={logout}>Log out</button></li>
               </ul>
+              
             </>{" "}
           </div>
         )}

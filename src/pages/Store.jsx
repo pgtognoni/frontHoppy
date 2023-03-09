@@ -3,48 +3,49 @@ import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 
 const Store = () => {
-  const { setUser, user, setUserCurrency, setUserImage, userCurrency, background} = useContext(SessionContext);
+  const {
+    setUser,
+    user,
+    setUserCurrency,
+    setUserImage,
+    userCurrency,
+    background,
+  } = useContext(SessionContext);
   const [currency, setCurrency] = useState(0);
   const [loading, isLoading] = useState(true);
-  const [clock, setClock] = useState("")
+  const [clock, setClock] = useState("");
 
   let date = new Date().getDay();
   let dateDetails = new Date();
   let dailyImages = [];
 
+  function timeAdv() {
+    let hours = 24 - dateDetails.getHours();
+    let min = 60 - dateDetails.getMinutes();
+    if ((min + "").length == 1) {
+      min = "0" + min;
+    }
+    let sec = 60 - dateDetails.getSeconds();
+    if ((sec + "").length == 1) {
+      sec = "0" + sec;
+    }
+    let newTime = hours + "h";
 
-
-function timeAdv()  {  
-  let hours = 24 - dateDetails.getHours();
-  let min = 60 - dateDetails.getMinutes();
-  if ((min + "").length == 1) {
-    min = "0" + min;
+    setClock(newTime);
   }
-  let sec = 60 - dateDetails.getSeconds();
-  if ((sec + "").length == 1) {
-    sec = "0" + sec;
-  }
-  let newTime = hours + "h"
-  
-  setClock( newTime ) 
-};
 
-const intervalID = setInterval(() => {
-  timeAdv()
- }, 20000);
+  const intervalID = setInterval(() => {
+    timeAdv();
+  }, 20000);
 
-useEffect(() => {
+  useEffect(() => {
+    timeAdv();
+    setCurrency(userCurrency);
 
-  timeAdv()
-  setCurrency(userCurrency);
-
-  return () => {
-      clearInterval(intervalID)
-  }
-}, [])
- 
-
-  
+    return () => {
+      clearInterval(intervalID);
+    };
+  }, []);
 
   const sundayImages = [
     "https://i.seadn.io/gcs/files/c3c8704e98806a8ebb03acdd28e1c51d.png?auto=format&w=1000",
@@ -90,22 +91,16 @@ useEffect(() => {
     "https://i.seadn.io/gcs/files/6d9911acff58abc4c3d27d932d5786f5.png?auto=format&w=1000",
   ];
 
- 
-
   if (date === 0) {
     dailyImages = [...sundayImages];
-  }
-
- else if (date === 1) {
+  } else if (date === 1) {
     dailyImages = [...mondayImages];
-  }
-
-  else if (date === 2) {
+  } else if (date === 2) {
     dailyImages = [...tuesdayImages];
-  }
-
-  else if (date === 3) {
+  } else if (date === 3) {
     dailyImages = [...wednesdayImages];
+  } else if (date === 4) {
+    dailyImages = [...mondayImages];
   }
 
   function stopLoading() {
@@ -115,10 +110,13 @@ useEffect(() => {
   }
   stopLoading();
 
-  function handleBuy(price, image) { 
-     
-    if (user.currency && user.currency >= price && !user.image.includes(image)) {
-      const newImageArr = [image, ...user.image];    
+  function handleBuy(price, image) {
+    if (
+      user.currency &&
+      user.currency >= price &&
+      !user.image.includes(image)
+    ) {
+      const newImageArr = [image, ...user.image];
       updateCurrency(price, newImageArr);
     }
   }
@@ -133,173 +131,183 @@ useEffect(() => {
     });
     if (res.data.currency) {
       setCurrency(res.data.currency);
-      setUserCurrency(res.data.currency)
+      setUserCurrency(res.data.currency);
       setUserImage(res.data.image);
       setUser(res.data);
     }
-  }; 
+  };
 
   return (
     <>
-    <div className="fullReturn">
-    <div className="storeBody bringItemFront">
-      {!loading ? (
-        <div >
-          <h1 className="storeTitle">Store <span style={{fontSize: "20px", fontWeight: "100", marginLeft: "30px", marginTop:  "10px",textAlign: "center", alignSelf: "center"}} id="the-final-countdown">New Collection in {clock}</span>
-</h1>
-          
-            <>
-              <div className="dailyCollection">
-                <div>
-                  <h1 style={{ fontSize: "120px" }}>Legendary</h1>
-                  <h1 style={{ fontSize: "90px", fontWeight: "300" }}>
-                    Collection
-                  </h1>
-                </div>
-                <div>
-                  <div className="dailyCollectionContainer">
-                    <div className="itemCard">
-                      <img
-                        className="dailyCollectionImg"
-                        src={dailyImages[0]}
-                        alt=""
-                      />
-                     
-                      <button
-                        onClick={(e) => handleBuy(10, dailyImages[0])}
-                        className="itemButton"
-                      >
-                        {user.image.includes(`${dailyImages[0]}`)
-                          ? "✅"
-                          : "💎 20"}
-                      </button>
-                    </div>
-                    <div className="itemCard">
-                      <img
-                        className="dailyCollectionImg"
-                        src={dailyImages[1]}
-                        alt=""
-                      />
-                      <button
-                        onClick={(e) => handleBuy(20, dailyImages[1])}
-                        className="itemButton"
-                      >
-                        {user.image.includes(`${dailyImages[1]}`)
-                          ? "✅"
-                          : "💎 20"}
-                      </button>
-                    </div>
-                    <div className="itemCard">
-                      <img
-                        className="dailyCollectionImg"
-                        src={dailyImages[2]}
-                        alt=""
-                      />
-                      <button
-                        onClick={(e) => handleBuy(20, dailyImages[2])}
-                        className="itemButton"
-                      >
-                        {user.image.includes(`${dailyImages[2]}`)
-                          ? "✅"
-                          : "💎 20"}
-                      </button>
-                    </div>
-                    <div className="itemCard">
-                      <img
-                        className="dailyCollectionImg"
-                        src={dailyImages[3]}
-                        alt=""
-                      />
-                      <button
-                        onClick={(e) => handleBuy(20, dailyImages[3])}
-                        className="itemButton"
-                      >
-                        {user.image.includes(`${dailyImages[3]}`)
-                          ? "✅"
-                          : "💎 20"}
-                      </button>
-                    </div>
-                  </div>
-                  <div></div>
-                </div>
-              </div>
-              <div className="rowCollection">
-                <h1
-                  style={{
-                    fontSize: "80px",
-                    fontWeight: "100",
-                    textShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
-                  }}
+      <div className="fullReturn">
+        <div>
+          {!loading ? (
+            <div className="storeBody bringItemFront">
+              <h1 className="storeTitle">
+                Store{" "}
+                <span
+                  
+                  id="the-final-countdown"
                 >
-                  Extra Offers
-                </h1>
-                <div style={{ display: "flex" }}>
-                  <div className="itemCard">
-                    <img
-                      className="dailyCollectionImg"
-                      src={dailyImages[4]}
-                      alt=""
-                    />
-                   
-                    <button
-                      onClick={(e) => handleBuy(5, dailyImages[4])}
-                      className="itemButton"
-                    >
-                      {user.image.includes(`${dailyImages[4]}`) ? "✅" : "💎 5"}
-                    </button>
+                  New Collection in {clock}
+                </span>
+              </h1>
+
+              <>
+                <div className="dailyCollection">
+                  <div className="legedaryCollection">
+                    <h1 className="legendary">Legendary</h1>
+                    <h1 className="collection">
+                      Collection
+                    </h1>
                   </div>
-                  <div className="itemCard">
-                    <img
-                      className="dailyCollectionImg"
-                      src={dailyImages[5]}
-                      alt=""
-                    />
-                    
-                    <button
-                      onClick={(e) => handleBuy(5, dailyImages[5])}
-                      className="itemButton"
-                    >
-                      {user.image.includes(`${dailyImages[5]}`) ? "✅" : "💎 5"}
-                    </button>
-                  </div>
-                  <div className="itemCard">
-                    <img
-                      className="dailyCollectionImg"
-                      src={dailyImages[6]}
-                      alt=""
-                    />
-                    
-                    <button
-                      onClick={(e) => handleBuy(5, dailyImages[6])}
-                      className="itemButton"
-                    >
-                      {user.image.includes(`${dailyImages[6]}`) ? "✅" : "💎 5"}
-                    </button>
-                  </div>
-                  <div className="itemCard">
-                    <img
-                      className="dailyCollectionImg"
-                      src={dailyImages[7]}
-                      alt=""
-                    />
-                    
-                    <button
-                      onClick={(e) => handleBuy(5, dailyImages[7])}
-                      className="itemButton"
-                    >
-                      {user.image.includes(`${dailyImages[7]}`) ? "✅" : "💎 5"}
-                    </button>
+                  <div>
+                    <div className="dailyCollectionContainer">
+                      <div className="itemCard">
+                        <img
+                          className="dailyCollectionImg"
+                          src={dailyImages[0]}
+                          alt=""
+                        />
+
+                        <button
+                          onClick={(e) => handleBuy(10, dailyImages[0])}
+                          className="itemButton"
+                        >
+                          {user.image.includes(`${dailyImages[0]}`)
+                            ? "✅"
+                            : "💎 20"}
+                        </button>
+                      </div>
+                      <div className="itemCard">
+                        <img
+                          className="dailyCollectionImg"
+                          src={dailyImages[1]}
+                          alt=""
+                        />
+                        <button
+                          onClick={(e) => handleBuy(20, dailyImages[1])}
+                          className="itemButton"
+                        >
+                          {user.image.includes(`${dailyImages[1]}`)
+                            ? "✅"
+                            : "💎 20"}
+                        </button>
+                      </div>
+                      <div className="itemCard">
+                        <img
+                          className="dailyCollectionImg"
+                          src={dailyImages[2]}
+                          alt=""
+                        />
+                        <button
+                          onClick={(e) => handleBuy(20, dailyImages[2])}
+                          className="itemButton"
+                        >
+                          {user.image.includes(`${dailyImages[2]}`)
+                            ? "✅"
+                            : "💎 20"}
+                        </button>
+                      </div>
+                      <div className="itemCard">
+                        <img
+                          className="dailyCollectionImg"
+                          src={dailyImages[3]}
+                          alt=""
+                        />
+                        <button
+                          onClick={(e) => handleBuy(20, dailyImages[3])}
+                          className="itemButton"
+                        >
+                          {user.image.includes(`${dailyImages[3]}`)
+                            ? "✅"
+                            : "💎 20"}
+                        </button>
+                      </div>
+                    </div>
+                    <div></div>
                   </div>
                 </div>
-              </div>
-            </>
-          
+                <div className="rowCollection">
+                  <h1
+                    className="extraOffers"
+                  >
+                    Extra Offers
+                  </h1>
+                  <div style={{ display: "flex" }}>
+                    <div className="itemCard">
+                      <img
+                        className="dailyCollectionImg"
+                        src={dailyImages[4]}
+                        alt=""
+                      />
+
+                      <button
+                        onClick={(e) => handleBuy(5, dailyImages[4])}
+                        className="itemButton"
+                      >
+                        {user.image.includes(`${dailyImages[4]}`)
+                          ? "✅"
+                          : "💎 5"}
+                      </button>
+                    </div>
+                    <div className="itemCard">
+                      <img
+                        className="dailyCollectionImg"
+                        src={dailyImages[5]}
+                        alt=""
+                      />
+
+                      <button
+                        onClick={(e) => handleBuy(5, dailyImages[5])}
+                        className="itemButton"
+                      >
+                        {user.image.includes(`${dailyImages[5]}`)
+                          ? "✅"
+                          : "💎 5"}
+                      </button>
+                    </div>
+                    <div className="itemCard">
+                      <img
+                        className="dailyCollectionImg"
+                        src={dailyImages[6]}
+                        alt=""
+                      />
+
+                      <button
+                        onClick={(e) => handleBuy(5, dailyImages[6])}
+                        className="itemButton"
+                      >
+                        {user.image.includes(`${dailyImages[6]}`)
+                          ? "✅"
+                          : "💎 5"}
+                      </button>
+                    </div>
+                    <div className="itemCard">
+                      <img
+                        className="dailyCollectionImg"
+                        src={dailyImages[7]}
+                        alt=""
+                      />
+
+                      <button
+                        onClick={(e) => handleBuy(5, dailyImages[7])}
+                        className="itemButton"
+                      >
+                        {user.image.includes(`${dailyImages[7]}`)
+                          ? "✅"
+                          : "💎 5"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            </div>
+          ) : (
+            <h1>Loading...</h1>
+          )}
         </div>
-      ) : (
-        <h1>Loading...</h1>
-      )}
-    </div>
-    </div>
+      </div>
       <img className="background3d" src={background}></img>
     </>
   );
