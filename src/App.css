@@ -39,6 +39,7 @@
   --post-background: #ececec;
 }
 
+
 .dark-form {
   --white: #383535;
   --border-gray: #424242df;
@@ -60,6 +61,8 @@
 
 #root {
   position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
 .text-white {
@@ -449,6 +452,8 @@ textarea:-webkit-autofill:active {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100vh;
+  width: 100vw;
   align-items: flex-start;
   margin: 0;
   background: transparent;
@@ -617,6 +622,7 @@ textarea:-webkit-autofill:active {
   justify-content: center;
   align-items: flex-end;
   margin-top: 40px;
+  height: 100vh;
 }
 
 /*** LOG IN / SIGN UP ***/
@@ -1094,7 +1100,11 @@ img.postedByImg {
 .storeBody {
   background-color: rgb(247, 247, 247);
   width: 95vw;
+<<<<<<< HEAD
   max-width: 2000px;
+=======
+  max-width: 2000px;  
+>>>>>>> 18cae48aa905039c6c1d1ed374672aa20a52a0b6
   margin-left: 2%;
   margin-right: auto;
   margin-top: -10px;
@@ -2941,6 +2951,10 @@ bottom: 0;
 
 
 .onTop {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 18cae48aa905039c6c1d1ed374672aa20a52a0b6
 }
 
 .btn-sidebar {
