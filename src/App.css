@@ -627,6 +627,7 @@ textarea:-webkit-autofill:active {
   padding: 0;
   box-sizing: border-box;
   padding-top: 100px;
+  height: 100vh;
 }
 
 .body-content { 
