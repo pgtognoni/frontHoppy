@@ -65,17 +65,6 @@ function CreateNewGroup() {
                         <li><p className="dropdown-item" onClick={(event) => setSection("educational")}>Food</p></li>
                         <li><p className="dropdown-item" onClick={(event) => setSection("business")}>Business</p></li>
                     </ul>
-{/* 
-                <label htmlFor="name" className="col-form-label">Choose a type:</label>
-                    <select >
-                        <option className="dropdown-item" value="">Category</option>
-                        <option className="dropdown-item" value="meme">Meme</option>
-                        <option value="lifestyle">lifestyle</option>
-                        <option value="gaming">Gaming</option>
-                        <option value="food">Food</option>
-                        <option value="educational">Education</option>
-                        <option value="business">Business</option>
-                    </select> */}
             </div>
             <div className="mb-3">
                 <label htmlFor="description" className="col-form-label" >Description:</label>
