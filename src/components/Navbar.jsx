@@ -30,7 +30,7 @@ function Navbar() {
     }    
     setTimeout(() => {
       handleMenu()
-    }, 100)
+    }, 300)
   }, [])
   
 
