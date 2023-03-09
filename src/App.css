@@ -503,12 +503,12 @@ textarea:-webkit-autofill:active {
 }
 
 .imageBackgrounChange1 {
-  background-image: url("./image/Untitled\ -\ Copy@1-1904x993.png");
+  background-image: url("../public/image/Untitled\ -\ Copy@1-1904x993.png");
   background-position-y: -60px;
 }
 
 .imageBackgrounChange2 {
-  background-image: url("./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg");
+  background-image: url("../public/image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg");
   background-position-y: -100px;
   background-position-x: -90px;
 }
