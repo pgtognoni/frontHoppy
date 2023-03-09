@@ -23,15 +23,6 @@ function Navbar() {
     navigate("/");
   };
 
-  useEffect(() => {
-    async function handleMenu() {
-      const menu = document.querySelector(".body-menu")
-      menu.style.display = "none"
-    }    
-    setTimeout(() => {
-      handleMenu()
-    }, 300)
-  }, [])
   
 
   async function handleMenu() {

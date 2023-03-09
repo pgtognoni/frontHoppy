@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
+const VITE_BACK_URL = import.meta.env.VITE_BACK_URL;
 
 const Store = () => {
   const {
@@ -124,7 +125,7 @@ const Store = () => {
   const updateCurrency = async (price, newImageArr) => {
     const data = { currency: user.currency - price, image: newImageArr };
     const token = window.localStorage.getItem("token");
-    const res = await axios.put("http://localhost:5005/auth/profile", data, {
+    const res = await axios.put(`${VITE_BACK_URL}/auth/profile`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
