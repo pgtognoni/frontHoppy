@@ -71,6 +71,13 @@ function GroupInfo () {
     //       document.removeEventListener("click", checkClickedOutside);
     //     };
     // }, [addNewPost]);
+
+    const handleLike = async (groupId) => {
+        const newObj = {...group}
+        newObj.likes += 1;
+        console.log(newObj)
+        setGroup(newObj)
+    }
     
     const handleNewComment = (e, id) => {
         e.preventDefault();
@@ -88,52 +95,52 @@ function GroupInfo () {
     };
     
     
-      const deleteComment = (e, id) => {
-        e.preventDefault();
-        const token = window.localStorage.getItem('token');
-        const newObj = JSON.parse(JSON.stringify(group))
-        const newCommentsArray = newObj.comments.filter((item) => item.user !== user._id) 
-        newObj.comments = newCommentsArray;
-        
-        setGroupPosts(newObj);
-        setGroupComments(newCommentsArray);  
-        deleteCommentAPI(id, token);
-      };
+    const deleteComment = (e, id) => {
+    e.preventDefault();
+    const token = window.localStorage.getItem('token');
+    const newObj = JSON.parse(JSON.stringify(group))
+    const newCommentsArray = newObj.comments.filter((item) => item.user !== user._id) 
+    newObj.comments = newCommentsArray;
+    
+    setGroupPosts(newObj);
+    setGroupComments(newCommentsArray);  
+    deleteCommentAPI(id, token);
+    };
     
 
     const openModal = () => {
         setAddNewPost(true);
     }
 
-  const seeMine = (tag) => {
-    if (tag === "posts") {      
-      setWhatToSee(tag);      
-    }    
-    if (tag === "members") {      
-      setWhatToSee(tag);        
-    } 
-    if (tag === "chat") {      
+    const seeMine = (tag) => {
+        if (tag === "posts") {      
+        setWhatToSee(tag);      
+        }    
+        if (tag === "members") {      
         setWhatToSee(tag);        
-    }   
-  }
-
-
-  const joinGroup = async () => {
-    const data = user._id;
-    console.log(data)
-    const token = window.localStorage.getItem('token')
-    const res = await axios.put(`${BACK_URL}/groups/join/${id}`, {data}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (res.status === 200) {
-    console.log(res.data);
-        setMembers(prev => [...prev, user]);
-        setJoin(false);
+        } 
+        if (tag === "chat") {      
+            setWhatToSee(tag);        
+        }   
     }
-  }
+
+
+    const joinGroup = async () => {
+        const data = user._id;
+        console.log(data)
+        const token = window.localStorage.getItem('token')
+        const res = await axios.put(`${BACK_URL}/groups/join/${id}`, {data}, {
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        }
+        );
+        if (res.status === 200) {
+        console.log(res.data);
+            setMembers(prev => [...prev, user]);
+            setJoin(false);
+        }
+    }
 
   return (
     <>
@@ -151,8 +158,10 @@ function GroupInfo () {
                 />
               </div>
               <div className="profile-info">
+                <div>
+                  <h2 className="postTag">#{group.section}</h2>
+                </div>
                 <h1 className="postTitle groups-page-title">{group.name}</h1>
-                <p>{group.section}</p>
                 <div className="center">
                     <span>
                         <img
@@ -186,6 +195,9 @@ function GroupInfo () {
                     ? <button onClick={(e) => openModal()}>New Post</button>
                     : <button onClick={(e) => joinGroup()}>JOIN</button>}
                     <button onClick={(e) => seeMine("chat")}>Group Chat 💬 </button>
+                    <button className={`postInteractions ${user && user.liked.includes(group._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, group._id)} style={group && user._id === group.createdBy._id  ? {pointerEvents: 'none'} : null}>
+                        ❤️ {group.likes}
+                    </button>
                 </div>
                 {whatToSee === "posts" && (
                 <div className="profile-posts">

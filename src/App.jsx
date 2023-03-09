@@ -14,7 +14,7 @@ import NewPost from "./pages/NewPost";
 import GroupsPage from "./pages/GroupsPage";
 import GroupInfo from "./pages/GroupInfo";
 import { SessionContext } from "./contexts/SessionContext";
-import MobileNavbar from "./components/MobileNavBar";
+import MobileNavbar from "./components/MobileNavbar";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
