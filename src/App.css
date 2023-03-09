@@ -449,6 +449,8 @@ textarea:-webkit-autofill:active {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100vh;
+  width: 100vw;
   align-items: flex-start;
   margin: 0;
   background: transparent;
@@ -2934,8 +2936,6 @@ bottom: 0;
 
 
 
-<<<<<<< HEAD
-=======
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
@@ -2943,7 +2943,7 @@ bottom: 0;
 
 
 .onTop {
-  z-index: 99;
+  
 }
 
 .btn-sidebar {
@@ -3007,7 +3007,6 @@ bottom: 0;
   justify-content: space-between;
   align-items: center;
 }
->>>>>>> 1058aee83bc028a8fadb73d927f6fb9ab6b75fe1
 
 /*** GROUPS ***/
 /*** GROUPS ***/
