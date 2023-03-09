@@ -503,7 +503,7 @@ textarea:-webkit-autofill:active {
 }
 
 .imageBackgrounChange1 {
-  background-image: url("../public/image/Untitled\ -\ Copy@1-1904x993.png");
+  background-image: url("../public/image/Untitled-Copy@1-1904x993.png");
   background-position-y: -60px;
 }
 
@@ -2157,7 +2157,7 @@ img.postedByImg {
   padding: 60px 15px 15px 15px;
   gap: 0px;
   overflow-y: hidden;
-  box-shadow: 0 0 20px  rgba(0, 0, 0, 0.356);
+  
   overflow: hidden;
   flex-basis: auto;
   position: relative;
@@ -2825,8 +2825,8 @@ bottom: 0;
 }
 
 .background3d:hover {
-  height: 110vh;
-  width: 110vw;
+  min-height: 110vh;
+  max-width: 300vh;
   margin: 0;
   position: fixed;
   bottom: 0;
@@ -2838,8 +2838,10 @@ bottom: 0;
 }
 
 .background3d {
-  height: 110vh;
-  width: 110vw;
+  min-height: 110vh;
+  min-width: 300vh;
+  background-size: cover;
+  background-position: center;
   margin: 0;
   position: fixed;
   bottom: 0;
