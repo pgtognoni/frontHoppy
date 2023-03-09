@@ -385,7 +385,7 @@ textarea:-webkit-autofill:active {
 @media screen and (min-width: 960px) {
 
   .onTop {
-    /* display: none; */
+     
   }
 
 }
@@ -2106,7 +2106,7 @@ img.postedByImg {
 
   .body {
     padding: 0;
-    overflow-x: hidden;
+    overflow-x: hidden;    
   }
 
   .body2 {
