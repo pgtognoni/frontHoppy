@@ -10,7 +10,7 @@ function AddBio(props) {
         e.preventDefault();
         const data = {bio: bio}
         const token = window.localStorage.getItem('token')
-        const res = await axios.put('http://localhost:5005/auth/profile', data, {
+        const res = await axios.put(`${BACK_URL}/auth/profile`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

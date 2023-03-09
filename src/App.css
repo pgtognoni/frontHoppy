@@ -1095,7 +1095,6 @@ img.postedByImg {
   background-color: rgb(247, 247, 247);
   width: 95vw;
   max-width: 2000px;
-  height: ;
   margin-left: 2%;
   margin-right: auto;
   margin-top: -10px;
@@ -2935,8 +2934,6 @@ bottom: 0;
 
 
 
-<<<<<<< HEAD
-=======
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
@@ -2944,7 +2941,6 @@ bottom: 0;
 
 
 .onTop {
-  z-index: 99;
 }
 
 .btn-sidebar {
@@ -3008,7 +3004,6 @@ bottom: 0;
   justify-content: space-between;
   align-items: center;
 }
->>>>>>> 1058aee83bc028a8fadb73d927f6fb9ab6b75fe1
 
 /*** GROUPS ***/
 /*** GROUPS ***/

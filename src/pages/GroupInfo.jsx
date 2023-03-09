@@ -6,6 +6,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import PostCard from "../components/posts/PostCard";
 import PostForm from "../components/posts/PostForm";
 import Comments from "../components/comments/Comments";
+import BodyMenu from "../components/BodyMenu";
 import axios from "axios";
 import { deleteCommentAPI, updateLike, updateDislike, updateGroupComment, updateUserLiked } from "../methods/postMethods";
 import { updateGroupLiked } from "../methods/groupMethods";
@@ -25,7 +26,7 @@ function GroupInfo () {
     const [ join, setJoin] = useState(true);
     const ref = useRef();
     const { id } = useParams();
-  
+    
     const fetchData = async () => {
         const userId = user._id
         const response = await axios.get(`${BACK_URL}/groups/${id}/${userId}`);
@@ -44,9 +45,10 @@ function GroupInfo () {
             const posts = group.posts; 
             const members = group.members;
             const comments = group.comments;
-            const alreadyJoin = group.members.find((member) => member._id === user._id)
-            if (alreadyJoin) {
-                setJoin(true);
+            const alreadyJoin = group.members.filter((member) =>(member._id === user._id))
+            console.log(alreadyJoin.length < 1)
+            if (alreadyJoin.length < 1) {
+                setJoin(false);
             }
             setGroupPosts(posts)
             setMembers(members)
@@ -123,10 +125,6 @@ function GroupInfo () {
     };
     
 
-    const openModal = () => {
-        setAddNewPost(true);
-    }
-
     const seeMine = (tag) => {
         if (tag === "posts") {      
         setWhatToSee(tag);      
@@ -153,13 +151,20 @@ function GroupInfo () {
         if (res.status === 200) {
         console.log(res.data);
             setMembers(prev => [...prev, user]);
-            setJoin(false);
+            setJoin(true);
         }
     }
+
+    const openModal = (e) => {
+        e.stopPropagation();
+        setAddNewPost(true);
+      };
+    
 
   return (
     <>
       <div className="fullReturn">
+      <BodyMenu />
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
