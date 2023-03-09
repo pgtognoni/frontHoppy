@@ -16,7 +16,7 @@ function SessionContextProvider({ children }) {
   const [userImage, setUserImage] = useState(null);
   const [userId, setUserId] = useState(null);
   const [background, setBackground] = useState(
-    "../../public/image/Untitled-Copy@1-1904x993.png"
+    "../public/image/Untitled-Copy@1-1904x993.png"
   );
   const [backgroundImages, setBackgroundImages] = useState([
     "imageBackgrounChange1",
@@ -24,9 +24,9 @@ function SessionContextProvider({ children }) {
     "imageBackgrounChange3",
   ]);
   const [backgroundImagesApply, setBackgroundImagesApply] = useState([
-    "./image/Untitled-Copy@1-1904x993.png",
-    "./image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg",
-    "./image/164775-water-liquid-fluid-painting-art-1920x1080.jpg",
+    "../public/image/Untitled-Copy@1-1904x993.png",
+    "../public/image/desktop-wallpaper-sky-blue-clouds-digital-art-chromebook-pixel-background-and-cloud-pixel-art.jpg",
+    "../public/image/164775-water-liquid-fluid-painting-art-1920x1080.jpg",
   ]);
 
   const authenticated = useRef(isAuthenticated);
