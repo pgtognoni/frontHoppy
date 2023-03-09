@@ -1,5 +1,6 @@
 /*** FONTS ***/
 
+
 /* AUDIOWIDE */
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 /* font-family: 'Audiowide', cursive; */
@@ -2952,14 +2953,6 @@ bottom: 0;
 /**** MOBILE NAVBAR ****/
 /**** MOBILE NAVBAR ****/
 
-
-
-.onTop {
-<<<<<<< HEAD
-=======
-  
->>>>>>> 18cae48aa905039c6c1d1ed374672aa20a52a0b6
-}
 
 .btn-sidebar {
   display: none;
