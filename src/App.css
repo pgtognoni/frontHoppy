@@ -498,7 +498,7 @@ textarea:-webkit-autofill:active {
 }
 
 .btn-menu-container:hover {
-  margin-left: 6%;
+  margin-left: 1%;
 }
 
 .open-sidebar {
@@ -2142,7 +2142,7 @@ img.postedByImg {
     margin: 0;
     background: transparent;
     position: fixed;
-    top: 49vh;
+    top: 45vh;
     left: 20px;
   }
 
