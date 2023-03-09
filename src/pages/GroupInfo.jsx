@@ -8,12 +8,12 @@ import PostForm from "../components/posts/PostForm";
 import Comments from "../components/comments/Comments";
 import axios from "axios";
 import { deleteCommentAPI, updateLike, updateDislike, updateGroupComment, updateUserLiked } from "../methods/postMethods";
-
+import { updateGroupLiked } from "../methods/groupMethods";
 const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 
 function GroupInfo () {
-    const { background,  backgroundImages, setBackgroundImages, user }=useContext(SessionContext);
+    const { background,  backgroundImages, setBackgroundImages, setUser, user }=useContext(SessionContext);
     const [group, setGroup] = useState();
     const [ groupPosts, setGroupPosts ] = useState([]);
     const [ members, setMembers ] = useState([]);
@@ -72,11 +72,26 @@ function GroupInfo () {
     //     };
     // }, [addNewPost]);
 
-    const handleLike = async (groupId) => {
-        const newObj = {...group}
-        newObj.likes += 1;
-        console.log(newObj)
-        setGroup(newObj)
+    const handleLike = async (e, groupId) => {
+        const newObj = {...group};
+        const newUser = {...user};
+    
+        if (user.liked.includes(groupId)) {
+            newUser.liked.splice(newUser.liked.indexOf(groupId), 1);
+            newObj.likes -= 1;
+            setGroup(newObj)
+            setUser(newUser)
+            updateGroupLiked(newObj, groupId)
+            updateUserLiked(newUser)
+        } else {
+            newObj.likes += 1;
+            newUser.liked.push(groupId);
+            console.log(newUser.liked, user.liked);
+            setGroup(newObj)
+            setUser(newUser)
+            updateGroupLiked(newObj, groupId)
+            updateUserLiked(newUser)
+        }
     }
     
     const handleNewComment = (e, id) => {
@@ -195,7 +210,11 @@ function GroupInfo () {
                     ? <button onClick={(e) => openModal()}>New Post</button>
                     : <button onClick={(e) => joinGroup()}>JOIN</button>}
                     <button onClick={(e) => seeMine("chat")}>Group Chat 💬 </button>
-                    <button className={`postInteractions ${user && user.liked.includes(group._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, group._id)} style={group && user._id === group.createdBy._id  ? {pointerEvents: 'none'} : null}>
+                    <button 
+                        className={`postInteractions ${user && user.liked.includes(group._id) ? "postInteractionsLiked" : null}`} 
+                        onClick={(e) => handleLike(e, group._id)} 
+                        style={group && user._id === group.createdBy._id  ? {pointerEvents: 'none'} : null}
+                        >
                         ❤️ {group.likes}
                     </button>
                 </div>

@@ -38,9 +38,9 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
   const handleDislike = (e, id) => {
     const newArr = [...allposts];
     const post = newArr.find(item => item._id === id);
+    const newUser = {...user};
 
     if (!user.disliked.includes(id)) {
-      const newUser = {...user};
       newUser.disliked.push(id);
       newArr.map(item =>{ 
         if (item._id === id) {
@@ -63,17 +63,29 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
         setGroupPosts(newArr);
       }
       } else {
-      console.log("already disliked")
+      newUser.disliked.splice(newUser.liked.indexOf(id), 1);
+      newArr.map(item =>{ 
+        if (item._id === id) {
+          item.dislikes -= 1;
+      }});
+      setUser(newUser);
+      updateDislike(post, id);
+      updateUserLiked(user)
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
+
     }
   }
 
   const handleLike = (e, id) => {
     const newArr = [...allposts];
-    console.log(newArr);
     const post = newArr.find((item) => item._id === id);
+    const newUser = {...user};
 
     if (!user.liked.includes(id)) {
-      const newUser = {...user};
       newUser.liked.push(id);
       newArr.map(item =>{ 
         if (item._id === id) {
@@ -96,6 +108,19 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
         setGroupPosts(newArr);
       }
     } else {
+      newUser.liked.splice(newUser.liked.indexOf(id), 1);
+      newArr.map(item =>{ 
+        if (item._id === id) {
+            item.likes -= 1;
+      }});
+      setUser(newUser);
+      updateLike(post, id);
+      updateUserLiked(user)
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
     }
   };
 
