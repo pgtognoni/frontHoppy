@@ -1490,7 +1490,7 @@ img.postedByImg {
   
   .postContainer {
   width: 95%;  
-  max-width: 1000px;
+  max-width: 1200px;
   height: auto;
   margin-bottom: 30px;
   margin-right: -3%;
@@ -1571,6 +1571,10 @@ img.postedByImg {
   padding: 15px;
   padding-top: 30px;
   margin-top: -15px;
+}
+
+.profile-posts {
+  width: 100%;
 }
 
 .postTitle {
