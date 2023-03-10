@@ -32,6 +32,7 @@ function GroupInfo () {
         const userId = user._id
         const response = await axios.get(`${BACK_URL}/groups/${id}/${userId}`);
         setGroup(response.data.group);
+        console.log("console", response.data.group)
     };
   
   
@@ -47,7 +48,10 @@ function GroupInfo () {
     useEffect(() => {
         if (group && isLoading) {
             setIsLoading(false);
-            const posts = group.posts; 
+            let posts = []
+            if (group.posts.length > 0) {
+               posts = group.posts;
+            }             
             const members = group.members;
             const comments = group.comments;
             const alreadyJoin = group.members.filter((member) =>(member._id === user._id))
@@ -217,7 +221,7 @@ function GroupInfo () {
                     <button onClick={(e) => seeMine("posts")}>Posts</button>
                     <button onClick={(e) => seeMine("members")}>Members {members.length}</button>
                     {join 
-                    ? <button onClick={(e) => openModal()}>New Post</button>
+                    ? <button data-bs-toggle="modal" data-bs-target="#createNewPost">New Post</button>
                     : <button onClick={(e) => joinGroup()}>JOIN</button>}
                     <button onClick={(e) => seeMine("chat")}>Group Chat 💬 </button>
                     <button 

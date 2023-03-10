@@ -71,10 +71,9 @@ function PostForm({
         setPosts(newArr)
         setPostsCall(true)
       } else {
-        navigate(`/groups/${groupId}`)
-        // setAddNewPost(false);
-        let newArr = [...groupPosts];
-        newArr = [data, ...groupPosts]
+        navigate(`/groups/${groupId}`)              
+        let newArr = JSON.parse(JSON.stringify(groupPosts));
+        newArr = [data, ...newArr]
         setGroupPosts(newArr)
       }
     }
@@ -182,7 +181,7 @@ function PostForm({
             </div>            
         <div className="modal-footer">
             <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
-            <button type="submit" className='btn-form save' data-bs-toggle="modal">CREATE</button>
+            <button type="submit" className='btn-form save' >CREATE</button>
         </div>
             </form>
         </div>

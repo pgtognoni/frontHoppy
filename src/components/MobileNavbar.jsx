@@ -69,7 +69,7 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                     {user && user.groups.map(group => {
                         return (
                         <li><Link to={`/groups/${group._id}`} className="dropdown-item" >
-                            {console.log(group._id)}
+                    
                             <div className="postContent">
                                 <img className="postEmbed" src={group.image} alt="" />
                             </div>
