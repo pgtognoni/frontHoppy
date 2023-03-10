@@ -37,7 +37,7 @@
   --white: white;
   --modal-form-bg: #383535;
   --btn-bg: rgba(255, 255, 255, 0.7);
-  --post-background: #ececec;
+  --post-background: #ececec;    
 }
 
 #Body {
@@ -826,6 +826,14 @@ h1.postTitle.groups-page-title {
 }
 
 @media screen and (min-width: 1000px) {
+
+  .background3dblack {
+    background-color: #131313;
+  }
+
+  .body {
+    background-color: #131313;
+  }
 
   h1.postTitle.groups-page-title {
     font-size: 5vw;

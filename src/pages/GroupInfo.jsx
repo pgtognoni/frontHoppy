@@ -291,7 +291,7 @@ function GroupInfo () {
         )}
       </div>
       {console.log("BACKGROUND", background)}
-      <img className="background3d" src={background}></img>
+      <div className="background3d background3dblack"></div>
     </>
   );
 }
