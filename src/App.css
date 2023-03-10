@@ -826,7 +826,10 @@ h1.postTitle.groups-page-title {
 }
 
 @media screen and (min-width: 1000px) {
-
+  h1.groups-page-title.postTitle.communityTitle {
+    color: white;
+    margin-bottom: 50px;
+  }
   .background3dblack {
     background-color: #131313;
   }
@@ -1499,6 +1502,12 @@ img.postedByImg {
 }
 
 @media screen and (max-width: 999px) and (min-width: 425px) {
+
+
+  h1.groups-page-title.postTitle.communityTitle {
+    color: white;
+    margin-bottom: 50px;
+  }
 
   .fullReturn {
     width: 100vw;
