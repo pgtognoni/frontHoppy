@@ -1,5 +1,6 @@
 import React from "react";
 import { createContext, useState, useEffect, useRef } from "react";
+import axios from "axios";
 const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 // Create and export your context
@@ -15,6 +16,7 @@ function SessionContextProvider({ children }) {
   const [userCurrency, setUserCurrency] = useState(null);
   const [userImage, setUserImage] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [ updateUser, setUpdateUser ] = useState(false);
   const [ fetchGroups, setFetchGroups ] = useState(false);
   const [background, setBackground] = useState(
     "./image/Untitled-Copy@1-1904x993.png"
@@ -49,12 +51,26 @@ function SessionContextProvider({ children }) {
         setUserName(json.user.username);
         setUserId(json.user._id);
         setUserImage(json.user.image);
+        setUpdateUser(false)
       }
     } catch (error) {
       console.log(error);
       window.localStorage.removeItem("token");
     }
   };
+
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`${BACK_URL}/auth/update/${user._id}/groups`)
+      setUser(res.data) 
+      setUpdateUser(false)
+    }
+
+    fetchUser();
+
+  }, [updateUser]);
 
   useEffect(() => {
     const jwtToken = window.localStorage.getItem("token");
@@ -101,7 +117,8 @@ function SessionContextProvider({ children }) {
         backgroundImagesApply,
         setBackgroundImagesApply,
         fetchGroups, 
-        setFetchGroups
+        setFetchGroups,
+        setUpdateUser
       }}
     >
       {children}

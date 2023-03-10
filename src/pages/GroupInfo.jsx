@@ -15,7 +15,7 @@ const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 
 function GroupInfo () {
-    const { background,  backgroundImages, setBackgroundImages, setUser, user }=useContext(SessionContext);
+    const { background, setUpdateUser, backgroundImages, setBackgroundImages, setUser, user }=useContext(SessionContext);
     const { groupPostsCtx, setGroupPostsCtx } = useContext(PostContext);
     
     const [group, setGroup] = useState();
@@ -35,7 +35,6 @@ function GroupInfo () {
         const userId = user._id
         const response = await axios.get(`${BACK_URL}/groups/${id}/${userId}`);
         setGroup(response.data.group);
-        console.log("console", response.data.group)
     };
   
   
@@ -160,9 +159,9 @@ function GroupInfo () {
         }
         );
         if (res.status === 200) {
-        console.log(res.data);
             setMembers(prev => [...prev, user]);
             setJoin(true);
+            setUpdateUser(true)
         }
     }
 

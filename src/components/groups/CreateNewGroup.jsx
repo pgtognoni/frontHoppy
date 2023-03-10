@@ -12,7 +12,7 @@ function CreateNewGroup() {
     const [ image, setImage ] = useState()
     const [ tags, setTags ] = useState()
 
-    const { user, fetchGroups, setFetchGroups } = useContext(SessionContext);
+    const { user, fetchGroups, setFetchGroups, setUpdateUser } = useContext(SessionContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -36,6 +36,7 @@ function CreateNewGroup() {
         if (res.status === 201) {
               navigate(`/groups`)
               setFetchGroups(true)
+              setUpdateUser(true)
           }
     }
 

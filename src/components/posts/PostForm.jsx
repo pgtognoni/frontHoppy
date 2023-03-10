@@ -28,7 +28,6 @@ function PostForm({
   const location = useLocation().pathname;
   //console.log( groupPosts, groupId)
   const { id } = useParams();
-  console.log(id, groupPostsCtx)
 
 
   const handleSubmit = async (e) => {
