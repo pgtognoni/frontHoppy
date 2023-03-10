@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
+import { PostContext } from "../contexts/PostContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import PostCard from "../components/posts/PostCard";
@@ -15,6 +16,8 @@ const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 function GroupInfo () {
     const { background,  backgroundImages, setBackgroundImages, setUser, user }=useContext(SessionContext);
+    const { groupPostsCtx, setGroupPostsCtx } = useContext(PostContext);
+
     const [group, setGroup] = useState();
     const [ groupPosts, setGroupPosts ] = useState([]);
     const [ members, setMembers ] = useState([]);
@@ -58,7 +61,7 @@ function GroupInfo () {
             if (alreadyJoin.length < 1) {
                 setJoin(false);
             }
-            setGroupPosts(posts)
+            setGroupPostsCtx(posts)
             setMembers(members)
             setGroupComments(comments)
         }
@@ -233,7 +236,7 @@ function GroupInfo () {
                 </div>
                 {whatToSee === "posts" && (
                 <div className="profile-posts">
-                    {groupPosts.map((post) => {
+                    {groupPostsCtx.map((post) => {
                         return (
                         <>
                             <PostCard post={post} allposts={groupPosts} setGroupPosts={setGroupPosts} />
@@ -288,12 +291,6 @@ function GroupInfo () {
           </div>
         )}
       </div>
-      <PostForm 
-        groupId={id}
-        setAddNewPost={setAddNewPost} 
-        setGroupPosts={setGroupPosts} 
-        groupPosts={groupPosts}
-        />
       <img className="background3d" src={background}></img>
     </>
   );

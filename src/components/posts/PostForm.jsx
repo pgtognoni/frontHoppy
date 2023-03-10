@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { SessionContext } from "../../contexts/SessionContext";
 const BACK_URL = import.meta.env.VITE_BACK_URL;
 
@@ -13,7 +13,9 @@ function PostForm({
   setPostsCall,
   setGroupPosts,
   groupPosts,
-  groupId
+  groupId,
+  groupPostsCtx,
+  setGroupPostsCtx
 }) {
   const navigate = useNavigate();
   const [title, setTitle] = useState();
@@ -24,19 +26,24 @@ function PostForm({
 
   const { user } = useContext(SessionContext);
   const location = useLocation().pathname;
-  console.log( groupPosts, groupId)
+  //console.log( groupPosts, groupId)
+  const { id } = useParams();
+  console.log(id, groupPostsCtx)
+
+
   const handleSubmit = async (e) => {
 
     
-    console.log(groupId, groupPosts, location)
+    //console.log(groupId, groupPosts, location)
 
     e.preventDefault()
 
     //const jwtToken = window.localStorage.getItem('token');
     const userId = user._id;
+    
     let group = '' 
     
-    if (location === '/groups') {
+    if (location === `/groups/${id}`) {
       group = 'TRUE'
     } else {
       group = 'FALSE'
@@ -57,7 +64,7 @@ function PostForm({
           section,
           createdBy: userId,
           group: group,
-          groupId: groupId
+          groupId: id
         }),
       }
     );
@@ -72,10 +79,11 @@ function PostForm({
         setPosts(newArr)
         setPostsCall(true)
       } else {
-        //navigate(`/groups/${groupId}`)              
-        //let newArr = [...groupPosts];
-        //newArr = [data, ...newArr]
-        //setGroupPosts(newArr)
+        navigate(`/groups/${id}`)              
+        let newArr = [...groupPostsCtx];
+        newArr = [data, ...newArr]
+        console.log(newArr)
+        setGroupPostsCtx(newArr)
       }
     }
   };

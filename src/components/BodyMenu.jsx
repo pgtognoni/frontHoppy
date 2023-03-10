@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import HandleBackground from './HandleBackground'
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation } from 'react-router-dom';
 import PostForm from './posts/PostForm';
 import MobileNavbar from './MobileNavbar';
+import { PostContext } from '../contexts/PostContext';
 
 function BodyMenu(props) {
     const [ responseMessage, setResponseMessage ] = useState("");
 const { openModal, setPostsCall, posts, setPosts, setAddNewPost } = props
+const { groupPostsCtx, setGroupPostsCtx, postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
+useContext(PostContext);
+
 const location = useLocation().pathname;
 
   return (
@@ -31,7 +35,10 @@ const location = useLocation().pathname;
               setPostsCall={setPostsCall}
               posts={posts}
               setPosts={setPosts}
-              setAddNewPost={setAddNewPost}/>
+              setAddNewPost={setAddNewPost}
+              groupPostsCtx={groupPostsCtx}
+              setGroupPostsCtx={setGroupPostsCtx}
+              />
         <HandleBackground />
     </div>
   )

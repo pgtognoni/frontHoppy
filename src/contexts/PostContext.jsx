@@ -8,6 +8,7 @@ export const PostContext = createContext();
 function PostContextProvider({children}) {
     const [ postsContext, setPostsContext ] = useState([]);
     const [ isLoadingPost, setIsLoadingPost ] = useState(true);
+    const [ groupPostsCtx, setGroupPostsCtx ] = useState([]);
 
     const fetchData = async () => {
         const response = await axios.get(`${BACK_URL}/posts`);
@@ -28,6 +29,8 @@ function PostContextProvider({children}) {
         setPostsContext,
         isLoadingPost,
         setIsLoadingPost,
+        groupPostsCtx, 
+        setGroupPostsCtx
         }}>
         { children }
     </PostContext.Provider>
