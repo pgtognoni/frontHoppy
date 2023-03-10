@@ -73,7 +73,7 @@ function PostForm({
       } else {
         navigate(`/groups/${groupId}`)
         // setAddNewPost(false);
-        let newArr = [...groupPosts];
+        let newArr = JSON.parse(JSON.stringify(groupPosts));
         newArr = [data, ...groupPosts]
         setGroupPosts(newArr)
       }

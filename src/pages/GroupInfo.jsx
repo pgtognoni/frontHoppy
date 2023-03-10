@@ -217,7 +217,7 @@ function GroupInfo () {
                     <button onClick={(e) => seeMine("posts")}>Posts</button>
                     <button onClick={(e) => seeMine("members")}>Members {members.length}</button>
                     {join 
-                    ? <button onClick={(e) => openModal()}>New Post</button>
+                    ? <button onClick={(e) => openModal(e)}>New Post</button>
                     : <button onClick={(e) => joinGroup()}>JOIN</button>}
                     <button onClick={(e) => seeMine("chat")}>Group Chat 💬 </button>
                     <button 
@@ -285,11 +285,11 @@ function GroupInfo () {
           </div>
         )}
       </div>
-      {addNewPost && <PostForm 
+      <PostForm 
         groupId={id}
         setAddNewPost={setAddNewPost} 
         setGroupPosts={setGroupPosts} 
-        groupPosts={groupPosts}/>}
+        groupPosts={groupPosts}/>
       <img className="background3d" src={background}></img>
     </>
   );
