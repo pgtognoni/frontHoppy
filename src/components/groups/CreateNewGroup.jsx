@@ -12,7 +12,7 @@ function CreateNewGroup() {
     const [ image, setImage ] = useState()
     const [ tags, setTags ] = useState()
 
-    const { user } = useContext(SessionContext);
+    const { user, fetchGroups, setFetchGroups } = useContext(SessionContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -35,6 +35,7 @@ function CreateNewGroup() {
         console.log(res.data)
         if (res.status === 201) {
               navigate(`/groups`)
+              setFetchGroups(true)
           }
     }
 
@@ -79,8 +80,8 @@ function CreateNewGroup() {
                 <input type="text" className="form-control" id="tags" value={tags} onChange={(e) => {setTags(e.target.value)}} />
             </div>
             <div className="modal-footer btn-container">
+                <button type="submit" className='btn-form save' data-bs-dismiss="modal">CREATE</button>
                 <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
-                <button type="submit" className='btn-form save'>CREATE</button>
             </div>
             </form>
         </div>
