@@ -2620,12 +2620,16 @@ img.postedByImg {
   align-items: flex-start;
   flex-direction: column;
   gap: 70px; 
+  min-height: 520px;
 }
 .postContent {
   width: auto;
-  max-width: 400px;
+  min-width: 300px;
+  max-width: 350px;
+  min-height: 230px;
   max-height: 300px;
   height: 100%;
+  object-fit: cover;
   overflow: hidden;
   border-radius: 20px;  
   margin-bottom: 30px;  
