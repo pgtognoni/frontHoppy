@@ -41,12 +41,14 @@ function GroupInfo () {
     const fetchGroupComments = async () => {
       const response = await axios.get(`${BACK_URL}/groups/${id}/comments`);
       console.log(response.data.group.comments);
-      //setGroupComments(response.data.group.comments);
+      setGroupComments(response.data.group.comments);
     }
   
     useEffect(() => {
-      fetchGroupComments()
-      setUpdateComment(false)
+      setTimeout(() => {
+        fetchGroupComments()
+        setUpdateComment(false)
+      }, 300)
     }, [updateComment])
   
     useEffect(() => {
@@ -284,7 +286,6 @@ function GroupInfo () {
           </div>
         )}
       </div>
-      {console.log("BACKGROUND", background)}
       <img className="background3d" src={background}></img>
     </>
   );

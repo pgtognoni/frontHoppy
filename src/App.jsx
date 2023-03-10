@@ -1,5 +1,5 @@
 import Sidebar from "./components/Sidebar";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
@@ -25,7 +25,6 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [ responseMessage, setResponseMessage ] = useState("");
 
-  
   return (
     <>
       <Navbar />
