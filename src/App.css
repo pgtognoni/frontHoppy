@@ -2336,7 +2336,7 @@ img.postedByImg {
     margin: 0;
     background: transparent;
     position: fixed;
-    top: 45vh;
+    top: 25vh;
     left: 20px;
   }
 
@@ -2639,6 +2639,7 @@ img.postedByImg {
   justify-content: center;
   gap: 0px;
   margin-right: 0px;
+  width: 100%;
 }
 
 .postedBy {
@@ -2942,7 +2943,7 @@ img.postedByImg {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-self: center;
+  align-self: center;  
 }
 
 .profile-header {
