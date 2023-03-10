@@ -162,7 +162,7 @@ function PostForm({
                 <textarea maxLength="250" className="form-control" id="description" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
             </div>
             <div className="mb-3">
-                    <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button className="logout btn-sidebar dropdown-toggle btn-form" type="button" data-bs-toggle="dropdown">
                         <p className=''>{section ? section : "section"}</p>
                     </button>
                     <ul className="dropdown-menu">
@@ -175,7 +175,7 @@ function PostForm({
                     </ul>
             </div>
             <div className="mb-3">
-                    <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button className="logout btn-sidebar dropdown-toggle btn-form" type="button" data-bs-toggle="dropdown">
                         <p className=''>{type ? type : "type"}</p>
                     </button>
                     <ul className="dropdown-menu">
@@ -187,9 +187,9 @@ function PostForm({
                 <label htmlFor="image" className="col-form-label" >Image</label>
                 <input type="text" className="form-control" value= {content} id="image" onChange={(event) => setContent(event.target.value)}/>
             </div>            
-        <div className="modal-footer">
+        <div className="modal-footer btn-container">
             <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
-            <button type="submit" className='btn-form save' >CREATE</button>
+            <button type="submit" className='btn-form save' data-bs-dismiss="modal">CREATE</button>
         </div>
             </form>
         </div>
