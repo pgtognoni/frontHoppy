@@ -2500,7 +2500,7 @@ img.postedByImg {
 
   .postInfo {
     margin-top: 20px;
-    max-width: 20px;
+    min-width: 100%;
     align-self: flex-start;
     margin-bottom: 30px;
   }
@@ -2526,6 +2526,7 @@ img.postedByImg {
     margin-top: -30px;
     font-size: 40px;
     text-shadow: 0 0 6px rgba(0, 0, 0, 0.329);
+
   }
 
   .group-container .postContent {
