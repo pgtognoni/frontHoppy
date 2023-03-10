@@ -2559,6 +2559,11 @@ img.postedByImg {
     
   }
 
+  h1.groups-page-title.postTitle.communityTitle {
+    color: white;
+    margin-bottom: 50px;
+  }
+
   div.center.groups-prof span {
     align-self: center;
     margin-left: 0px;
@@ -2776,7 +2781,8 @@ img.postedByImg {
 
   .group-container.postContainer {
     z-index: 1;
-    height: 600px;
+    min-height: 600px;
+    height: auto;
     max-width: 90vw;
     padding-top: 0px;  
     display: flex;
@@ -3392,7 +3398,7 @@ bottom: 0;
 }
 
 .body-content2 {
-  margin-top: 10px;
+  margin-top: 0px;
   bottom: 0;
 }
 

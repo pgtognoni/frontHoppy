@@ -70,7 +70,7 @@ const Store = () => {
       <BodyMenu />
       {!loading ? (
         <>
-        <h1 className="groups-page-title postTitle">The Hoppy Community</h1>
+        <h1 className="groups-page-title postTitle communityTitle">The Hoppy Community</h1>
         <form className='storeBody group-search' onSubmit={(e) => handleSubmit(e)}>
           <div className="tipe">
             <button className="btn-reset-style group-type-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
