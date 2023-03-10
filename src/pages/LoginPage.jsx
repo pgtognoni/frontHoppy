@@ -14,6 +14,7 @@ const LoginPage = () => {
 
   const handleSubmit = async event => {
     event.preventDefault()
+    console.log("hello")
     // Send your login information to your backend
     const newUser = await fetch(`${VITE_BACK_URL}/auth/login`, { 
       method: 'POST',
