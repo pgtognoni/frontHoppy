@@ -71,10 +71,9 @@ function PostForm({
         setPosts(newArr)
         setPostsCall(true)
       } else {
-        navigate(`/groups/${groupId}`)
-        // setAddNewPost(false);
+        navigate(`/groups/${groupId}`)              
         let newArr = JSON.parse(JSON.stringify(groupPosts));
-        newArr = [data, ...groupPosts]
+        newArr = [data, ...newArr]
         setGroupPosts(newArr)
       }
     }
@@ -148,11 +147,11 @@ function PostForm({
             <form onSubmit={(e) => handleSubmit(e)}>
             <div className="mb-3">
                 <label htmlFor="name" className="col-form-label">Title</label>
-                <input type="text" className="form-control" id="name" value={title} onChange={(e) => {setTitle(e.target.value)}}/>
+                <input maxLength="10" type="text" className="form-control" id="name" value={title} onChange={(e) => {setTitle(e.target.value)}}/>
             </div>
             <div className="mb-3">
-                <label htmlFor="description" className="col-form-label" >Description</label>
-                <textarea className="form-control" id="description" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+                <label htmlFor="description" className="col-form-label">Description</label>
+                <textarea maxLength="250" className="form-control" id="description" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
             </div>
             <div className="mb-3">
                     <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -182,7 +181,7 @@ function PostForm({
             </div>            
         <div className="modal-footer">
             <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
-            <button type="submit" className='btn-form save' data-bs-toggle="modal">CREATE</button>
+            <button type="submit" className='btn-form save' >CREATE</button>
         </div>
             </form>
         </div>

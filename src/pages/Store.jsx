@@ -102,6 +102,10 @@ const Store = () => {
     dailyImages = [...wednesdayImages];
   } else if (date === 4) {
     dailyImages = [...mondayImages];
+  } else if (date === 5) {
+    dailyImages = [...tuesdayImages];
+  } else if (date === 6) {
+    dailyImages = [...wednesdayImages];
   }
 
   function stopLoading() {
