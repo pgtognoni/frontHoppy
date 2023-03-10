@@ -42,7 +42,7 @@ function CreateNewGroup() {
 
 
   return (
-    <div className="modal group-modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal group-modal fade create-group" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div className="modal-dialog">
         <div className="modal-content">
         <div className="modal-header">
@@ -56,7 +56,7 @@ function CreateNewGroup() {
                 <input type="text" className="form-control" id="name" value={name} onChange={(e) => {setName(e.target.value)}}/>
             </div>
             <div className="mb-3">
-                    <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button className="btn-sidebar dropdown-toggle btn-form" type="button" data-bs-toggle="dropdown">
                         <p className=''>Categories</p>
                     </button>
                     <ul className="dropdown-menu">

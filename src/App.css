@@ -377,6 +377,11 @@ textarea:-webkit-autofill:active {
   gap: 1rem;
 }
 
+.btn-sidebar.btn-gray {
+  background-color: #dfdfdf;
+  width: 100%;
+}
+
 .btn-sidebar p {
   margin: 0;
 }
@@ -423,7 +428,7 @@ textarea:-webkit-autofill:active {
   border-bottom: 1px solid var(--text-gray);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  text-align: left;
   width: 100%;
   gap: 1rem;
   padding-bottom: .5rem;
@@ -431,15 +436,14 @@ textarea:-webkit-autofill:active {
 
 .joined-li p {
   margin: 0;
-  
+  text-align: left;
 }
 
 .group-joined-img img {
-  max-height: 3rem;
-  max-width: 3rem;
-  width: auto;
-  height: auto;
+  height: 3rem;
+  width: 3rem;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .offcanvas-backdrop.show {
@@ -448,7 +452,7 @@ textarea:-webkit-autofill:active {
 
 .offcanvas .dropdown-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -460,8 +464,13 @@ textarea:-webkit-autofill:active {
   background-color: transparent !important;;
 }
 
-.footer-img {
-  max-width: 5rem;
+.purple-icon {
+  color: #7557ba;
+}
+
+.group-icon {
+  width: 1.5rem;
+  transform: scaleX(1.2)
 }
 /*** MODAL ***/
 /*** MODAL ***/
@@ -471,11 +480,52 @@ textarea:-webkit-autofill:active {
   top: 4rem;
 }
 
+.modal-content {
+  margin-bottom: 10rem !important
+}
+
+.modal .modal-title {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.253);  
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 body#Body.modal-open {
   overflow: initial !important;
   padding: 0 !important;
   padding-right: 0 !important;
 }
+
+.modal form {
+  gap: 0;
+  margin: 0 auto;
+  line-height: 1;
+}
+
+.modal .mb-3 {
+  width: 100%;
+}
+.modal form input,
+.modal form textarea,
+.modal form label {
+  width: 90%;
+  height: initial;
+  margin: 0;
+}
+.modal form label {
+  padding: 0;
+}
+
+.modal .dropdown-toggle.btn-form {
+  color: #606060;
+  background-color: #dfdfdf;
+  width: 90%;
+}
+
+.modal-footer button {
+  line-height: 1.5;
+}
+
 /*** BODY MENU ***/
 /*** BODY MENU ***/
 /*** BODY MENU ***/
@@ -728,7 +778,11 @@ form input {
 /*** PROFILE ***/
 /*** PROFILE ***/
 
-
+.error {
+  color: red;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
 
 /*** POST ***/
 /*** POST ***/

@@ -43,9 +43,9 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                 {location === '/'
                 ? <>
                 <div className="dropdown mt-2">
-                    <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button className="btn-sidebar btn-gray" type="button" data-bs-toggle="dropdown">
+                        <FontAwesomeIcon icon={faArrowDownShortWide} className='purple-icon' />
                         <p className=''>Categories</p>
-                        <FontAwesomeIcon icon={faArrowDownShortWide} />
                     </button>
                     <ul className="dropdown-menu" >
                         <li><button className="dropdown-item" onClick={e => filterPosts('meme')}>Memes</button></li>
@@ -58,9 +58,9 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                 </div></>
                 : null}
                 <div className="dropdown mt-4">
-                    <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button className="btn-sidebar btn-gray" type="button" data-bs-toggle="dropdown">
+                        <img className='group-icon' src='./image/group2.svg' />
                         <p className=''>Groups</p>
-                        <FontAwesomeIcon icon={faUsersLine} />
                     </button>
                     <ul className="dropdown-menu">
                         <li><button type="button" className="dropdown-item btn-reset-style joined-li" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-dismiss="offcanvas">Create <FontAwesomeIcon icon={faPlus} /></button></li>
@@ -68,9 +68,9 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                     </ul>
                 </div>
                 <div className="dropdown mt-4">
-                    <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button className="btn-sidebar btn-gray" type="button" data-bs-toggle="dropdown">
+                        <img className='group-icon' src='./image/group1.svg' />
                         <p className=''>Groups Joined</p>
-                        <FontAwesomeIcon icon={faUsersLine} />
                     </button>
                     <ul className="dropdown-menu">
                     {user && user.groups.map(group => {
@@ -79,7 +79,7 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                             <div className="group-joined-img">
                                 <img className="" src={group.image} alt="" />
                             </div>
-                            <p className="group-title">{group.name}</p>
+                            <p className="nav-group-title">{group.name}</p>
                         </Link></li>
                     )})}
                     </ul>
