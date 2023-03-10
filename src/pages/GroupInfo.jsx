@@ -55,7 +55,6 @@ function GroupInfo () {
             const members = group.members;
             const comments = group.comments;
             const alreadyJoin = group.members.filter((member) =>(member._id === user._id))
-            console.log(alreadyJoin.length < 1)
             if (alreadyJoin.length < 1) {
                 setJoin(false);
             }
@@ -65,9 +64,9 @@ function GroupInfo () {
         }
     }, [group])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [groupComments])
+    // }, [groupComments])
   
     // useEffect(() => {
     //     const checkClickedOutside = (event) => {
@@ -293,7 +292,8 @@ function GroupInfo () {
         groupId={id}
         setAddNewPost={setAddNewPost} 
         setGroupPosts={setGroupPosts} 
-        groupPosts={groupPosts}/>
+        groupPosts={groupPosts}
+        />
       <img className="background3d" src={background}></img>
     </>
   );

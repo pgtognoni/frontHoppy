@@ -43,7 +43,7 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                         <FontAwesomeIcon icon={faArrowDownShortWide} />
                     </button>
                     <ul className="dropdown-menu" >
-                        <li><button className="dropdown-item" onClick={e => filterPosts('memes')}>Memes</button></li>
+                        <li><button className="dropdown-item" onClick={e => filterPosts('meme')}>Memes</button></li>
                         <li><button className="dropdown-item" onClick={e => filterPosts('lifestyle')}>Lifestyle</button></li>
                         <li><button className="dropdown-item" onClick={e => filterPosts('educational')}>Education</button></li>
                         <li><button className="dropdown-item" onClick={e => filterPosts('gaming')}>Gaming</button></li>

@@ -24,11 +24,12 @@ function PostForm({
 
   const { user } = useContext(SessionContext);
   const location = useLocation().pathname;
-  
+  console.log( groupPosts, groupId)
   const handleSubmit = async (e) => {
 
     
-    
+    console.log(groupId, groupPosts, location)
+
     e.preventDefault()
 
     //const jwtToken = window.localStorage.getItem('token');
@@ -71,10 +72,10 @@ function PostForm({
         setPosts(newArr)
         setPostsCall(true)
       } else {
-        navigate(`/groups/${groupId}`)              
-        let newArr = JSON.parse(JSON.stringify(groupPosts));
-        newArr = [data, ...newArr]
-        setGroupPosts(newArr)
+        //navigate(`/groups/${groupId}`)              
+        //let newArr = [...groupPosts];
+        //newArr = [data, ...newArr]
+        //setGroupPosts(newArr)
       }
     }
   };
