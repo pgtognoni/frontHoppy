@@ -159,7 +159,6 @@ function GroupInfo () {
         }
         );
         if (res.status === 200) {
-        console.log(res.data);
             setMembers(prev => [...prev, user]);
             setJoin(true);
             setUpdateUser(true)

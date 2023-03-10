@@ -64,7 +64,6 @@ function SessionContextProvider({ children }) {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`${BACK_URL}/auth/update/${user._id}/groups`)
-      console.log('group joined: ', res.data)
       setUser(res.data) 
       setUpdateUser(false)
     }
