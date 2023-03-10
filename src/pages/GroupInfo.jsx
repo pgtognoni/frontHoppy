@@ -178,38 +178,38 @@ function GroupInfo () {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          <div className="profile-container" id="profile">
-            <div className="profile-header">
-              <div className="profile-image">
+          <div className="profile-container groups-container" id="profile">
+            <div className="profile-header groups-header">
+              <div className="profile-image groups-image">
                 <img
                     src={group.image}
                     alt="profile image"
-                    className="postEmbed"
+                    className="postEmbed groups-embed"
                 />
               </div>
-              <div className="profile-info">
+              <div className="profile-info groups-info">
                 <div>
-                  <h2 className="postTag">#{group.section}</h2>
+                  <h2 className="postTag groups-tag">#{group.section}</h2>
                 </div>
                 <h1 className="postTitle groups-page-title">{group.name}</h1>
-                <div className="center">
+                <div className="center groups-prof">
                     <span>
                         <img
-                        className="postedByImg"
+                        className="postedByImg groups-img"
                         src={group.createdByImg}
                         alt="profile"
                         loading="lazy"
                         />
                     </span>
-                    <span className="postedByName">
+                    <span className="postedByName groups-name">
                         By {group.createdByName}
                     </span>
                 </div>
               </div>
             </div>
-            <div className="profile-body">
-                <div className="postTexts">
-                    <p className="postDescription">{group.description}</p>
+            <div className="profile-body groups-body">
+                <div className="postTexts groups-texts">
+                    <p className="postDescription groups-description">{group.description}</p>
                     {group.tags.map((tag) => {
                         return(
                             <>
@@ -218,15 +218,15 @@ function GroupInfo () {
                         )
                     })}
                 </div>
-                <div className="profileFilterButtons">
-                    <button onClick={(e) => seeMine("posts")}>Posts</button>
-                    <button onClick={(e) => seeMine("members")}>Members {members.length}</button>
+                <div className="profileFilterButtons groups-buttons">
+                    <button className="groups-button" onClick={(e) => seeMine("posts")}>Posts</button>
+                    <button className="groups-button" onClick={(e) => seeMine("members")}> 👤  {members.length}</button>
                     {join 
-                    ? <button data-bs-toggle="modal" data-bs-target="#createNewPost">New Post</button>
-                    : <button onClick={(e) => joinGroup()}>JOIN</button>}
-                    <button onClick={(e) => seeMine("chat")}>Group Chat 💬 </button>
+                    ? <button className="groups-button" data-bs-toggle="modal" data-bs-target="#createNewPost">New Post</button>
+                    : <button className="groups-button" onClick={(e) => joinGroup()}>JOIN</button>}
+                    <button className="groups-button" onClick={(e) => seeMine("chat")}>Chat 💬 </button>
                     <button 
-                        className={`postInteractions ${user && user.liked.includes(group._id) ? "postInteractionsLiked" : null}`} 
+                        className={`postInteractions groups-button ${user && user.liked.includes(group._id) ? "postInteractionsLiked" : null}`} 
                         onClick={(e) => handleLike(e, group._id)} 
                         style={group && user._id === group.createdBy._id  ? {pointerEvents: 'none'} : null}
                         >

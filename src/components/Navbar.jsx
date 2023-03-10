@@ -90,7 +90,7 @@ function Navbar() {
         )}
       </div>
       <div>
-      {location === '/' || location === '/groups' ? 
+      {location !== '/store' || location !== '/profile'  ? 
       <button onClick={(e) => handleMenu()} className="burguerPop">🧭</button>
       :
       null
