@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { faArrowDownShortWide, faBars, faCircleChevronDown, faPlus, faUsersLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SessionContext } from "../contexts/SessionContext";
@@ -15,6 +15,7 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
   const { groupPostsCtx, setGroupPostsCtx, postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
     useContext(PostContext);
 
+    const location = useLocation().pathname;
 
 
     const filterPosts = async (section) => {
@@ -39,6 +40,8 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                 <button type="button" className="btn-close btn-sidebar " data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">
+                {location === '/'
+                ? <>
                 <div className="dropdown mt-2">
                     <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <p className=''>Categories</p>
@@ -52,7 +55,8 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                         <li><button className="dropdown-item" onClick={e => filterPosts('food')}>Food</button></li>
                         <li><button className="dropdown-item" onClick={e => filterPosts('business')}>Business</button></li>
                     </ul>
-                </div>
+                </div></>
+                : null}
                 <div className="dropdown mt-4">
                     <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <p className=''>Groups</p>

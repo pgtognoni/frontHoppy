@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
   const navigate = useNavigate()
-  const { setToken, setUser, setUserImage, setUserCurrency, setUserId } = useContext(SessionContext)
+  const { setToken, setUser, setUserImage, setUpdateUser, setUserCurrency, setUserId } = useContext(SessionContext)
 
   const handleSubmit = async event => {
     event.preventDefault()
