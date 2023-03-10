@@ -188,8 +188,8 @@ function PostForm({
                 <input type="text" className="form-control" value= {content} id="image" onChange={(event) => setContent(event.target.value)}/>
             </div>            
         <div className="modal-footer btn-container">
-            <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
             <button type="submit" className='btn-form save' data-bs-dismiss="modal">CREATE</button>
+            <button type="button" className='btn-form cancel' data-bs-dismiss="modal">CANCEL</button>
         </div>
             </form>
         </div>
