@@ -30,48 +30,46 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
         <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvas" aria-labelledby="offcanvasResponsiveLabel">
             <div className="offcanvas-header">
                 <h5 className="offcanvas-title" id="offcanvasResponsiveLabel">
-                    <p className=''>Explore</p>
+                    Explore
                 </h5>
                 <button type="button" className="btn-close btn-sidebar " data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">
-                <div className="dropdown mt-3">
-                    <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <div className="dropdown mt-2">
+                    <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <p className=''>Categories</p>
                         <FontAwesomeIcon icon={faArrowDownShortWide} />
                     </button>
                     <ul className="dropdown-menu" >
-                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('memes')}>Memes</button></li>
-                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('lifestyle')}>Lifestyle</button></li>
-                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('educational')}>Education</button></li>
-                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('gaming')}>Gaming</button></li>
-                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('food')}>Food</button></li>
-                        <li><button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" className="dropdown-item" onClick={e => filterPosts('business')}>Business</button></li>
+                        <li><button className="dropdown-item" onClick={e => filterPosts('memes')}>Memes</button></li>
+                        <li><button className="dropdown-item" onClick={e => filterPosts('lifestyle')}>Lifestyle</button></li>
+                        <li><button className="dropdown-item" onClick={e => filterPosts('educational')}>Education</button></li>
+                        <li><button className="dropdown-item" onClick={e => filterPosts('gaming')}>Gaming</button></li>
+                        <li><button className="dropdown-item" onClick={e => filterPosts('food')}>Food</button></li>
+                        <li><button className="dropdown-item" onClick={e => filterPosts('business')}>Business</button></li>
                     </ul>
                 </div>
-                {responseMessage && <p style={{color: 'red'}}>{responseMessage}</p>}
-                <div className="dropdown mt-3">
-                    <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <div className="dropdown mt-4">
+                    <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <p className=''>Groups</p>
                         <FontAwesomeIcon icon={faUsersLine} />
                     </button>
                     <ul className="dropdown-menu">
-                        <li><button type="button" className="btn btn-primary dropdown-item btn-reset-style" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-dismiss="offcanvas">Create <FontAwesomeIcon icon={faPlus} /></button></li>
-                        <li><Link to='/groups' className="dropdown-item" onClick={e => setFetchGroups(true)}>Explore</Link></li>
+                        <li><button type="button" className="dropdown-item btn-reset-style joined-li" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-dismiss="offcanvas">Create <FontAwesomeIcon icon={faPlus} /></button></li>
+                        <li><Link to='/groups' className="dropdown-item joined-li" onClick={e => setFetchGroups(true)}>Explore</Link></li>
                     </ul>
                 </div>
-                <div className="dropdown mt-3">
-                    <button className="logout btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <div className="dropdown mt-4">
+                    <button className="btn-sidebar dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <p className=''>Groups Joined</p>
                         <FontAwesomeIcon icon={faUsersLine} />
                     </button>
                     <ul className="dropdown-menu">
                     {user && user.groups.map(group => {
                         return (
-                        <li><Link to={`/groups/${group._id}`} className="dropdown-item" >
-                    
-                            <div className="postContent">
-                                <img className="postEmbed" src={group.image} alt="" />
+                        <li ><Link to={`/groups/${group._id}`} className="dropdown-item joined-li">
+                            <div className="group-joined-img">
+                                <img className="" src={group.image} alt="" />
                             </div>
                             <p className="group-title">{group.name}</p>
                         </Link></li>
@@ -86,4 +84,3 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
 }
 
 export default MobileNavBar
-

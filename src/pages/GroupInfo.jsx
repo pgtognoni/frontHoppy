@@ -289,11 +289,11 @@ function GroupInfo () {
           </div>
         )}
       </div>
-      {addNewPost && <PostForm 
+      <PostForm 
         groupId={id}
         setAddNewPost={setAddNewPost} 
         setGroupPosts={setGroupPosts} 
-        groupPosts={groupPosts}/>}
+        groupPosts={groupPosts}/>
       <img className="background3d" src={background}></img>
     </>
   );
