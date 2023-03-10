@@ -16,7 +16,9 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
     useContext(PostContext);
 
     const filterPosts = async (section) => {
+        console.log(section)
         const response = await axios.get(`${VITE_BACK_URL}/filter/posts/${section}`);
+        console.log(response.data)
         if(response.data.message) {
             setResponseMessage(response.data.message);
         } else {
