@@ -17,7 +17,7 @@ const BACK_URL = import.meta.env.VITE_BACK_URL;
 function GroupInfo () {
     const { background,  backgroundImages, setBackgroundImages, setUser, user }=useContext(SessionContext);
     const { groupPostsCtx, setGroupPostsCtx } = useContext(PostContext);
-
+    
     const [group, setGroup] = useState();
     const [ groupPosts, setGroupPosts ] = useState([]);
     const [ members, setMembers ] = useState([]);
@@ -291,7 +291,8 @@ function GroupInfo () {
           </div>
         )}
       </div>
-      <img className="background3d" src={background}></img>
+      {console.log("BACKGROUND", background)}
+      <img className="background3d" src={`../public/${background}`}></img>
     </>
   );
 }
