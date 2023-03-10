@@ -12,8 +12,10 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
 
     const { setUser, setFetchGroups, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
     useContext(SessionContext);
-  const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
+  const { groupPostsCtx, setGroupPostsCtx, postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
     useContext(PostContext);
+
+
 
     const filterPosts = async (section) => {
         console.log(section)
