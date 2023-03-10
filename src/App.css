@@ -2960,6 +2960,17 @@ img.postedByImg {
   margin-top: 50px;
 }
 
+.profile-container .postContent {
+  min-width: 300px;
+  min-height: 300px;
+  max-height: 300px;
+}
+
+.profile-container .postEmbed {
+  object-fit: cover;
+  min-height: 300px
+}
+
 .profile-body {
   display: flex;
   flex-direction: column;
