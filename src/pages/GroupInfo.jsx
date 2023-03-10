@@ -22,6 +22,7 @@ function GroupInfo () {
     const [ groupPosts, setGroupPosts ] = useState([]);
     const [ members, setMembers ] = useState([]);
     const [ groupComments, setGroupComments ] = useState([]);
+    const [ updateComment, setUpdateComment ] = useState(false);
     const [whatToSee, setWhatToSee] = useState("posts");
     const [isLoading, setIsLoading] = useState(true);
     const [ addNewPost, setAddNewPost] = useState(false);
@@ -36,7 +37,19 @@ function GroupInfo () {
         const response = await axios.get(`${BACK_URL}/groups/${id}/${userId}`);
         setGroup(response.data.group);
     };
+
+    const fetchGroupComments = async () => {
+      const response = await axios.get(`${BACK_URL}/groups/${id}/comments`);
+      console.log(response.data.group.comments);
+      setGroupComments(response.data.group.comments);
+    }
   
+    useEffect(() => {
+      setTimeout(() => {
+        fetchGroupComments()
+        setUpdateComment(false)
+      }, 300)
+    }, [updateComment])
   
     useEffect(() => {
       fetchData();
@@ -65,24 +78,6 @@ function GroupInfo () {
             setGroupComments(comments)
         }
     }, [group])
-
-    // useEffect(() => {
-
-    // }, [groupComments])
-  
-    // useEffect(() => {
-    //     const checkClickedOutside = (event) => {
-    //       if (addNewPost && ref.current && !ref.current.contains(event.target)) {
-    //         setAddNewPost(false);
-    //       }
-    //     };
-    //     const modal = document.querySelector(".modal-container");
-    //     ref.current = modal;
-    //     document.addEventListener("click", checkClickedOutside);
-    //     return () => {
-    //       document.removeEventListener("click", checkClickedOutside);
-    //     };
-    // }, [addNewPost]);
 
     const handleLike = async (e, groupId) => {
         const newObj = {...group};
@@ -119,6 +114,7 @@ function GroupInfo () {
         setNewComment("");
         setGroup(newObj);
         setGroupComments([...groupComments, comment]);
+        setUpdateComment(true)
     };
     
     
@@ -290,7 +286,6 @@ function GroupInfo () {
           </div>
         )}
       </div>
-      {console.log("BACKGROUND", background)}
       <div className="background3d background3dblack"></div>
     </>
   );

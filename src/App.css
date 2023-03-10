@@ -44,6 +44,12 @@
   overflow: initial !important;
   overflow-x: hidden !important;
 }
+
+body#Body {
+  height: 100%;
+  max-height: 100%;
+}
+
 .dark-form {
   --white: #383535;
   --border-gray: #424242df;

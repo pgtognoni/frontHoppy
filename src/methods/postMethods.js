@@ -61,7 +61,6 @@ export const updateGroupComment = async (comment, id, user) => {
         Authorization: `Bearer ${token}`,
         },
     });
-    console.log(res.data)
 };
 
 export const updateUserLiked = async (user) => {

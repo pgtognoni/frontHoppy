@@ -59,7 +59,7 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                 : null}
                 <div className="dropdown mt-4">
                     <button className="btn-sidebar btn-gray" type="button" data-bs-toggle="dropdown">
-                        <img className='group-icon' src='./image/group2.svg' />
+                        <img className='group-icon' src='https://res.cloudinary.com/dgamncxcz/image/upload/v1678451023/group2_ajnq1j.svg' />
                         <p className=''>Groups</p>
                     </button>
                     <ul className="dropdown-menu">
@@ -69,7 +69,7 @@ function MobileNavBar({posts, setPosts, responseMessage, setResponseMessage}) {
                 </div>
                 <div className="dropdown mt-4">
                     <button className="btn-sidebar btn-gray" type="button" data-bs-toggle="dropdown">
-                        <img className='group-icon' src='./image/group1.svg' />
+                        <img className='group-icon' src='https://res.cloudinary.com/dgamncxcz/image/upload/v1678451034/group1_lzdk5b.svg' />
                         <p className=''>Groups Joined</p>
                     </button>
                     <ul className="dropdown-menu">
