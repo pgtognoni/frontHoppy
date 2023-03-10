@@ -2971,6 +2971,10 @@ img.postedByImg {
   min-height: 300px
 }
 
+.profile-container .postContainer {
+  max-width: 90vw;
+}
+
 .profile-body {
   display: flex;
   flex-direction: column;
