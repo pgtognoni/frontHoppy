@@ -6,7 +6,7 @@ The app has features like user registration and login, post creation and sharing
 create group and explore.
 
 Demo
-You can check out a demo of the app here: [https://hoppier.netlify.app/login]
+You can check out a demo of the app here: [https://hoppier.netlify.app]
 
 Technologies Used
 Hoppier app is built with the following technologies:
