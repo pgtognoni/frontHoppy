@@ -1,6 +1,10 @@
 import React from "react";
 import { createContext, useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { setName, setImage, setCurrency, setBio, setGroups, setRole, setId, setLogged, setPublished, setLiked, setDisliked, setCommented, reset } from '../reducer/user.reducer'
+import { useDispatch } from 'react-redux'
+import store from "../store/store";
+
 const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 // Create and export your context
@@ -8,6 +12,9 @@ const BACK_URL = import.meta.env.VITE_BACK_URL;
 export const SessionContext = createContext();
 
 function SessionContextProvider({ children }) {
+
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
@@ -52,6 +59,20 @@ function SessionContextProvider({ children }) {
         setUserId(json.user._id);
         setUserImage(json.user.image);
         setUpdateUser(false)
+
+        dispatch(setId(json.user._id))
+        dispatch(setRole(json.user.role))
+        dispatch(setName(json.user.username))
+        dispatch(setImage(json.user.image))
+        dispatch(setBio(json.user.bio))
+        dispatch(setGroups(json.user.groups))
+        dispatch(setPublished(json.user.published))
+        dispatch(setLiked(json.user.liked))
+        dispatch(setDisliked(json.user.disliked))
+        dispatch(setCommented(json.user.commented))
+        dispatch(setCurrency(json.user.currency))
+        console.log(store.getState())
+  
       }
     } catch (error) {
       console.log(error);

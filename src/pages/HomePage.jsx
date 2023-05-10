@@ -19,7 +19,8 @@ function HomePage() {
       ) : (
         <h1>Loading...</h1>
       )}
-      <iframe className="background3d" src='https://my.spline.design/untitledcopy-858101b02d0e98d0da4179fadde8c638/'></iframe>
+      {/* <iframe className="background3d" src='https://my.spline.design/untitledcopy-858101b02d0e98d0da4179fadde8c638/'></iframe> */}
+      <img className="background3d" src="./image/Untitled-Copy@1-1904x993.png" />
     </>
   );
 }

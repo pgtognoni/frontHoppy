@@ -152,7 +152,7 @@ function ProfilePage() {
               <div className="profile-info">
                 <div className="profile-title">
                   <h1 className="profUsername">{user.username}</h1>
-                  <button type="button" class="edit-btn" data-bs-toggle="modal" data-bs-target="#editBio" >
+                  <button type="button" className="edit-btn" data-bs-toggle="modal" data-bs-target="#editBio" >
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                 </div>

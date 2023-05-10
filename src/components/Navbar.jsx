@@ -2,6 +2,9 @@ import React from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import { useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { reset } from "../reducer/user.reducer";
+import store from "../store/store";
 import {
   faUser,
   faRightFromBracket,
@@ -15,11 +18,14 @@ function Navbar() {
     useContext(SessionContext);
   const navigate = useNavigate();
   const location = useLocation().pathname;
+  const dispatch = useDispatch();
 
   const logout = () => {
     window.localStorage.clear();
     setIsAuthenticated(false);
     setIsLoading(true);
+    dispatch(reset())
+    console.log(store.getState())
     navigate("/");
   };
 

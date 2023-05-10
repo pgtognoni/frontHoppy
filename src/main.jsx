@@ -5,15 +5,19 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import SessionContextProvider from "./contexts/SessionContext";
 import PostContextProvider from "./contexts/PostContext";
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
+    <Provider store={store}>
       <SessionContextProvider>
         <PostContextProvider>
           <App />
         </PostContextProvider>
       </SessionContextProvider>
+    </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

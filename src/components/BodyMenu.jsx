@@ -18,13 +18,13 @@ const location = useLocation().pathname;
   return (
     <div className='body-menu'>
         <div className='btn-menu-container'>
-            <button class="open-sidebar add-new-post" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvasResponsive">
+            <button className="open-sidebar add-new-post" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvasResponsive">
                 <FontAwesomeIcon className='open-sidebar' icon={faBars} />
             </button>
         </div>
         {location === '/' && 
         <div className='btn-menu-container add-new-btn'>
-        <button type="button" class="add-new-post add-new-btn" data-bs-toggle="modal" data-bs-target="#createNewPost" >
+        <button type="button" className="add-new-post add-new-btn" data-bs-toggle="modal" data-bs-target="#createNewPost" >
                 <span className="btn-add">+</span>
                 <p className='text-hide'>Add New Post</p>
             </button>

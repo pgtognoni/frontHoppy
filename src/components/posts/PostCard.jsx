@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   faAnglesDown,
   faAnglesUp,
@@ -10,22 +11,26 @@ import { SessionContext } from "../../contexts/SessionContext";
 import { PostContext } from "../../contexts/PostContext";
 import axios from "axios";
 import Comments from "../comments/Comments";
+import { setDisliked, setLiked } from "../../reducer/user.reducer";
 import { deleteCommentAPI, updateLike, updateDislike, updateComment, updateUserLiked } from "../../methods/postMethods";
 
 function PostCard(props) {
-  const { setUser, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
-  useContext(SessionContext);
+  // const { setUser, user, isAuthenticated, authenticated, background, setBackground, backgroundImages, setBackgroundImages, backgroundImagesApply, setBackgroundImagesApply } =
+  // useContext(SessionContext);
+
 const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
   useContext(PostContext);
 
   const location = useLocation().pathname;
+  const dispatch = useDispatch();
+  const disliked = useSelector(state => state.user.disliked)
+  const liked = useSelector(state => state.user.liked)
+  const userId = useSelector(state => state.user.id)
+  const images = useSelector(state => state.user.images)
+  const username = useSelector(state => state.user.username)
+
   const {
     post,
-    //handleDislike,
-    //handleLike,
-    //handleNewComment,
-    //newComment,
-    //setNewComment,
     setProfilePost,
     setPosts,
     allposts,
@@ -36,9 +41,114 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
   const [newComment, setNewComment] = useState(""); 
 
   const handleDislike = (e, id) => {
-    const newArr = [...allposts];
+    const newArr = JSON.parse(JSON.stringify(allposts));
     const post = newArr.find(item => item._id === id);
-    const newUser = {...user};
+    const newDisliked = JSON.parse(JSON.stringify(disliked));
+    const newliked = JSON.parse(JSON.stringify(liked));
+
+    if (!newDisliked.includes(id)) {
+      newDisliked.push(id);
+      dispatch(setDisliked(newDisliked))
+      newArr.map(item =>{ 
+        if (item._id === id) {
+          item.dislikes += 1;
+      }});
+
+      if(newliked.includes(id)) {
+        newliked.splice(newliked.indexOf(id), 1);
+        dispatch(setLiked(newliked))
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.likes -= 1;
+        }});
+      }
+
+      //UPDATE USER IN BACKEND
+      const user = {liked: newliked, disliked: newDisliked}
+      updateDislike(post, id);
+      updateUserLiked(user)
+
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
+      } else {
+      newDisliked.splice(newDisliked.indexOf(id), 1);
+      dispatch(setDisliked(newDisliked))
+      newArr.map(item =>{ 
+        if (item._id === id) {
+          item.dislikes -= 1;
+      }});
+      //UPDATE USER IN BACKEND
+      const user = {liked: newliked, disliked: newDisliked}
+      updateDislike(post, id);
+      updateUserLiked(user)
+
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
+    }
+  }
+
+  const handleLike = (e, id) => {
+    const newArr = JSON.parse(JSON.stringify(allposts));
+    const post = newArr.find(item => item._id === id);
+    const newDisliked = JSON.parse(JSON.stringify(disliked));
+    const newliked = JSON.parse(JSON.stringify(liked));
+
+    if (!newliked.includes(id)) {
+      newliked.push(id);
+      dispatch(setLiked(newliked))
+      newArr.map(item =>{ 
+        if (item._id === id) {
+            item.likes += 1;
+      }});
+
+      if(newDisliked.includes(id)) {
+        newDisliked.splice(newDisliked.indexOf(id), 1);
+        dispatch(setDisliked(newDisliked))
+        newArr.map(item =>{ 
+          if (item._id === id) {
+            item.dislikes -= 1;
+        }});
+      } 
+
+      const user = {liked: newliked, disliked: newDisliked}
+      updateLike(post, id);
+      updateUserLiked(user)
+
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
+    } else {
+      newliked.splice(newliked.indexOf(id), 1);
+      dispatch(setLiked(newliked))
+      newArr.map(item =>{ 
+        if (item._id === id) {
+            item.likes -= 1;
+      }});
+
+      const user = {liked: newliked, disliked: newDisliked}
+      updateLike(post, id);
+      updateUserLiked(user)
+      if (location === '/') {
+        setPostsContext(newArr);
+      } else {
+        setGroupPosts(newArr);
+      }
+    }
+  };
+  
+/*
+  const handleDislike = (e, id) => {
+    const newArr = JSON.parse(JSON.stringify(allposts));
+    const post = newArr.find(item => item._id === id);
+    const newUser = JSON.parse(JSON.stringify(user));
 
     if (!user.disliked.includes(id)) {
       newUser.disliked.push(id);
@@ -46,6 +156,7 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
         if (item._id === id) {
           item.dislikes += 1;
       }});
+      console.log(disliked, liked)
 
       if(newUser.liked.includes(id)) {
         newUser.liked.splice(newUser.liked.indexOf(id), 1);
@@ -54,16 +165,20 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
             item.likes -= 1;
         }});
       }
+
       setUser(newUser);
+
+      //UPDATE USER IN BACKEND
       updateDislike(post, id);
       updateUserLiked(user)
+
       if (location === '/') {
         setPostsContext(newArr);
       } else {
         setGroupPosts(newArr);
       }
       } else {
-      newUser.disliked.splice(newUser.liked.indexOf(id), 1);
+      newUser.disliked.splice(newUser.disliked.indexOf(id), 1);
       newArr.map(item =>{ 
         if (item._id === id) {
           item.dislikes -= 1;
@@ -83,7 +198,7 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
   const handleLike = (e, id) => {
     const newArr = [...allposts];
     const post = newArr.find((item) => item._id === id);
-    const newUser = {...user};
+    const newUser = JSON.parse(JSON.stringify(user));
 
     if (!user.liked.includes(id)) {
       newUser.liked.push(id);
@@ -123,7 +238,7 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
       }
     }
   };
-
+*/
   const openComments = (e, id) => {
     setShowComments(!showComments);
   };
@@ -133,15 +248,15 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
     const newArr = [...allposts];
     const comment = {
       body: newComment,
-      image: user.image[0],
-      username: user.username,
+      image: images[0],
+      username: username,
     };
     newArr.map((item) => {
       if (item._id === id) {
         item.comments.push(comment);
       }
     });
-    updateComment(newComment, id, user);
+    updateComment(newComment, id, userId);
     setNewComment("");
     if (location === '/') {
       setPostsContext(newArr);
@@ -168,8 +283,6 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
 
     deleteCommentAPI(id, token);
   };
-
-  console.log()
 
   return (
     <>
@@ -212,10 +325,21 @@ const { postsContext, setPostsContext, setIsLoadingPost, isLoadingPost } =
               <p className="postDescription">{post.description}</p>
             </div>
             <div className="postButtonsParent">
-            <button className={`postInteractions ${user && user.liked.includes(post._id) ? "postInteractionsLiked" : null}`} onClick={(e) => handleLike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy._id ) ? {pointerEvents: 'none'} : null}>
+              <button 
+                className={`postInteractions ${liked.includes(post._id) ? "postInteractionsLiked" : null}`} 
+                // className={`postInteractions ${user && user.liked.includes(post._id) ? "postInteractionsLiked" : null}`} 
+                onClick={(e) => handleLike(e, post._id)} 
+                style={post && userId === post.createdBy._id ? {pointerEvents: 'none'} : null}
+                // style={post && (location === '/profile' || user._id === post.createdBy._id ) ? {pointerEvents: 'none'} : null}
+                >
                     ❤️ {post.likes}
                 </button>
-                <button className={`postInteractions2 ${user && user.disliked.includes(post._id) ? "postInteractionsLiked postInteractionsDisiked" : null}`} onClick={(e) => handleDislike(e, post._id)} style={post && (location === '/profile' || user._id === post.createdBy._id ) ? {pointerEvents: 'none'} : null}>
+                <button 
+                  className={`postInteractions2 ${disliked.includes(post._id) ? "postInteractionsLiked postInteractionsDisiked" : null}`} 
+                  // className={`postInteractions2 ${user && user.disliked.includes(post._id) ? "postInteractionsLiked postInteractionsDisiked" : null}`} 
+                  onClick={(e) => handleDislike(e, post._id)} 
+                  style={post && userId === post.createdBy._id ? {pointerEvents: 'none'} : null}>
+                  {/* style={post && (location === '/profile' || user._id === post.createdBy._id ) ? {pointerEvents: 'none'} : null}> */}
                     😠 {post.dislikes}
                 </button>
                 <button className="postInteractions" onClick={(e) => openComments(e)}>

@@ -15,7 +15,6 @@ export const updateLike = async (post, id) => {
         },
       }
     );
-    console.log(res.data)
 };
 
 export const updateDislike = async (post, id) => {
@@ -27,14 +26,13 @@ export const updateDislike = async (post, id) => {
         },
       }
     );
-    console.log(res.data)
 };
 
 
-export const updateComment = async (comment, id, user) => {
+export const updateComment = async (comment, id, userId) => {
 
     const data = {
-        user: user._id,
+        user: userId,
         body: comment,
         postId: id,
     };

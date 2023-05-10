@@ -1,4 +1,4 @@
-import Sidebar from "./components/Sidebar";
+// import Sidebar from "./components/Sidebar";
 import { useState, useContext, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";

@@ -28,6 +28,7 @@ function SignupPage() {
   return (
     <>
         <LoginForm handleSubmit={handleSubmit} setUsername={setUsername} setPassword={setPassword}/>
+        <img className="background3d" src="./image/Untitled-Copy@1-1904x993.png" />
     </>
   )
 }
